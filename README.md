@@ -9,5 +9,5 @@ If you want to help us (and you understand Italian) go here: http://www.androidi
 
 Android Development Documentation: 
 -  http://goo.gl/CRr9V (IT)
--  http://goo.gl/ZdtYJ﻿(IT)
+-  http://goo.gl/ZdtYJ (IT)
 -  http://goo.gl/O5G5x (EN - Google Official)
