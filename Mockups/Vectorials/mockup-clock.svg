@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="89.715247"
-     inkscape:cy="561.02538"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="-227.56451"
+     inkscape:cy="876.15385"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -160,7 +160,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -177,7 +177,7 @@
        height="49.9729"
        x="-400.86804"
        y="144.03355"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <path
@@ -185,7 +185,7 @@
        d="m -401.04772,1327.9657 720.37158,0 0,96.0717 -720.37158,0 z"
        id="rect3050"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <path
@@ -193,7 +193,7 @@
        d="m -39.953971,1358.2562 -1.40625,0.031 -1.4375,0.031 c -11.43078,4.1478 -22.77525,8.5536 -34.21875,12.6563 l -0.0312,25.0629 71.9999996,-0.031 -0.25,-25 -34.6562496,-12.75 z m 182.781251,3.5937 0,4.0625 48.0625,0 -0.0312,20.125 4.0625,0 0.0312,-24.1875 -52.125,0 z m -183.968751,0.25 c 10.45661,4.0354 21.2288,7.8414 31.7499996,11.7187 l 0.34375,18.25 -63.9374996,0 -0.0625,-18.0624 c 11.28117,-4.1703 22.14979,-8.276 31.90625,-11.9063 z m -223.062499,0.031 -9.59375,10.7187 -0.0937,2.0937 10.03125,11.0626 4.84375,-0.125 -7.84375,-9.8438 46.875,-0.062 c 9.68749,-0.8219 9.96047,15.9643 1.78125,15.9375 -8.70485,0.1022 -24.21628,0.1562 -25.875,0.1562 0.0373,1.158 0.0625,2.4161 0.0625,3.9688 6.27913,0 26.57025,0.04 27.28125,-0.125 10.46475,-2.4268 11.13639,-17.9767 2.5,-22.4375 -1.37348,-1.0118 -5.8125,-1.375 -5.8125,-1.375 l -47.09375,-0.031 8.46875,-9.8124 -5.53125,-0.125 z m 391,9.9062 0,24.1875 56.1875,0 0,-24.1875 -56.1875,0 z m 4.0625,4.0625 48.0625,0 0,15.7187 -48.0625,0 0,-15.7187 z"
        id="path3001"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <text
@@ -203,7 +203,7 @@
        y="181.25002"
        id="text2990"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
@@ -216,7 +216,7 @@
        d="m 198.47349,152.85695 0,3.2024 -5.7306,0 0,27.8102 20.22563,0 0,-27.8102 -5.56205,0 0,-3.2024 z"
        id="path3024"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <path
@@ -224,7 +224,7 @@
        d="m 192.74289,183.86955 20.22563,0 0,-12.3039 -20.22563,0 z"
        id="path3022"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <path
@@ -232,7 +232,7 @@
        d="m 181.01478,152.84995 -6.0625,6.65625 0,24.375 6.0625,0 0,-31.03125 z m -8.03125,8.8125 -5.0625,5.53125 0,16.6875 5.0625,0 0,-22.21875 z m -6.84375,7.5 -5.375,5.875 0,8.84375 5.375,0 0,-14.71875 z m -7.03125,7.6875 -6.40625,7.03125 6.40625,0 0,-7.03125 z"
        id="path3034"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <image
@@ -249,7 +249,7 @@
        height="1133.983"
        x="-400.86804"
        y="194.00621"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <rect
@@ -308,7 +308,10 @@
        style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#888888;fill-opacity:1;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
        d="m -282.96875,1272 0,1 602.3125,0 0,-1 -602.3125,0 z"
        id="path4019"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
     <g
        id="g3995"
        transform="translate(801.85909,-14.142136)">
@@ -351,8 +354,8 @@
     </g>
     <g
        id="g4173"
-       transform="matrix(3.4736844,0,0,2.3764668,1020.1586,-1150.3886)"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       transform="matrix(3.4736844,0,0,2.3764668,1020.1586,-1204.3886)"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320">
       <rect
@@ -666,16 +669,16 @@
        xml:space="preserve"
        style="font-size:146.91259766px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Roboto Lt;-inkscape-font-specification:Roboto Lt Light"
        x="-355.67673"
-       y="472.82309"
+       y="418.82309"
        id="text4271"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan4273"
          x="-355.67673"
-         y="472.82309"
+         y="418.82309"
          style="font-size:145px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto">20<tspan
    style="font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light"
    id="tspan4277">:30</tspan></tspan></text>
@@ -693,20 +696,20 @@
        xml:space="preserve"
        style="font-size:45.40710449px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Roboto;-inkscape-font-specification:Roboto"
        x="-345.32541"
-       y="588.59241"
+       y="534.59241"
        id="text4291"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan4293"
          x="-345.32541"
-         y="588.59241">8 MAGGIO 2013</tspan></text>
+         y="534.59241">8 MAGGIO 2013</tspan></text>
     <g
        id="g4303"
-       transform="matrix(3.8302775,0,0,3.8302775,3413.4195,-3476.8012)"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       transform="matrix(3.8302775,0,0,3.8302775,3413.4195,-3530.8012)"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320">
       <path
@@ -739,72 +742,32 @@
     <text
        sodipodi:linespacing="125%"
        id="text4309"
-       y="406.86597"
+       y="352.86597"
        x="35.805141"
        style="font-size:45.40710449px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Roboto;-inkscape-font-specification:Roboto"
        xml:space="preserve"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320"><tspan
-         y="406.86597"
+         y="352.86597"
          x="35.805141"
          id="tspan4311"
          sodipodi:role="line">ROMA  23°</tspan></text>
     <path
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       d="m -400.86193,1272.9657 720,0 0,55 -720,0 z"
+       d="m -400.86193,1240.9657 720,0 0,87 -720,0 z"
        id="rect3216"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
     <g
-       id="g4042"
-       transform="matrix(1.8409359,0,0,1.8409359,1440.3758,-1049.5338)">
-      <rect
-         y="1265.9108"
-         x="-651.62872"
-         height="7.9549513"
-         width="7.9549513"
-         id="rect4030"
-         style="fill:#b2b2b2;fill-opacity:1;fill-rule:nonzero;stroke:none" />
-      <rect
-         style="fill:#b2b2b2;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         id="rect4032"
-         width="7.9549513"
-         height="7.9549513"
-         x="-651.62872"
-         y="1279.8657" />
-      <rect
-         y="1265.9108"
-         x="-637.67377"
-         height="7.9549513"
-         width="7.9549513"
-         id="rect4034"
-         style="fill:#b2b2b2;fill-opacity:1;fill-rule:nonzero;stroke:none" />
-      <rect
-         style="fill:#b2b2b2;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         id="rect4036"
-         width="7.9549513"
-         height="7.9549513"
-         x="-623.71881"
-         y="1265.9108" />
-      <rect
-         y="1279.8657"
-         x="-623.71881"
-         height="7.9549513"
-         width="7.9549513"
-         id="rect4038"
-         style="fill:#b2b2b2;fill-opacity:1;fill-rule:nonzero;stroke:none" />
-      <rect
-         style="fill:#b2b2b2;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         id="rect4040"
-         width="7.9549513"
-         height="7.9549513"
-         x="-637.67377"
-         y="1279.8657" />
-    </g>
-    <g
-       transform="translate(90.794321,639.74103)"
+       transform="translate(87.394826,625.54002)"
        style="opacity:0.98000004;fill:#888888;fill-opacity:1"
-       id="g4050">
+       id="g4050"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320">
       <path
          inkscape:connector-curvature="0"
          id="path4052"
@@ -819,8 +782,8 @@
     <g
        style="display:inline"
        id="g4173-1"
-       transform="matrix(3.4736844,0,0,1.5755725,1022.2254,-291.89904)"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       transform="matrix(3.4736844,0,0,1.5755725,1022.2254,-345.89904)"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320">
       <rect
@@ -842,29 +805,41 @@
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m -240.86895,714.67432 0,144.92365"
+       d="m -240.86895,660.67432 0,144.92365"
        id="path3306"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m -116.92109,712.76743 0,144.92365"
+       d="m -116.92109,658.76743 0,144.92365"
        id="path3306-0"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m 16.561221,712.76743 0,144.92365"
+       d="m 16.561221,658.76743 0,144.92365"
        id="path3306-9"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m 142.41597,712.76744 0,144.92365"
+       d="m 142.41597,658.76744 0,144.92365"
        id="path3306-4"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
     <g
        style="display:inline"
        id="g4303-8"
-       transform="matrix(1.1072653,0,0,1.186053,638.98927,-456.06988)"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       transform="matrix(1.1072653,0,0,1.186053,638.98927,-510.06988)"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320">
       <path
@@ -897,8 +872,8 @@
     <g
        style="display:inline"
        id="g4303-8-7"
-       transform="matrix(1.1072653,0,0,1.186053,761.98373,-457.97671)"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       transform="matrix(1.1072653,0,0,1.186053,761.98373,-511.97671)"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320">
       <path
@@ -931,8 +906,8 @@
     <g
        style="display:inline"
        id="g4303-8-3"
-       transform="matrix(1.1072653,0,0,1.186053,891.65226,-457.97671)"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       transform="matrix(1.1072653,0,0,1.186053,891.65226,-511.97671)"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320">
       <path
@@ -965,8 +940,8 @@
     <g
        style="display:inline"
        id="g4303-8-8"
-       transform="matrix(1.1072653,0,0,1.186053,1019.4139,-456.06982)"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       transform="matrix(1.1072653,0,0,1.186053,1019.4139,-510.06982)"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320">
       <path
@@ -999,8 +974,8 @@
     <g
        style="display:inline"
        id="g4303-8-89"
-       transform="matrix(1.1072653,0,0,1.186053,1149.0824,-454.16293)"
-       inkscape:export-filename="C:\Users\user\Desktop\Nuova cartella (2)\1.png"
+       transform="matrix(1.1072653,0,0,1.186053,1149.0824,-508.16293)"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320">
       <path
@@ -1034,13 +1009,16 @@
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        x="-324.77213"
-       y="737.55701"
+       y="683.55701"
        id="text3473"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3475"
          x="-324.77213"
-         y="737.55701"
+         y="683.55701"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">SAB</tspan></text>
     <text
        xml:space="preserve"
@@ -1094,248 +1072,483 @@
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="-207.05547"
-       y="736.55383"
+       y="682.55383"
        id="text3473-4"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3475-2"
          x="-207.05547"
-         y="736.55383"
+         y="682.55383"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">DOM</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="-75.480042"
-       y="738.46069"
+       y="684.46069"
        id="text3473-7"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3475-79"
          x="-75.480042"
-         y="738.46069"
+         y="684.46069"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">LUN</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="50.374706"
-       y="740.36755"
+       y="686.36755"
        id="text3473-31"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3475-9"
          x="50.374706"
-         y="740.36755"
+         y="686.36755"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">MAR</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="181.95012"
-       y="740.36755"
+       y="686.36755"
        id="text3473-8"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3475-6"
          x="181.95012"
-         y="740.36755"
+         y="686.36755"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">MER</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        x="-320.04773"
-       y="840.03748"
+       y="786.03748"
        id="text3597"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599"
          x="-320.04773"
-         y="840.03748"
+         y="786.03748"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto">20</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="-197.67076"
-       y="839.56873"
+       y="785.56873"
        id="text3597-5"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599-0"
          x="-197.67076"
-         y="839.56873"
+         y="785.56873"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto">23</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="-65.670769"
-       y="840.56873"
+       y="786.56873"
        id="text3597-2"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599-8"
          x="-65.670769"
-         y="840.56873"
+         y="786.56873"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto">19</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="61.329235"
-       y="841.56873"
+       y="787.56873"
        id="text3597-6"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599-02"
          x="61.329235"
-         y="841.56873"
+         y="787.56873"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto">15</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="191.32924"
-       y="844.56873"
+       y="790.56873"
        id="text3597-4"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599-86"
          x="191.32924"
-         y="844.56873"
+         y="790.56873"
          style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto">17</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="-318.67078"
-       y="864.56873"
+       y="810.56873"
        id="text3597-50"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599-9"
          x="-318.67078"
-         y="864.56873"
+         y="810.56873"
          style="font-size:22px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">17</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="-196.56773"
-       y="864.97058"
+       y="810.97058"
        id="text3597-50-0"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599-9-0"
          x="-196.56773"
-         y="864.97058"
+         y="810.97058"
          style="font-size:22px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">19</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="-63.567741"
-       y="863.97058"
+       y="809.97058"
        id="text3597-50-6"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599-9-1"
          x="-63.567741"
-         y="863.97058"
+         y="809.97058"
          style="font-size:22px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">17</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="63.432259"
-       y="864.97058"
+       y="810.97058"
        id="text3597-50-3"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599-9-8"
          x="63.432259"
-         y="864.97058"
+         y="810.97058"
          style="font-size:22px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">12</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
        x="193.43227"
-       y="865.97058"
+       y="811.97058"
        id="text3597-50-9"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
          sodipodi:role="line"
          id="tspan3599-9-3"
          x="193.43227"
-         y="865.97058"
+         y="811.97058"
          style="font-size:22px;font-style:normal;font-variant:normal;font-weight:200;font-stretch:normal;font-family:Roboto Th;-inkscape-font-specification:Roboto Th Ultra-Light">15</tspan></text>
+    <g
+       style="display:inline"
+       id="g4173-1-4"
+       transform="matrix(3.4736844,0,0,2.1355728,1020.9162,-427.63873)"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320">
+      <rect
+         style="fill:#d3d3d3;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="rect4175-7-4"
+         width="191.23743"
+         height="148.35092"
+         x="-401.0477"
+         y="609.68646"
+         ry="1.0334042" />
+      <rect
+         ry="0.70997101"
+         y="608.03748"
+         x="-401.04773"
+         height="148.96066"
+         width="189.99998"
+         id="rect4177-4-6"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -345.04772,950.03746 606,-2"
+       id="path3778"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m -344.04772,1031.0375 606,-2"
+       id="path3778-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m -348.04772,1113.0375 606,-2"
+       id="path3778-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="-329.04773"
+       y="926.03748"
+       id="text3805"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3807"
+         x="-329.04773"
+         y="926.03748"
+         style="font-size:32px;-inkscape-font-specification:Roboto;font-family:Roboto;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;fill:#808080">FTS MIB</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       x="-330.57117"
+       y="1005.4125"
+       id="text3805-6"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3807-1"
+         x="-330.57117"
+         y="1005.4125"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#808080;font-family:Roboto;-inkscape-font-specification:Roboto">FIAT</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       x="-332.57117"
+       y="1081.4125"
+       id="text3805-8"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3807-4"
+         x="-332.57117"
+         y="1081.4125"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#808080;font-family:Roboto;-inkscape-font-specification:Roboto">GOOGLE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       x="-334.57117"
+       y="1159.4125"
+       id="text3805-9"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3807-6"
+         x="-334.57117"
+         y="1159.4125"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#808080;font-family:Roboto;-inkscape-font-specification:Roboto">NASDAQ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="-167.04771"
+       y="926.03748"
+       id="text3848"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3850"
+         x="-167.04771"
+         y="926.03748"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#00aad4;font-family:Roboto;-inkscape-font-specification:Roboto">103647.33</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       x="-167.20006"
+       y="1004.2562"
+       id="text3848-3"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3850-7"
+         x="-167.20006"
+         y="1004.2562"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#00aad4;font-family:Roboto;-inkscape-font-specification:Roboto">4.50</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       x="-165.20006"
+       y="1084.2562"
+       id="text3848-8"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3850-8"
+         x="-165.20006"
+         y="1084.2562"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#00aad4;font-family:Roboto;-inkscape-font-specification:Roboto">135.03</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       x="-161.20006"
+       y="1160.2562"
+       id="text3848-2"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3850-9"
+         x="-161.20006"
+         y="1160.2562"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#00aad4;font-family:Roboto;-inkscape-font-specification:Roboto">2659413.96</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="38.952278"
+       y="926.03748"
+       id="text3891"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3893"
+         x="38.952278"
+         y="926.03748"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ff0000;font-family:Roboto;-inkscape-font-specification:Roboto">-0.33</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       x="39.444618"
+       y="997.99829"
+       id="text3891-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3893-3"
+         x="39.444618"
+         y="997.99829"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ff0000;font-family:Roboto;-inkscape-font-specification:Roboto">-1.59</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="38.910648"
+       y="1083.9369"
+       id="text3916"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3918"
+         x="38.910648"
+         y="1083.9369"
+         style="font-size:32px;fill:#2ca02c">+3.81</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       x="38.51115"
+       y="1160.9769"
+       id="text3916-5"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320"><tspan
+         sodipodi:role="line"
+         id="tspan3918-9"
+         x="38.51115"
+         y="1160.9769"
+         style="font-size:32px;fill:#2ca02c">+1.47</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Livello">
     <path
-       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#888888;fill-opacity:1;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
-       d="m 116.45269,133.93353 -118.2271911,-0.9069 720.5396911,1.9069 0,-1 z"
-       id="path4019-1"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccc"
-       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Social Page.png"
-       inkscape:export-xdpi="320"
-       inkscape:export-ydpi="320" />
-    <path
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
-       d="m -1.4404911,49.089173 720.0000011,0 0,83.603347 -720.0000011,0 z"
-       id="rect3216-7"
-       inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Social Page.png"
-       inkscape:export-xdpi="320"
-       inkscape:export-ydpi="320" />
-    <g
-       transform="translate(492.82987,-529.45202)"
-       style="opacity:0.98000004;fill:#888888;fill-opacity:1;display:inline"
-       id="g4050-4"
-       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Social Page.png"
-       inkscape:export-xdpi="320"
-       inkscape:export-ydpi="320">
-      <path
-         inkscape:connector-curvature="0"
-         id="path4052-0"
-         d="m -156.03125,652.03125 0,2 48.75,0 0,-2 -48.75,0 z"
-         style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#888888;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path4054-9"
-         d="m -156.03125,656.03125 0,2 48.75,0 0,-2 -48.75,0 z"
-         style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#888888;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans" />
-    </g>
-    <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m 338.50743,118.50176 42.90503,0 0,-61.973938 -42.90503,0 z"
+       d="m 650.84343,1168.0998 42.90503,0 0,-61.974 -42.90503,0 z"
        id="path3490"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Social Page.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m 337.55399,74.643272 43.85847,0 z"
+       d="m 649.88999,1124.2413 43.85847,0 z"
        id="path3514"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Social Page.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m 348.04188,74.643272 0,43.858488 z"
+       d="m 660.37788,1124.2413 0,43.8585 z"
        id="path3516"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Social Page.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m 342.35246,60.237592 -0.0675,11.44115 35.28249,-0.74525 0.0675,-11.44114 z"
+       d="m 654.68846,1109.8356 -0.0675,11.4411 35.28249,-0.7452 0.0675,-11.4411 z"
        id="path3518"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Social Page.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m 348.04188,110.87419 34.32403,0 z"
+       d="m 660.37788,1160.4722 34.32403,0 z"
        id="path3522"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Social Page.png"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Mockups\PNGs\Clock Page.png"
        inkscape:export-xdpi="320"
        inkscape:export-ydpi="320" />
   </g>
