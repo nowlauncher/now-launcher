@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Telephone Icon.svg">
+  <defs
+     id="defs4">
+    <marker
+       viewBox="0 0 10 10"
+       refY="5"
+       refX="10"
+       orient="auto"
+       markerWidth="4"
+       markerUnits="strokeWidth"
+       markerHeight="3"
+       id="ArrowStart">
+      <path
+         id="path1939"
+         d="M 10 0 L 0 5 L 10 10 z" />
+    </marker>
+    <marker
+       viewBox="0 0 10 10"
+       refY="5"
+       refX="0"
+       orient="auto"
+       markerWidth="4"
+       markerUnits="strokeWidth"
+       markerHeight="3"
+       id="ArrowEnd">
+      <path
+         id="path1936"
+         d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="127.9774"
+     inkscape:cy="708.08574"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="974"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#00aad4;fill-opacity:1;stroke:#3981c3;stroke-width:0.04460771;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none"
+       d=""
+       id="path3872"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#00aad4;fill-opacity:0;stroke:#3981c3;stroke-width:0.99921262000000000;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none"
+       id="rect3890"
+       width="41.365746"
+       height="72.124893"
+       x="70.710678"
+       y="309.90005"
+       ry="1.1385727" />
+    <rect
+       style="fill:#00aad4;fill-opacity:0;stroke:#3981c3;stroke-width:0.99921262;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none"
+       id="rect3898"
+       width="96.166519"
+       height="96.166519"
+       x="92.277435"
+       y="353.03357"
+       ry="1.1385727" />
+    <rect
+       style="fill:#004455;fill-opacity:0;stroke:#3981c3;stroke-width:0.99921262000000000;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none"
+       id="rect3900"
+       width="49.497475"
+       height="51.618793"
+       x="22.273863"
+       y="300.35413"
+       ry="1.1385727" />
+    <rect
+       style="fill:#004455;fill-opacity:0;stroke:#3981c3;stroke-width:0.99921262;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none"
+       id="rect3902"
+       width="28.284271"
+       height="63.286057"
+       x="99.702057"
+       y="324.7493"
+       ry="1.1385727" />
+    <path
+       style="fill:#00aad4;fill-opacity:1;stroke:#3981c3;stroke-width:0.28690565;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none"
+       d="m 162.82789,445.6869 c -0.23699,-0.28555 -0.30387,-10.96025 -0.25051,-39.98309 l 0.0728,-39.59354 39.75018,-0.0728 c 31.61055,-0.0579 39.79696,8.1e-4 39.97869,0.28713 0.12569,0.19796 0.23051,18.06806 0.23293,39.71134 0.003,30.22873 -0.0755,39.43128 -0.34017,39.69596 -0.54067,0.54067 -78.99474,0.49622 -79.44392,-0.045 l 0,0 z m 57.22089,-14.33983 c 2.30124,-1.29085 5.61868,-3.94533 5.79156,-4.63416 0.0942,-0.3752 0.0137,-0.97661 -0.17894,-1.33647 -0.77827,-1.4542 -7.8035,-10.89912 -8.30752,-11.16887 -1.01546,-0.54346 -1.64396,-0.28983 -4.6182,1.86363 -1.63586,1.18441 -3.06764,2.15348 -3.18174,2.15348 -2.92984,0 -13.55113,-13.40312 -14.48154,-18.27441 -0.0949,-0.49662 -0.0301,-1.16896 0.14392,-1.4941 0.17401,-0.32515 1.60174,-1.5238 3.17273,-2.66367 3.16954,-2.29976 3.63513,-3.06985 2.71951,-4.49809 -1.66374,-2.59518 -7.80746,-10.8121 -8.34982,-11.16747 -0.86762,-0.5685 -1.54904,-0.32348 -3.97957,1.4309 -2.98302,2.15318 -3.74286,2.95529 -4.64123,4.89943 -0.78287,1.69418 -0.81367,1.92828 -0.79853,6.06913 0.0141,3.84884 0.0995,4.58184 0.8029,6.89115 1.98024,6.50102 7.27314,15.33695 13.04978,21.78523 5.4802,6.11737 11.21876,9.8646 16.71111,10.9122 1.63604,0.31206 4.96093,-0.1034 6.14558,-0.76791 l 0,0 z"
+       id="path3854-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Icons\XHDPI\Telephone.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+    <path
+       style="fill:#ffffff;fill-opacity:0;stroke:#3981c3;stroke-width:0.353275;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none"
+       d="m 212.66494,431.62197 c -8.97103,-2.48779 -18.85554,-12.50845 -25.64135,-25.99456 -2.83222,-5.62876 -3.35067,-7.67742 -3.34671,-13.22462 0.003,-4.52458 0.0316,-4.69669 1.07475,-6.51565 1.0905,-1.90155 4.93046,-5.15132 6.61631,-5.5994 1.069,-0.28413 1.42978,0.0613 4.82629,4.62054 4.84906,6.50907 5.2463,7.13536 5.00602,7.89241 -0.12142,0.38257 -1.5879,1.76661 -3.25884,3.07564 l -3.03808,2.38007 0.17346,1.53901 c 0.0954,0.84646 0.63243,2.41869 1.19338,3.49385 2.57599,4.93737 9.26512,13.08339 11.91552,14.51073 l 1.24103,0.66834 3.31603,-2.18658 c 1.82382,-1.20262 3.49471,-2.18658 3.71309,-2.18658 0.21839,0 1.10862,0.83527 1.97831,1.85616 2.26604,2.66 7.31226,9.78972 7.31226,10.33137 0,1.29246 -5.46086,4.98363 -8.11869,5.48767 -2.29203,0.43468 -2.92885,0.41563 -4.96278,-0.1484 z"
+       id="path3922"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffff00;fill-opacity:0;stroke:#3981c3;stroke-width:0.99921262000000000;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none"
+       id="rect3946"
+       width="96"
+       height="96"
+       x="154.5"
+       y="358.36218"
+       ry="1.3277563" />
+  </g>
+</svg>
