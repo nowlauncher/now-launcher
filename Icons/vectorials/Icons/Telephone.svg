@@ -15,9 +15,9 @@
    version="1.1"
    inkscape:version="0.48.0 r9654"
    sodipodi:docname="Telephone.svg"
-   inkscape:export-filename="C:\Users\user\Documents\GitHub\now-launcher\Icons\HDPI\Telephone.png"
-   inkscape:export-xdpi="67.5"
-   inkscape:export-ydpi="67.5">
+   inkscape:export-filename="C:\Users\user\Documents\GitHub\now-launcher\Icons\LDPI\Telephone.png"
+   inkscape:export-xdpi="33.75"
+   inkscape:export-ydpi="33.75">
   <defs
      id="defs4">
     <marker
@@ -56,9 +56,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.9330678"
-     inkscape:cx="29.746309"
-     inkscape:cy="57.390984"
+     inkscape:zoom="4.4001617"
+     inkscape:cx="90.74939"
+     inkscape:cy="60.150989"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -107,6 +107,14 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-956.36218)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect2999"
+       width="80"
+       height="80"
+       x="8"
+       y="8"
+       transform="translate(0,956.36218)" />
     <path
        style="fill:#00aad4;fill-opacity:1;stroke:#3981c3;stroke-width:0.04460771;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none"
        d=""
