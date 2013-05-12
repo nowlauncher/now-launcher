@@ -15,9 +15,9 @@
    version="1.1"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="Gmail.svg"
-   inkscape:export-filename="C:\Users\user\Documents\GitHub\now-launcher\Icons\LDPI\Gmail.png"
-   inkscape:export-xdpi="33.75"
-   inkscape:export-ydpi="33.75">
+   inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Icons\XHDPI\bitmap.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -126,7 +126,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -225,11 +225,10 @@
        inkscape:connector-curvature="0"
        transform="translate(0,956.36218)" />
     <path
-       style="fill:none;stroke:#ff2a2a;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 17.375,15.74338 17.375,88 8,88 8,8 17.375,8 z"
+       style="fill:none;stroke:#ff2a2a;stroke-width:0.98795915px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 17.38102,972.57969 0,71.78861 -9.2102637,0 0,-79.48181 9.2102637,0 z"
        id="path4099"
-       inkscape:connector-curvature="0"
-       transform="translate(0,956.36218)" />
+       inkscape:connector-curvature="0" />
     <path
        style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff2a2a;stroke-width:0.24342151;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:12.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        d="m 8.6412384,48.991475 0,-29.783991 4.0658636,4.062982 4.065864,4.062981 0,21.658028 0,21.658029 -4.065864,4.062981 -4.0658636,4.062981 0,-29.783991 z"
@@ -243,23 +242,21 @@
        inkscape:connector-curvature="0"
        transform="translate(0,956.36218)" />
     <path
-       style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff2a2a;stroke-width:0.24342151;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:12.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 7.5805782,48.019203 0,-40.3934748 5.1265238,0 5.126525,0 0,40.3934748 0,40.393476 -5.126525,0 -5.1265238,0 0,-40.393476 z m 9.3691648,0 0,-39.5095913 -4.242641,0 -4.2426403,0 0,39.5095913 0,39.509592 4.2426403,0 4.242641,0 0,-39.509592 z"
+       style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff2a2a;stroke-width:0.23971297;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:12.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 7.5787239,1005.6188 3.1172941,-36.18079 2.187925,-0.92065 4.951538,-2.05643 0,39.15787 0,39.1579 -5.128379,0 -5.1283781,0 z m 9.3725541,0 0,-38.30103 -4.244176,0 -4.2441749,0 0,38.30103 0,38.3011 4.2441749,0 4.244176,0 z"
        id="path4105"
        inkscape:connector-curvature="0"
-       transform="translate(0,956.36218)" />
+       sodipodi:nodetypes="cccccccccccccccccc" />
     <path
-       style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff2a2a;stroke-width:0.24342151;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:12.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 7.7573549,48.019203 0,-40.2166981 4.9497471,0 4.949748,0 0,40.2166981 0,40.216699 -4.949748,0 -4.9497471,0 0,-40.216699 z m 9.3691651,0 0,-39.686368 -4.419418,0 -4.419417,0 0,39.686368 0,39.686369 4.419417,0 4.419418,0 0,-39.686369 z"
+       style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff2a2a;stroke-width:0.24076802;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:12.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 7.7560281,1005.2653 0,-39.33417 4.9510739,0 4.951075,0 0,39.33417 0,39.3341 -4.951075,0 -4.9510739,0 0,-39.3341 z m 9.3716769,0 0,-38.81548 -4.420603,0 -4.4206016,0 0,38.81548 0,38.8154 4.4206016,0 4.420603,0 0,-38.8154 z"
        id="path4107"
-       inkscape:connector-curvature="0"
-       transform="translate(0,956.36218)" />
+       inkscape:connector-curvature="0" />
     <path
-       style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff2a2a;stroke-width:0.24342151;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:12.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 8.287685,48.019203 0,-39.686368 4.419417,0 4.419418,0 0,39.686368 0,39.686369 -4.419418,0 -4.419417,0 0,-39.686369 z m 8.618478,0.0442 -0.04481,-39.465398 -4.154253,0 -4.1542519,0 -0.044583,39.465398 -0.044584,39.465397 4.2436439,0 4.243644,0 -0.04481,-39.465397 z"
+       style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff2a2a;stroke-width:0.24100618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:12.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       d="m 8.2864773,1005.1769 0,-38.8921 4.4206247,0 4.420626,0 0,38.8921 0,38.8921 -4.420626,0 -4.4206247,0 0,-38.8921 z m 8.6208327,0.043 -0.04482,-38.67554 -4.155388,0 -4.1553871,0 -0.044595,38.67554 -0.044596,38.6755 4.2448031,0 4.244804,0 -0.04482,-38.6755 z"
        id="path4109"
-       inkscape:connector-curvature="0"
-       transform="translate(0,956.36218)" />
+       inkscape:connector-curvature="0" />
     <path
        style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ff2a2a;stroke-width:0.24342151;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:12.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        d="m 10.4532,87.750259 c 1.239646,-0.03039 3.268159,-0.03039 4.507805,0 1.239647,0.03039 0.225391,0.05525 -2.253903,0.05525 -2.479293,0 -3.493549,-0.02486 -2.253902,-0.05525 z"
@@ -285,11 +282,13 @@
        inkscape:connector-curvature="0"
        transform="translate(0,956.36218)" />
     <path
-       style="fill:#ff0000;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 78.625001,8 0,80 L 88,88 88,8 z"
+       style="fill:#ff0000;stroke:#ff0000;stroke-width:0.99581897px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 78.622911,965.06719 0,79.29701 9.379179,0 0,-79.29701 z"
        id="path4119"
        inkscape:connector-curvature="0"
-       transform="translate(0,956.36218)" />
+       inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Icons\XHDPI\Gmail.png"
+       inkscape:export-xdpi="33"
+       inkscape:export-ydpi="33" />
     <path
        style="fill:#ff0000;stroke:#ff0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 17.375,79.5 61.250001,0 0,8.5 L 17.375,88 z"
