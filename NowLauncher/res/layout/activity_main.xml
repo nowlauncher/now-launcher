@@ -1,16 +1,57 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:background="@color/background"
+    android:orientation="vertical" >
 
-    <TextView
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/weather_widget"
+        android:paddingLeft="19dp" />
+    
+    <View
+    	android:layout_width="match_parent"
+    	android:layout_height="20dp"
+    	android:background="@color/background" />     
+    
+    <LinearLayout
+        android:id="@+id/BottomLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="horizontal" >
+        
+    	<include
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    layout="@layout/dock" />
+    	
+    	<View
+    		android:layout_width="10dp"
+    		android:layout_height="wrap_content"
+			android:background="@color/background" />	
+    	
+    	<LinearLayout
+    	    android:id="@+id/GridLayout"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="vertical" >
+        	
+    	    <ImageView
+    	        android:id="@+id/imageView1"
+    	        android:layout_width="match_parent"
+    	        android:layout_height="65dp"
+    	        android:src="@drawable/googlenow" />
 
-</RelativeLayout>
+    	    <include
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        layout="@layout/raw" />
+    	    
+    	</LinearLayout>
+    		
+    </LinearLayout>
+
+</LinearLayout>

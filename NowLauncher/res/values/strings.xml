@@ -3,6 +3,9 @@
 
     <string name="app_name">NowLauncher</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="clock_widget">10:15</string>
+    <string name="locate_widget">ROMA 23°</string>
+    <string name="date_widget">8 MAGGIO</string>
+    <string name="todo">TODO</string>
 
 </resources>
