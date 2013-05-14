@@ -15,9 +15,9 @@
    version="1.1"
    inkscape:version="0.48.0 r9654"
    sodipodi:docname="Gmail.svg"
-   inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Icons\XHDPI\Gmail.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-filename="C:\Users\user\Documents\GitHub\now-launcher\Icons\LDPI\Gmail.png"
+   inkscape:export-xdpi="33.75"
+   inkscape:export-ydpi="33.75">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0976562"
-     inkscape:cx="116.79358"
-     inkscape:cy="33.920455"
+     inkscape:zoom="4.4001616"
+     inkscape:cx="74.067877"
+     inkscape:cy="45.738203"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -126,7 +126,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
