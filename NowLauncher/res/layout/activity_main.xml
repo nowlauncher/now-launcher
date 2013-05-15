@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,51 +7,38 @@
     android:orientation="vertical" >
 
     <include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/weather_widget"
-        android:paddingLeft="19dp" />
-    
-    <View
-    	android:layout_width="match_parent"
-    	android:layout_height="20dp"
-    	android:background="@color/background" />     
-    
-    <LinearLayout
-        android:id="@+id/BottomLayout"
+        android:id="@+id/include1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        
-    	<include
-    	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
-    	    layout="@layout/dock" />
-    	
-    	<View
-    		android:layout_width="10dp"
-    		android:layout_height="wrap_content"
-			android:background="@color/background" />	
-    	
-    	<LinearLayout
-    	    android:id="@+id/GridLayout"
-    	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
-    	    android:orientation="vertical" >
-        	
-    	    <ImageView
-    	        android:id="@+id/imageView1"
-    	        android:layout_width="match_parent"
-    	        android:layout_height="65dp"
-    	        android:src="@drawable/googlenow" />
+        layout="@layout/weather_widget" />
 
-    	    <include
-    	        android:layout_width="wrap_content"
-    	        android:layout_height="wrap_content"
-    	        layout="@layout/raw" />
-    	    
-    	</LinearLayout>
-    		
-    </LinearLayout>
+    <include
+        android:id="@+id/include2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include1"
+        android:layout_marginTop="18dp"
+        layout="@layout/dock" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/include2"
+        android:layout_below="@+id/include1"
+        android:layout_toRightOf="@+id/include2"
+        android:scaleType="fitXY"
+        android:src="@drawable/googlenow" 
+        android:contentDescription="@string/todo"/>
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/include2"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/imageView1"
+        layout="@layout/raw" />
+
+</RelativeLayout>
