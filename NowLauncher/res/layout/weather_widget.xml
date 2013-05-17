@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/WeatherWidgetLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -9,7 +10,7 @@
         android:id="@+id/Border1"
         android:layout_width="5dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignBottom="@+id/DropDownBar1"
         android:layout_alignParentLeft="true"
         android:background="@color/background" />
 
@@ -25,7 +26,7 @@
         android:id="@+id/Border3"
         android:layout_width="5dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignBottom="@+id/DropDownBar1"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/Border2"
         android:background="@color/background" />
@@ -53,7 +54,7 @@
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:paddingBottom="15dp"
+        android:paddingBottom="5dp"
         android:text="@string/locate_widget"
         android:textSize="23sp" />
 
@@ -79,4 +80,14 @@
         android:text="@string/temp"
         android:textSize="15sp" />
 
+    <ImageView
+        android:id="@+id/DropDownBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView2"
+        android:layout_toLeftOf="@+id/Border3"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/pach" />
+    
 </RelativeLayout>

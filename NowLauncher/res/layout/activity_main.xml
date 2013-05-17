@@ -28,11 +28,12 @@
         android:layout_alignTop="@+id/include2"
         android:layout_below="@+id/include1"
         android:layout_toRightOf="@+id/include2"
+        android:contentDescription="@string/todo"
         android:scaleType="fitXY"
-        android:src="@drawable/googlenow" 
-        android:contentDescription="@string/todo"/>
+        android:src="@drawable/googlenow" />
 
     <include
+        android:id="@+id/include3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/include2"
@@ -40,5 +41,14 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/imageView1"
         layout="@layout/raw" />
+
+    <ImageView
+        android:id="@+id/DropDownBar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/include2"
+        android:scaleType="fitXY"
+        android:src="@drawable/pach" />
 
 </RelativeLayout>
