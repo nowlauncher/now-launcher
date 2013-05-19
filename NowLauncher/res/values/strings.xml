@@ -10,5 +10,7 @@
     <string name="digitalclock">DigitalClock</string>
     <string name="temp">23°C 80%H</string>
     <string name="icon">Icon</string>
+    <string name="all_apps_tab">All apps</string>
+    <string name="favorites_tab">Favorites</string>
 
 </resources>

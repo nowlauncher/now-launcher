@@ -46,54 +46,70 @@ public final class R {
         public static final int sun=0x7f020003;
     }
     public static final class id {
-        public static final int Border1=0x7f09001a;
-        public static final int Border2=0x7f09001c;
-        public static final int Border3=0x7f09001d;
-        public static final int ColorBar1=0x7f090006;
-        public static final int ColorBar2=0x7f090009;
-        public static final int ColorBar3=0x7f090008;
-        public static final int ColorBar4=0x7f09000c;
-        public static final int DropDownBar1=0x7f09001b;
-        public static final int DropDownBar2=0x7f090005;
-        public static final int WeatherWidgetLayout=0x7f090019;
-        public static final int action_settings=0x7f09001f;
-        public static final int digitalClock1=0x7f09001e;
+        public static final int Border1=0x7f090027;
+        public static final int Border2=0x7f090029;
+        public static final int Border3=0x7f09002a;
+        public static final int ColorBar1=0x7f090007;
+        public static final int ColorBar2=0x7f09000a;
+        public static final int ColorBar3=0x7f090009;
+        public static final int ColorBar4=0x7f09000d;
+        public static final int DrawerInclude=0x7f090005;
+        public static final int DropDownBar1=0x7f090028;
+        public static final int DropDownBar2=0x7f090006;
+        public static final int WeatherWidgetLayout=0x7f090026;
+        public static final int action_settings=0x7f09002c;
+        public static final int button1=0x7f090010;
+        public static final int button2=0x7f090011;
+        public static final int digitalClock1=0x7f09002b;
+        public static final int drawer=0x7f09000e;
         public static final int imageView1=0x7f090003;
-        public static final int imageView3=0x7f09000a;
-        public static final int imageView4=0x7f09000b;
+        public static final int imageView3=0x7f09000b;
+        public static final int imageView4=0x7f09000c;
         public static final int include1=0x7f090001;
         public static final int include2=0x7f090002;
         public static final int include3=0x7f090004;
+        public static final int linearLayout1=0x7f09000f;
         public static final int rootLayout=0x7f090000;
-        public static final int tableRow1=0x7f09000d;
-        public static final int tableRow2=0x7f090013;
-        public static final int testImg=0x7f090007;
-        public static final int textView1=0x7f09000e;
-        public static final int textView12=0x7f090012;
-        public static final int textView2=0x7f09000f;
-        public static final int textView3=0x7f090010;
-        public static final int textView4=0x7f090011;
-        public static final int textView5=0x7f090014;
-        public static final int textView6=0x7f090015;
-        public static final int textView7=0x7f090016;
-        public static final int textView8=0x7f090017;
-        public static final int textView9=0x7f090018;
+        public static final int tableRow1=0x7f090012;
+        public static final int tableRow2=0x7f090017;
+        public static final int tableRow3=0x7f09001c;
+        public static final int tableRow4=0x7f090021;
+        public static final int testImg=0x7f090008;
+        public static final int textView1=0x7f090013;
+        public static final int textView10=0x7f090019;
+        public static final int textView11=0x7f09001e;
+        public static final int textView12=0x7f090024;
+        public static final int textView13=0x7f090016;
+        public static final int textView15=0x7f09001b;
+        public static final int textView17=0x7f090020;
+        public static final int textView19=0x7f090025;
+        public static final int textView2=0x7f090018;
+        public static final int textView3=0x7f09001d;
+        public static final int textView4=0x7f090023;
+        public static final int textView5=0x7f090015;
+        public static final int textView6=0x7f09001a;
+        public static final int textView7=0x7f09001f;
+        public static final int textView8=0x7f090022;
+        public static final int textView9=0x7f090014;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int dock=0x7f030001;
-        public static final int raw=0x7f030002;
-        public static final int weather_widget=0x7f030003;
+        public static final int drawer=0x7f030002;
+        public static final int raw=0x7f030003;
+        public static final int weather_widget=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f080000;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
+        public static final int all_apps_tab=0x7f060009;
         public static final int app_name=0x7f060000;
         public static final int clock_widget=0x7f060002;
         public static final int date_widget=0x7f060004;
         public static final int digitalclock=0x7f060006;
+        public static final int favorites_tab=0x7f06000a;
         public static final int icon=0x7f060008;
         public static final int locate_widget=0x7f060003;
         public static final int temp=0x7f060007;
@@ -109,17 +125,6 @@ public final class R {
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 

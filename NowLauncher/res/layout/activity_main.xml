@@ -41,14 +41,22 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/imageView1"
         layout="@layout/raw" />
+    
+    <include
+        android:id="@+id/DrawerInclude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DropDownBar2"
+        layout="@layout/drawer" />
 
     <ImageView
         android:id="@+id/DropDownBar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/include2"
+        android:contentDescription="@string/todo"
         android:scaleType="fitXY"
         android:src="@drawable/pach" />
-
+    
 </RelativeLayout>

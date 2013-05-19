@@ -4,16 +4,20 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+//import android.view.ViewGroup;
 //import android.view.View;
 //import android.view.View.OnClickListener;
 //import android.view.View.OnTouchListener;
 //import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+//import android.widget.TableLayout;
 //import android.widget.Button;
 //import android.widget.RelativeLayout.LayoutParams;
 import android.util.DisplayMetrics;
-//import android.util.Log;
+import android.util.Log;
 
 public class MainActivity extends Activity {
 	
@@ -23,6 +27,7 @@ public class MainActivity extends Activity {
 	public int y;
 	public DisplayMetrics dm;
 	public int statusBarOffset;
+	
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,30 +40,44 @@ public class MainActivity extends Activity {
         
         dm = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics( dm );
+          
         
 	}
         
-        @Override
+       @Override
     public boolean onTouchEvent(MotionEvent event) {
+    	       	   	
             int y = (int) event.getY();
             
+            	
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             
             statusBarOffset = dm.heightPixels - rl.getHeight();
             
-            params.topMargin = y - statusBarOffset;
- 
+
             if ((rl.getHeight() - (y - statusBarOffset)) <= iv.getHeight()) {
-            	return false;
+            	params.topMargin = rl.getHeight() - iv.getHeight();
+
             }
             
-            if ((y - statusBarOffset) <= 0) {
+            else {
             	
-            	return false;
-            }
+            	if ((y - statusBarOffset) <= iv.getHeight()) {
             
-            rl.removeView(iv);
-            rl.addView(iv, params);	
+            		params.topMargin = 0;
+
+            	}
+            
+
+            	else {
+            
+            		params.topMargin = y - statusBarOffset - iv.getHeight()/2;
+            
+            	}
+            
+           	}
+            
+            iv.setLayoutParams(params);
             
         return false;
         }
