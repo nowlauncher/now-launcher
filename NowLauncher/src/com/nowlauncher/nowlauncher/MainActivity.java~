@@ -79,6 +79,11 @@ public class MainActivity extends Activity {
             
             iv.setLayoutParams(params);
             
+            //rl.removeView(iv);
+            //rl.addView(iv, params);	
+            
+            
+            
         return false;
         }
         
