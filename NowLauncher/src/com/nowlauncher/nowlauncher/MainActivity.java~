@@ -196,36 +196,28 @@ public class MainActivity extends Activity {
 		
 		/**
 		* EN
-		* Get y value, calculate if touch is in tollerance zone of drop down bar
+		* Recalculate the position of drop down bar (and drawer) and put it in the new position
 		*
 		* IT
-		* Ottiene il valore di y e calcola se il touch è nella zona di tolleranza della drop down bar
+		* Ricalcola la posizione della barra drop down (e il drawer) in base al touch e lo mette nella nuova posizione
 		*/
 		
 		int y = (int) event.getY();
             
 		if ((y >= (dropdownbar2.getTop() - TOLLERANCE_TOP ) ) & ( y <= (dropdownbar2.getBottom() + TOLLERANCE_BOTTOM ))) {
-			
-			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+  
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
            
-			statusBarOffset = dm.heightPixels - rootlayout.getHeight();
+		statusBarOffset = dm.heightPixels - rootlayout.getHeight();
             
-			
-			/**
-			* EN
-			* If the touch is over the minimal bar position before compression set it in the minimal position
-			*
-			* IT
-			* Se il touch è oltre la posizione minima della barra prima di ridursi di altezza la barra viene posizionata nel punto minimo
-			*/
-			
-			if ((rootlayout.getHeight() - (y - statusBarOffset)) <= dropdownbar2.getHeight())
-				params.topMargin = rootlayout.getHeight() - dropdownbar2.getHeight();
-			else if ((y - statusBarOffset) <= dropdownbar2.getHeight())            
-				params.topMargin = 0;
-			else params.topMargin = y - statusBarOffset - dropdownbar2.getHeight()/2;
+
+		if ((rootlayout.getHeight() - (y - statusBarOffset)) <= dropdownbar2.getHeight())
+			params.topMargin = rootlayout.getHeight() - dropdownbar2.getHeight();
+		else if ((y - statusBarOffset) <= dropdownbar2.getHeight())            
+			params.topMargin = 0;
+		else params.topMargin = y - statusBarOffset - dropdownbar2.getHeight()/2;
             
-			dropdownbar2.setLayoutParams(params);
+		dropdownbar2.setLayoutParams(params);
         
 		}
         
@@ -235,9 +227,9 @@ public class MainActivity extends Activity {
         
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	// Inflate the menu; this adds items to the action bar if it is present.
+	getMenuInflater().inflate(R.menu.main, menu);
+	return true;
 	}
 	  
     
