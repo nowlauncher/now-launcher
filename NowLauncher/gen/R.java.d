@@ -18,4 +18,9 @@
 /home/marco/workspace/NowLauncher/res/layout/activity_main.xml \
 /home/marco/workspace/NowLauncher/res/layout/raw.xml \
 /home/marco/workspace/NowLauncher/res/layout/dock.xml \
+/home/marco/workspace/NowLauncher/bin/res/drawable-mdpi/ic_launcher.png \
+/home/marco/workspace/NowLauncher/bin/res/drawable-hdpi/pach.png \
+/home/marco/workspace/NowLauncher/bin/res/drawable-hdpi/ic_launcher.png \
+/home/marco/workspace/NowLauncher/bin/res/drawable-xxhdpi/ic_launcher.png \
+/home/marco/workspace/NowLauncher/bin/res/drawable-xhdpi/ic_launcher.png \
 /home/marco/workspace/NowLauncher/bin/AndroidManifest.xml \
