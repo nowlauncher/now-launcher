@@ -1,44 +1,33 @@
 package com.nowlauncher.nowlauncher;
 
-import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
-//import android.view.ViewGroup;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
-//import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TableRow.LayoutParams;
-import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+//import android.view.ViewGroup;
+//import android.view.animation.TranslateAnimation;
 //import android.widget.Button;
 //import android.widget.RelativeLayout.LayoutParams;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.content.pm.PackageManager;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.ResolveInfo;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.Bitmap;
-import android.content.ComponentName;
-import android.widget.BaseAdapter;  
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Collections;
 
 public class MainActivity extends Activity {
 	
@@ -62,7 +51,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
         
         rootlayout = (RelativeLayout) findViewById(R.id.rootLayout);
 
@@ -82,7 +71,8 @@ public class MainActivity extends Activity {
 		gridview.setAdapter(new ApplicationsAdapter(this, mApplications));
         
 		gridview.setOnItemClickListener(new OnItemClickListener() {
-		  
+			
+		@SuppressWarnings("rawtypes")
 		public void onItemClick(AdapterView parent, View v, int position, long id) {
 			
 			AppInfo app = mApplications.get(position);
@@ -106,128 +96,81 @@ public class MainActivity extends Activity {
        if (apps != null) {
            final int count = apps.size();
 
-           if (mApplications == null) {
+           if (mApplications == null)
                mApplications = new ArrayList<AppInfo>(count);
-           }
            mApplications.clear();      
       
-	for (int i = 0; i < count; i++) {
-		AppInfo application = new AppInfo();
-		ResolveInfo info = apps.get(i);
+           for (int i = 0; i < count; i++) {
+        	   AppInfo application = new AppInfo();
+        	   ResolveInfo info = apps.get(i);
 
-		application.title = info.loadLabel(manager);
-		application.setIntent(new ComponentName(
+        	   application.title = info.loadLabel(manager);
+        	   application.setIntent(new ComponentName(
                         info.activityInfo.applicationInfo.packageName,
                         info.activityInfo.name),
                         Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                         
                            
-		Bitmap d = ((BitmapDrawable)info.activityInfo.loadIcon(manager)).getBitmap();
+        	   Bitmap d = ((BitmapDrawable)info.activityInfo.loadIcon(manager)).getBitmap();
 		
-		Bitmap bitmapOrig;
+        	   Bitmap bitmapOrig;
 		
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        	   DisplayMetrics metrics = new DisplayMetrics();
+        	   getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		
-		if (metrics.densityDpi == DisplayMetrics.DENSITY_LOW) {
-		  
-			bitmapOrig = Bitmap.createScaledBitmap(d, 36, 36, false);
-		}
+        	   // Display density chooser
+        	   if (metrics.densityDpi == DisplayMetrics.DENSITY_LOW)		  
+        		   bitmapOrig = Bitmap.createScaledBitmap(d, 36, 36, false);
+        	   else if (metrics.densityDpi == DisplayMetrics.DENSITY_MEDIUM)			
+        		   bitmapOrig = Bitmap.createScaledBitmap(d, 48, 48, false);			
+        	   else if (metrics.densityDpi == DisplayMetrics.DENSITY_HIGH) 			
+        		   bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
+        	   else if (metrics.densityDpi == DisplayMetrics.DENSITY_XHIGH)
+        		   bitmapOrig = Bitmap.createScaledBitmap(d, 96, 96, false);
+        	   else bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
 		
-		else {
-		  
-			if (metrics.densityDpi == DisplayMetrics.DENSITY_MEDIUM) {
-			
-				bitmapOrig = Bitmap.createScaledBitmap(d, 48, 48, false);
-			}
-			
-			else {
-			
-				if (metrics.densityDpi == DisplayMetrics.DENSITY_HIGH) {
-				
-					bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
-				}
-				
-				else {
-				
-					if (metrics.densityDpi == DisplayMetrics.DENSITY_XHIGH) {
-					
-						bitmapOrig = Bitmap.createScaledBitmap(d, 96, 96, false);
-					}
-					
-					else {
-					
-						bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
-					}
-				  
-				  
-				}
-			  
-			}
-		  
-		}
-		
-		application.icon = new BitmapDrawable(bitmapOrig);
+        	   application.icon = new BitmapDrawable(bitmapOrig);
                
-		mApplications.add(application);
-           }
-	}
-	      
-      }
+        	   mApplications.add(application);
+        	 
+           	}       
+       	}	      
+    }	
       
-       @Override
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
     	       	   	
             int y = (int) event.getY();
             
-            if ((y >= (dropdownbar2.getTop() - TOLLERANCE_TOP ) ) && ( y <= (dropdownbar2.getBottom() + TOLLERANCE_BOTTOM ))) {
+            if ((y >= (dropdownbar2.getTop() - TOLLERANCE_TOP ) ) & ( y <= (dropdownbar2.getBottom() + TOLLERANCE_BOTTOM ))) {
 		  
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            	RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             
-            statusBarOffset = dm.heightPixels - rootlayout.getHeight();
+            	statusBarOffset = dm.heightPixels - rootlayout.getHeight();
             
 
-            if ((rootlayout.getHeight() - (y - statusBarOffset)) <= dropdownbar2.getHeight()) {
-            	params.topMargin = rootlayout.getHeight() - dropdownbar2.getHeight();
-
-            }
-            
-            else {
-            	
-            	if ((y - statusBarOffset) <= dropdownbar2.getHeight()) {
-            
+            	if ((rootlayout.getHeight() - (y - statusBarOffset)) <= dropdownbar2.getHeight())
+            		params.topMargin = rootlayout.getHeight() - dropdownbar2.getHeight();
+            	else if ((y - statusBarOffset) <= dropdownbar2.getHeight())            
             		params.topMargin = 0;
-
-            	}
+            	else params.topMargin = y - statusBarOffset - dropdownbar2.getHeight()/2;
             
-
-            	else {
-            
-            		params.topMargin = y - statusBarOffset - dropdownbar2.getHeight()/2;
-            
-            	}
-            
-           	}
-            
-            dropdownbar2.setLayoutParams(params);
+            	dropdownbar2.setLayoutParams(params);
         
-        }
+            }
         
         return false;
-        }
+   }
         
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	// Inflate the menu; this adds items to the action bar if it is present.
     	getMenuInflater().inflate(R.menu.main, menu);
     	return true;
-    	}
+    }
     	
-    public void Launch(Intent intent) {
-      
-      startActivity(intent);
-      }
+    public void Launch(Intent intent) { startActivity(intent); }
     
     
 }

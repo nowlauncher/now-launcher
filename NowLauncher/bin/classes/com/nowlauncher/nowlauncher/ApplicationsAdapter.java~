@@ -103,7 +103,7 @@ public class ApplicationsAdapter extends BaseAdapter {
 	* Crea la view
 	*/
 	@Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, ViewGroup parent) {
 	  
 	    info = mApplications.get(position);
             
@@ -114,9 +114,10 @@ public class ApplicationsAdapter extends BaseAdapter {
 		textview.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
 		textview.setText(info.title);
 		textview.setGravity(17);
-		//textview.setPadding(0, 0, 10, 20);
+		textview.setPadding(0, 0, 10, 20);
             
 		return textview;        
                         
-	}
-}
+		}
+  
+	    }

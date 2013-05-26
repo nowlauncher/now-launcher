@@ -26,7 +26,7 @@ public class AppInfo {
 	* IT
 	* Nome dell'applicazione
 	**/
-	protected CharSequence title;
+	CharSequence title;
 	
 	/**
 	* EN
@@ -35,7 +35,7 @@ public class AppInfo {
 	* IT
 	* L'intent usato per lanciare l'applicazione
 	*/
-	protected Intent intent;
+	Intent intent;
 
 	/**
 	* EN
@@ -44,7 +44,7 @@ public class AppInfo {
 	* IT
 	* L'icona dell'applicazione
 	*/
-	protected Drawable icon;
+	Drawable icon;
 
 	/**
 	* EN
@@ -60,7 +60,7 @@ public class AppInfo {
 	* @param launchFlags i flag(parametri) di lancio
 	*/	
 	
-	final void setIntent(ComponentName className, int launchFlags) {
+	void setIntent(ComponentName className, int launchFlags) {
 	  
 		intent = new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_LAUNCHER);
