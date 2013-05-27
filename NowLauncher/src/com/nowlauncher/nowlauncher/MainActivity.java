@@ -3,6 +3,7 @@ package com.nowlauncher.nowlauncher;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -108,8 +109,7 @@ public class MainActivity extends Activity {
 		gridview.setAdapter(new ApplicationsAdapter(this, mApplications));
         
 		gridview.setOnItemClickListener(new OnItemClickListener() {
-		
-		//@SuppressWarnings("rawtypes") <-- Cos'è xD?
+	
 		public void onItemClick(AdapterView parent, View v, int position, long id) {
 			
 			AppInfo app = mApplications.get(position);
@@ -144,22 +144,27 @@ public class MainActivity extends Activity {
 		Collections.sort(apps, new ResolveInfo.DisplayNameComparator(manager));
       
 		if (apps != null) {
-			final int count = apps.size();
+			//final int count = apps.size(); 
+			// Perché allochi una variabile in più? Occupa solo memoria e gli smatphone Android ne hanno già poca,
+			// mentre di potenza di calcolo ne hanno molta, ti ho sostituito apps.size() a count
+			// (puoi cancellare queste righe di commento dopo averle lette se vuoi. ;) Lox)
 
-			if (mApplications == null) {
-				mApplications = new ArrayList<AppInfo>(count);
-				mApplications.clear();      
-			
-			}
+			if (mApplications == null)
+				mApplications = new ArrayList<AppInfo>(); // Lascia che la dimensione se la gestisca da solo... Non preoccuparti
+			mApplications.clear(); 	// Nell' if è inutile... Il Java assicura già l'allocazione vuota, ma se vuoi metterlo fuori visto che
+									// ricarichi ogni volta la lista...
       
-			for (int i = 0; i < count; i++) {
-				AppInfo application = new AppInfo();
-				ResolveInfo info = apps.get(i);
+			//for (int i = 0; i < apps.size(); i++)
+			// E' più sicuro usare un iterator, non so il motivo, ma i miei professori dell'università dicono così, io mi fido :P
+			ListIterator i=apps.iterator();
+			while(i.hasNext()){ 
+				AppInfo application = new AppInfo(); //?
+				ResolveInfo info = i.next();
 
 				application.title = info.loadLabel(manager);
 				application.setIntent(new ComponentName(
-				info.activityInfo.applicationInfo.packageName,
-				info.activityInfo.name),
+				i.activityInfo.applicationInfo.packageName,
+				i.activityInfo.name),
 				Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                         
@@ -173,7 +178,7 @@ public class MainActivity extends Activity {
 				// Display density chooser
 				if (dm.densityDpi == DisplayMetrics.DENSITY_LOW)
 					bitmapOrig = Bitmap.createScaledBitmap(d, 36, 36, false);
-					else if (dm.densityDpi == DisplayMetrics.DENSITY_MEDIUM)
+				else if (dm.densityDpi == DisplayMetrics.DENSITY_MEDIUM)
 					bitmapOrig = Bitmap.createScaledBitmap(d, 48, 48, false);
 				else if (dm.densityDpi == DisplayMetrics.DENSITY_HIGH) 
 					bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
@@ -183,7 +188,7 @@ public class MainActivity extends Activity {
 		
 				application.icon = new BitmapDrawable(bitmapOrig);
                
-			mApplications.add(application);
+                mApplications.add(application);
         	 
 			}      
 		}
@@ -221,8 +226,7 @@ public class MainActivity extends Activity {
 			
 			if ((rootlayout.getHeight() - (y - statusBarOffset)) <= dropdownbar2.getHeight())
 				params.topMargin = rootlayout.getHeight() - dropdownbar2.getHeight();
-			else if ((y - statusBarOffset) <= dropdownbar2.getHeight())            
-				params.topMargin = 0;
+			else if ((y - statusBarOffset) <= dropdownbar2.getHeight()) params.topMargin = 0;
 			else params.topMargin = y - statusBarOffset - dropdownbar2.getHeight()/2;
             
 			dropdownbar2.setLayoutParams(params);
