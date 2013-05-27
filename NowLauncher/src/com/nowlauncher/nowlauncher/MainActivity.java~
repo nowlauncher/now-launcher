@@ -25,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import android.util.Log;
+
 public class MainActivity extends Activity {
 	
 	/**
@@ -48,7 +50,7 @@ public class MainActivity extends Activity {
 	*/
 	
 	// Drop Down Bar (drawer open bar)
-	ImageView dropdownbar2;
+	View dropdownbar2;
 	
 	// Layout master
 	public RelativeLayout rootlayout;
@@ -75,8 +77,8 @@ public class MainActivity extends Activity {
 		* Istanzia alcune variabili
 		*/
 		
-		dropdownbar2 = (ImageView) findViewById(R.id.DropDownBar2);
-		rootlayout = (RelativeLayout) findViewById(R.id.rootLayout);
+		//dropdownbar2 = (ImageView) findViewById(R.id.DropDownBar2);
+		//rootlayout = (RelativeLayout) findViewById(R.id.rootLayout);
 		
 		/**
 		* EN
@@ -87,6 +89,10 @@ public class MainActivity extends Activity {
 		*/
 		
 		setContentView(R.layout.main_activity);
+		
+		dropdownbar2 = (ImageView) findViewById(R.id.DropDownBar2);
+		rootlayout = (RelativeLayout) findViewById(R.id.rootLayout);
+		
 		LoadApplication();
 		CreateViews();
 	          
@@ -146,7 +152,7 @@ public class MainActivity extends Activity {
 			if (mApplications == null) {
 				mApplications = new ArrayList<AppInfo>(count);
 				
-				}
+			}
 				
 			mApplications.clear();
       
@@ -161,7 +167,6 @@ public class MainActivity extends Activity {
 				Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                         
-                           
 				Bitmap d = ((BitmapDrawable)info.activityInfo.loadIcon(manager)).getBitmap();
 		
 				Bitmap bitmapOrig;

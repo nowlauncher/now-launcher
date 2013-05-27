@@ -25,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import android.util.Log;
+
 public class MainActivity extends Activity {
 	
 	/**
@@ -48,7 +50,7 @@ public class MainActivity extends Activity {
 	*/
 	
 	// Drop Down Bar (drawer open bar)
-	ImageView dropdownbar2;
+	View dropdownbar2;
 	
 	// Layout master
 	public RelativeLayout rootlayout;
@@ -69,6 +71,16 @@ public class MainActivity extends Activity {
 		
 		/**
 		* EN
+		* Set up layout
+		*
+		* IT
+		* Carica il layout
+		*/
+		
+		setContentView(R.layout.main_activity);
+		
+		/**
+		* EN
 		* Istance some variables
 		*
 		* IT
@@ -80,13 +92,12 @@ public class MainActivity extends Activity {
 		
 		/**
 		* EN
-		* Set up main layout, load array of applications and set up drawer
+		* Load array of applications and set up drawer
 		*
 		* IT
-		* Carica il layout della scermata principale, carica la lista delle applicazioni e carica il drawer
+		* Carica la lista delle applicazioni e carica il drawer
 		*/
 		
-		setContentView(R.layout.main_activity);
 		LoadApplication();
 		CreateViews();
 	          
