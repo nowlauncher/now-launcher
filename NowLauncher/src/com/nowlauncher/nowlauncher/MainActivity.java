@@ -213,7 +213,7 @@ public class MainActivity extends Activity {
 		
 		int y = (int) event.getY();
             
-		if ((y >= (dropdownbar2.getTop() - TOLLERANCE_TOP ) ) & ( y <= (dropdownbar2.getBottom() + TOLLERANCE_BOTTOM ))) {
+		if ((y >= (dropdownbar2.getTop() - TOLLERANCE_TOP ) ) || ( y <= (dropdownbar2.getBottom() + TOLLERANCE_BOTTOM ))) {
 			
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
            
