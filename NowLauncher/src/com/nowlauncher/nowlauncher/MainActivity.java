@@ -156,13 +156,12 @@ public class MainActivity extends Activity {
 			//final int count = apps.size();
 
 			if (mApplications == null) {
-				mApplications = new ArrayList<AppInfo>(count);
-				
+				mApplications = new ArrayList<AppInfo>();				
 			}
 				
 			mApplications.clear();
       
-			ListIterator<ResolveInfo> i=apps.iterator();
+			ListIterator<ResolveInfo> i=apps.listIterator();
 			while(i.hasNext()) {
 				AppInfo application = new AppInfo();
 				ResolveInfo info = i.next();
