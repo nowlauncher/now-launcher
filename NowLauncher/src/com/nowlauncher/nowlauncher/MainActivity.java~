@@ -146,7 +146,7 @@ public class MainActivity extends Activity {
 			if (mApplications == null) {
 				mApplications = new ArrayList<AppInfo>(count);
 				
-			}
+				}
 				
 			mApplications.clear();
       
@@ -161,6 +161,7 @@ public class MainActivity extends Activity {
 				Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
                         
+                           
 				Bitmap d = ((BitmapDrawable)info.activityInfo.loadIcon(manager)).getBitmap();
 		
 				Bitmap bitmapOrig;
