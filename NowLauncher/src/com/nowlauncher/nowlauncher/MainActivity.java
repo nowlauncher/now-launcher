@@ -3,6 +3,7 @@ package com.nowlauncher.nowlauncher;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -152,7 +153,7 @@ public class MainActivity extends Activity {
 		Collections.sort(apps, new ResolveInfo.DisplayNameComparator(manager));
       
 		if (apps != null) {
-			final int count = apps.size();
+			//final int count = apps.size();
 
 			if (mApplications == null) {
 				mApplications = new ArrayList<AppInfo>(count);
@@ -161,9 +162,10 @@ public class MainActivity extends Activity {
 				
 			mApplications.clear();
       
-			for (int i = 0; i < count; i++) {
+			ListIterator<ResolveInfo> i=apps.iterator();
+			while(i.hasNext()) {
 				AppInfo application = new AppInfo();
-				ResolveInfo info = apps.get(i);
+				ResolveInfo info = i.next();
 
 				application.title = info.loadLabel(manager);
 				application.setIntent(new ComponentName(
@@ -191,7 +193,7 @@ public class MainActivity extends Activity {
 		
 				application.icon = new BitmapDrawable(bitmapOrig);
                
-			mApplications.add(application);
+				mApplications.add(application);
         	 
 			}      
 		}
