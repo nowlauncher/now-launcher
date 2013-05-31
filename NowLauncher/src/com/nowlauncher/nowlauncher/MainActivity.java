@@ -11,11 +11,14 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -28,23 +31,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import android.util.Log;
 import android.widget.Toast;
 
+import android.util.Log;
+
 public class MainActivity extends Activity {
-	
-	/**
-	* EN
-	* Tollereance on touch of drop down bar
-	*
-	* IT
-	* Tolleranza nel touch della drop down bar.
-	* significa che viene cosiderato un movimento di questa barra un tocco distante sopra e sotto il valore della tolleranza
-	*/
-	
-	public int TOLLERANCE_TOP = 70;
-	public int TOLLERANCE_BOTTOM = 70;
 	
 	/**
 	* EN
@@ -69,13 +60,12 @@ public class MainActivity extends Activity {
 	// Array of all application in the device
 	private ArrayList<AppInfo> mApplications;
 
-    //Variabili per il controllo della selezione della barra e del touch
-    public boolean checkbarpressed = (boolean) false;
-    public int y;
-    public int yiniziale=0;
-    public boolean yinizialebool = (boolean) false;
+	//Variabili per il controllo della selezione della barra e del touch
+	public boolean checkbarpressed = (boolean) false;
+	public int y;
+	public int yiniziale=0;
+	public boolean yinizialebool = (boolean) false;
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	  
@@ -101,29 +91,35 @@ public class MainActivity extends Activity {
 		
 		dropdownbar2 = (ImageView) findViewById(R.id.DropDownBar2);
 		rootlayout = (RelativeLayout) findViewById(R.id.rootLayout);
-        dropdownbar2.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    //imposta il booleano su true quando la barra è premuta
-                    checkbarpressed=true;
-                }
-                return false;
-            }
-        });
+		
+		dropdownbar2.setOnTouchListener(new View.OnTouchListener() {
+		  
+			@Override
+			public boolean onTouch(View view, MotionEvent motionEvent) {
+				if(motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+					//imposta il booleano su true quando la barra è premuta
+					checkbarpressed=true;
+				}
+				
+			return false;
+			
+			}
+		});
 
 
-                /**
-                 * EN
-                 * Load array of applications and set up drawer
-                 *
-                 * IT
-                 * Carica la lista delle applicazioni e carica il drawer
-                 */
+		/**
+		* EN
+		* Load array of applications and set up drawer
+		*
+		* IT
+		* Carica la lista delle applicazioni e carica il drawer
+		*/
 
-                LoadApplication();
+		LoadApplication();
 		CreateViews();
-	          
+		
+		showUserSettings();
+	        
 	}
     
 	public void CreateViews() {
@@ -233,14 +229,15 @@ public class MainActivity extends Activity {
 		* Ottiene il valore di y e calcola se il touch è nella zona di tolleranza della drop down bar
 		*/
 		
-	    y = (int) event.getY();
+		y = (int) event.getY();
 
-        if (checkbarpressed==true) {
-            if (yinizialebool==false) {
-                //imposta la coordinata y iniziale per il successivo controllo dello "spostamento" del dito
-                yiniziale=y;
-                yinizialebool=true;
-            }
+		if (checkbarpressed==true) {
+		  
+			if (yinizialebool==false) {
+				//imposta la coordinata y iniziale per il successivo controllo dello "spostamento" del dito
+				yiniziale=y;
+				yinizialebool=true;
+			}
 
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
@@ -255,7 +252,7 @@ public class MainActivity extends Activity {
 			* Se il touch è oltre la posizione minima della barra prima di ridursi di altezza la barra viene posizionata nel punto minimo
 			*/
 
-            //Qui non ho capito molto bene l'algoritmo ma funziona... quindi! :D (dema121)
+			//Qui non ho capito molto bene l'algoritmo ma funziona... quindi! :D (dema121)
 
 			if ((rootlayout.getHeight() - (y - statusBarOffset)) <= dropdownbar2.getHeight())
 				params.topMargin = rootlayout.getHeight() - dropdownbar2.getHeight();
@@ -266,62 +263,68 @@ public class MainActivity extends Activity {
 			dropdownbar2.setLayoutParams(params);
 
 		}
-        if(event.getAction() == MotionEvent.ACTION_UP) {
-            yinizialebool=false;
-            if (checkbarpressed==true) {
+		
+		if(event.getAction() == MotionEvent.ACTION_UP) {
+			yinizialebool=false;
+			
+			if (checkbarpressed==true) {
 
-                final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                if (yiniziale>y){
-                    params.topMargin = 0;
-                }
-                else {
-                    params.topMargin = rootlayout.getHeight()-dropdownbar2.getHeight();
-                }
-
-
-                int originalPos[] = new int[2];
-                dropdownbar2.getLocationOnScreen( originalPos );
-
-                Animation animation = new TranslateAnimation(0, 0, 0, 0-(dropdownbar2.getTop()-params.topMargin));
-
-                // il costruttore prevede 4 int, x iniziale, x finale, y iniziale e y finale. Tutte le coordinate sono relative al punto in cui si trova la view prima dell'animazione (es. 0,0,0,10 sposterà la view di 10dp in alto)
-
-                // A better form is:
-                // TraslateAnimation animation = new TranslateAnimation(0, 0, 0, -originalPos[1]);
-                // or
-                // TraslateAnimation animation = new TranslateAnimation(0, 0, 0, -(dropdownbar2.geTop()));
-
-                animation.setDuration(300);
-                animation.setFillAfter(false); // <-- fa in modo che a fine animazione la view rimanga nel posto e non ritorni al posto iniziale
-                dropdownbar2.startAnimation(animation);
-                animation.setInterpolator(new AccelerateInterpolator(1));
-
-                animation.setAnimationListener(new Animation.AnimationListener(){
+				final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+				
+				if (yiniziale>y){
+					params.topMargin = 0;
+				}
+				
+				else {
+					params.topMargin = rootlayout.getHeight()-dropdownbar2.getHeight();
+				}
 
 
+				int originalPos[] = new int[2];
+				dropdownbar2.getLocationOnScreen( originalPos );
 
-                    @Override
-                    public void onAnimationStart(Animation anim) {
+				Animation animation = new TranslateAnimation(0, 0, 0, 0-(dropdownbar2.getTop()-params.topMargin));
 
-                    }
+				// il costruttore prevede 4 int, x iniziale, x finale, y iniziale e y finale. Tutte le coordinate sono relative al punto in cui si trova la view prima dell'animazione (es. 0,0,0,10 sposterà la view di 10dp in alto)
 
-                    @Override
-                    public void onAnimationRepeat(Animation anim) {
+				// A better form is:
+				// TraslateAnimation animation = new TranslateAnimation(0, 0, 0, -originalPos[1]);
+				// or
+				// TraslateAnimation animation = new TranslateAnimation(0, 0, 0, -(dropdownbar2.geTop()));
 
-                    }
+				animation.setDuration(300);
+				animation.setFillAfter(false); // <-- fa in modo che a fine animazione la view rimanga nel posto e non ritorni al posto iniziale
+				dropdownbar2.startAnimation(animation);
+				animation.setInterpolator(new AccelerateInterpolator(1));
 
-                    @Override
-                    public void onAnimationEnd(Animation anim) {
+				animation.setAnimationListener(new Animation.AnimationListener(){
 
-                        dropdownbar2.setLayoutParams(params);
 
-                    }
-                });
-            checkbarpressed=false;
-            }
+
+					@Override
+					public void onAnimationStart(Animation anim) {
+
+					}
+
+					@Override
+					public void onAnimationRepeat(Animation anim) {
+
+					}
+
+					@Override
+					public void onAnimationEnd(Animation anim) {
+
+						dropdownbar2.setLayoutParams(params);
+
+					}
+				});
+				
+				checkbarpressed=false;
+			}
 		}
-        return false;
-    }
+		
+		return false;
+	}
         
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -330,5 +333,39 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	  
-    
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+ 
+		case R.id.menu_settings:
+			Intent i = new Intent(this, Settings.class);
+			startActivity(i);
+			break;
+ 
+		}
+ 
+	return true;
+	
+	}
+ 
+	/*
+	
+	Funzione di esempio per ottenere i valori nelle impostazioni:
+	
+	private void getSettings() {
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		String string = sharedPrefs.getString("title", "string returned if empty"); // ottiene la stringa dell'edit_text_preference con title="title"
+		
+		boolean checkBox = sharedPrefs.getBoolean("title", false); // ottiene il valore del checkbox di title="title"
+		
+
+	}
+	
+	*/
+ 
+
+	  
+	  
 }

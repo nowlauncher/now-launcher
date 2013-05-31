@@ -24,11 +24,6 @@
 				<category android:name="android.intent.category.MONKEY" />
             </intent-filter>
         </activity>
-	<activity
-	    android:name="com.nowlauncher.nowlauncher.Settings"
-	    android:label="menu_settings" >
-	    
-	</activity>
     </application>
 
 </manifest>
