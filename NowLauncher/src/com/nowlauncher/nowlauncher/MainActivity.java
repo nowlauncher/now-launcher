@@ -33,8 +33,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.util.Log;
-
 public class MainActivity extends Activity {
 
     /**
