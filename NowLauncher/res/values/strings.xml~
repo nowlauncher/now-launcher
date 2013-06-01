@@ -12,11 +12,9 @@
     <string name="icon">Icon</string>
     <string name="all_apps_tab">All apps</string>
     <string name="favorites_tab">Favorites</string>
-    <string name="category_1">Category 1</string>
+    <string name="category_root">Category Root</string>
     <string name="edit_text">Edit text example</string>
     <string name="edit_text_summary">Edit text summary</string>
     <string name="menu_settings">Menu settings</string>
-    <string name="check_box">CheckBox Example!</string>
-    <string name="check_box_summary">CheckBox Summary!</string>
     
 </resources>
