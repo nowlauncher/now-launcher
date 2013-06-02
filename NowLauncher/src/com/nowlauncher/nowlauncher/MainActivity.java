@@ -33,6 +33,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.util.Log;
+
 public class MainActivity extends Activity {
 
     /**
@@ -241,8 +243,17 @@ public class MainActivity extends Activity {
                 yiniziale=y;
                 yinizialebool=true;
             }
+            
+            // Questa variabile (statusBarOffset) serve per passare dai valori di y assoluti a quelli relativi (per relativi intendo rispetto al rootlayout, quindi una view può essere per esempio in assoluto a 10y mentre relativamente a 5y perchè c'è la barra di stato cioè dista 10 dp dall' Top dello scermo e 5 dp dal Top del root layout)
+            int statusBarOffset = dm.heightPixels - rootlayout.getMeasuredHeight();
+            
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            params.topMargin=y-drawerbar.getHeight();
+            
+            if (y-(drawerbar.getHeight()/2)-statusBarOffset <= 0) params.topMargin=0;
+            else if (y-statusBarOffset >= rootlayout.getHeight()-(drawerbar.getHeight()/2)) params.topMargin=rootlayout.getHeight()-drawerbar.getHeight();
+            else params.topMargin=y-statusBarOffset-(drawerbar.getHeight()/2); // oltre a sotrarre l'offset ho sotratto anche meta della grandezza della barra per fare in modo che la barra si imposti non con il Top sul dito ma con la meta sul dito come è più naturale quindi
+            
+	    //params.topMargin=y-drawerbar.getHeight();
             rootlayoutdrawer.setLayoutParams(params);
 
 
