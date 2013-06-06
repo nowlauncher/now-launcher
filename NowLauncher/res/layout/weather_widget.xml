@@ -89,5 +89,5 @@
         android:layout_toLeftOf="@+id/Border3"
         android:contentDescription="@string/todo"
         android:src="@drawable/pach" />
-    
+
 </RelativeLayout>

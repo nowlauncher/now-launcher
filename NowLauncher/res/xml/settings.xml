@@ -15,5 +15,16 @@
 			android:defaultValue="false" />
 
 	</PreferenceCategory>
+    <PreferenceCategory android:title="@string/drawer" >
+        <ListPreference
+            android:title="@string/drawer_orientation"
+            android:key="drawer_orientation"
+            android:dialogTitle="@string/drawer_orientation"
+            android:entries="@array/drawerOrientation"
+            android:entryValues="@array/drawerOrientationValues"
+            android:defaultValue="@string/vertical"
+            />
+
+    </PreferenceCategory>
  
 </PreferenceScreen>

@@ -18,5 +18,9 @@
     <string name="menu_settings">Menu settings</string>
     <string name="check_box">CheckBox Example!</string>
     <string name="check_box_summary">CheckBox Summary!</string>
+    <string name="drawer">Drawer</string>
+    <string name="drawer_orientation">Drawer Orientation</string>
+    <string name="horizontal">Horizontal</string>
+    <string name="vertical">Vertical</string>
     
 </resources>

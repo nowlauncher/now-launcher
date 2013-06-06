@@ -27,11 +27,11 @@
             android:horizontalSpacing="2dp"
             android:stretchMode="columnWidth"
             android:background="@color/white"
-            android:layout_below="@+id/linearLayout"
+            android:layout_below="@+id/dockdrawer"
             android:layout_alignParentLeft="true"/>
 
-    <LinearLayout
-            android:id="@+id/linearLayout"
+    <RelativeLayout
+            android:id="@+id/dockdrawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -43,7 +43,7 @@
         <Button
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/silver"
                 android:padding="10dp"
                 android:text="@string/all_apps_tab"
@@ -52,11 +52,23 @@
         <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:padding="10dp"
                 android:text="@string/favorites_tab"
-                android:textSize="25sp"/>
-    </LinearLayout>
+                android:textSize="25sp"
+                android:layout_alignTop="@+id/button1"
+                android:layout_toRightOf="@+id/button1"/>
+
+    </RelativeLayout>
+
+    <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/drawerProgressBar"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
 
 </RelativeLayout>

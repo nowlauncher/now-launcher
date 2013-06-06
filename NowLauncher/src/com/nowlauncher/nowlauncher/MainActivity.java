@@ -6,16 +6,18 @@ import java.util.List;
 import java.util.ListIterator;
 
 import android.app.Activity;
+import android.app.LoaderManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,20 +30,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    /**
-     * EN
-     * Declaration of some variables
-     *
-     * IT
-     * Dichiarazione di alcune variabili
-     */
 
     // Drop Down Bar (drawer open bar)
     ImageView drawerbar;
@@ -63,40 +57,33 @@ public class MainActivity extends Activity {
     public int y;
     public int yiniziale=0;
     public boolean yinizialebool = (boolean) false;
-
     public RelativeLayout rootlayoutdrawer;
+
+    //Variabili per il controllo della selezione delle icone sulla dock
+    public ImageView dockapp1;
+    public ImageView dockapp2;
+    public ImageView dockapp3;
+    public ImageView dockapp4;
+    public boolean checkdockapp1 = (boolean) false;
+    public boolean checkdockapp2 = (boolean) false;
+    public boolean checkdockapp3 = (boolean) false;
+    public boolean checkdockapp4 = (boolean) false;
+    public int x;
+
+    public ImageView settingsImage;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-        /**
-         * EN
-         * Set up layout
-         *
-         * IT
-         * Carica il layout
-         */
-
         setContentView(R.layout.main_activity);
 
-        /**
-         * EN
-         * Istance some variables
-         *
-         * IT
-         * Istanzia alcune variabili
-         */
+        //Imposta gli eventi OnTouch della barra del drawer
 
         drawerbar = (ImageView) findViewById(R.id.drawer_bar);
         rootlayout = (RelativeLayout) findViewById(R.id.rootLayout);
         rootlayoutdrawer = (RelativeLayout) findViewById(R.id.drawer_rootlayout);
-
-
-
-
         drawerbar.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -112,6 +99,21 @@ public class MainActivity extends Activity {
 
         });
 
+        //Imposta gli eventi OnTouch delle icone della dock
+
+        dockapp1 = (ImageView) findViewById(R.id.dockapp1);
+        dockapp2 = (ImageView) findViewById(R.id.dockapp2);
+        dockapp3 = (ImageView) findViewById(R.id.dockapp3);
+        dockapp4 = (ImageView) findViewById(R.id.dockapp4);
+        dockapp1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                checkdockapp1=true;
+                return false;
+            }
+        });
+
+
 
         /**
          * EN
@@ -121,10 +123,9 @@ public class MainActivity extends Activity {
          * Carica la lista delle applicazioni e carica il drawer
          */
 
-        LoadApplication();
-        CreateViews();
 
         //showUserSettings();
+        new ListDrawer().execute("");
 
     }
 
@@ -150,103 +151,50 @@ public class MainActivity extends Activity {
             }
 
         });
-
-    }
-
-    public void LoadApplication() {
-
-        /**
-         * EN
-         * Get the list of applications by searching with intent category
-         *
-         * @param apps List of ResolveInfo, useful objects for getting applications informations
-         *
-         * IT
-         * Ottiene la lista delle applicazioni cercando mediante la categoria dell'intent
-         *
-         * @param apps Lista degli oggetti ResolveInfo, oggetti utili per ottenere delle informazioni sulle applicazioni
-         */
-
-
-        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-        PackageManager manager = getPackageManager();
-
-        final List<ResolveInfo> apps = manager.queryIntentActivities(mainIntent, 0);
-        Collections.sort(apps, new ResolveInfo.DisplayNameComparator(manager));
-
-        if (apps != null) {
-            //final int count = apps.size();
-
-            if (mApplications == null) {
-                mApplications = new ArrayList<AppInfo>();
-            }
-
-            mApplications.clear();
-
-            ListIterator<ResolveInfo> i=apps.listIterator();
-            while(i.hasNext()) {
-                AppInfo application = new AppInfo();
-                ResolveInfo info = i.next();
-
-                application.title = info.loadLabel(manager);
-                application.setIntent(new ComponentName(
-                        info.activityInfo.applicationInfo.packageName,
-                        info.activityInfo.name),
-                        Intent.FLAG_ACTIVITY_NEW_TASK
-                                | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-
-                Bitmap d = ((BitmapDrawable)info.activityInfo.loadIcon(manager)).getBitmap();
-
-                Bitmap bitmapOrig;
-
-                dm = new DisplayMetrics();
-                getWindowManager().getDefaultDisplay().getMetrics(dm);
-                // Display density chooser
-                if (dm.densityDpi == DisplayMetrics.DENSITY_LOW)
-                    bitmapOrig = Bitmap.createScaledBitmap(d, 36, 36, false);
-                else if (dm.densityDpi == DisplayMetrics.DENSITY_MEDIUM)
-                    bitmapOrig = Bitmap.createScaledBitmap(d, 48, 48, false);
-                else if (dm.densityDpi == DisplayMetrics.DENSITY_HIGH)
-                    bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
-                else if (dm.densityDpi == DisplayMetrics.DENSITY_XHIGH)
-                    bitmapOrig = Bitmap.createScaledBitmap(d, 96, 96, false);
-                else bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
-
-                application.icon = new BitmapDrawable(bitmapOrig);
-
-                mApplications.add(application);
-
-            }
-        }
-
     }
 
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
+        x = (int) event.getX();
         y = (int) event.getY();
-        /**
-         * EN
-         * Get y value, calculate if touch is in tollerance zone of drop down bar
-         *
-         * IT
-         * Ottiene il valore di y e calcola se il touch è nella zona di tolleranza della drop down bar
-         */
-        if (checkbarpressed==true) {
-            if (yinizialebool==false) {
-                //imposta la coordinata y iniziale per il successivo controllo dello "spostamento" del dito
-                yiniziale=y;
-                yinizialebool=true;
+        dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+            //Gestione barra drawer
+
+            if (checkbarpressed==true) {
+                if (yinizialebool==false) {
+                    //imposta la coordinata y iniziale per il successivo controllo dello "spostamento" del dito
+                    yiniziale=y;
+                    yinizialebool=true;
+                }
+                // Questa variabile (statusBarOffset) serve per passare dai valori di y assoluti a quelli relativi (per relativi intendo rispetto al rootlayout, quindi una view può essere per esempio in assoluto a 10y mentre relativamente a 5y perchè c'è la barra di stato cioè dista 10 dp dall' Top dello scermo e 5 dp dal Top del root layout)
+                int statusBarOffset = dm.heightPixels - rootlayout.getMeasuredHeight();
+
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+                if (y-(drawerbar.getHeight()/2)-statusBarOffset <= 0) params.topMargin=0;
+                else if (y-statusBarOffset >= rootlayout.getHeight()-(drawerbar.getHeight()/2)) params.topMargin=rootlayout.getHeight()-drawerbar.getHeight();
+                else params.topMargin=y-statusBarOffset-(drawerbar.getHeight()/2); // oltre a sotrarre l'offset ho sotratto anche meta della grandezza della barra per fare in modo che la barra si imposti non con il Top sul dito ma con la meta sul dito come è più naturale quindi
+
+                //params.topMargin=y-drawerbar.getHeight();
+                rootlayoutdrawer.setLayoutParams(params);
             }
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            params.topMargin=y-drawerbar.getHeight();
-            rootlayoutdrawer.setLayoutParams(params);
+
+            //Gestione icona dock 1
+
+            if (checkdockapp1==true) {
+                RelativeLayout.LayoutParams dock1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                dock1.width=x;
+                dockapp1.setLayoutParams(dock1);
+                /*if (x>=centreapp1.getLeft()) {
+                        //AZIONE
+                }*/
+            }
 
 
-        }
+
 
         if(event.getAction() == MotionEvent.ACTION_UP) {
             yinizialebool=false;
@@ -256,12 +204,10 @@ public class MainActivity extends Activity {
 
                 if (yiniziale>y){
                     params.topMargin = 0;
-                    //params.height=rootlayout.getHeight();
                 }
 
                 else {
                     params.topMargin = rootlayout.getHeight()-drawerbar.getHeight();
-                    //params.height=drawerbar.getHeight();
                 }
 
 
@@ -269,19 +215,16 @@ public class MainActivity extends Activity {
                 rootlayoutdrawer.getLocationOnScreen( originalPos );
 
                 Animation animation = new TranslateAnimation(0, 0, 0, 0-(rootlayoutdrawer.getTop()-params.topMargin));
-
                 // il costruttore prevede 4 int, x iniziale, x finale, y iniziale e y finale. Tutte le coordinate sono relative al punto in cui si trova la view prima dell'animazione (es. 0,0,0,10 sposterà la view di 10dp in alto)
 
                 // A better form is:
                 // TraslateAnimation animation = new TranslateAnimation(0, 0, 0, -originalPos[1]);
                 // or
                 // TraslateAnimation animation = new TranslateAnimation(0, 0, 0, -(dropdownbar2.geTop()));
-
                 animation.setDuration(300);
                 animation.setFillAfter(false); // <-- fa in modo che a fine animazione la view rimanga nel posto e non ritorni al posto iniziale
                 rootlayoutdrawer.startAnimation(animation);
                 animation.setInterpolator(new AccelerateInterpolator(1));
-
                 animation.setAnimationListener(new Animation.AnimationListener(){
 
 
@@ -303,10 +246,12 @@ public class MainActivity extends Activity {
 
                     }
                 });
-
-                checkbarpressed=false;
-
             }
+            checkbarpressed=false;
+            checkdockapp1=false;
+            checkdockapp2=false;
+            checkdockapp3=false;
+            checkdockapp4=false;
         }
 
         return false;
@@ -334,7 +279,71 @@ public class MainActivity extends Activity {
         return true;
 
     }
+    protected class ListDrawer extends AsyncTask<String, Void, String> {
+        ProgressBar pgbar = (ProgressBar) findViewById(R.id.drawerProgressBar);
 
+        protected String doInBackground(String... params) {
+            pgbar.setVisibility(View.VISIBLE);
+            Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+            mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+            PackageManager manager = getPackageManager();
+
+            final List<ResolveInfo> apps = manager.queryIntentActivities(mainIntent, 0);
+            Collections.sort(apps, new ResolveInfo.DisplayNameComparator(manager));
+
+            if (apps != null) {
+                //final int count = apps.size();
+
+                if (mApplications == null) {
+                    mApplications = new ArrayList<AppInfo>();
+                }
+
+                mApplications.clear();
+
+                ListIterator<ResolveInfo> i=apps.listIterator();
+                while(i.hasNext()) {
+                    AppInfo application = new AppInfo();
+                    ResolveInfo info = i.next();
+
+                    application.title = info.loadLabel(manager);
+                    application.setIntent(new ComponentName(
+                            info.activityInfo.applicationInfo.packageName,
+                            info.activityInfo.name),
+                            Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+                    Bitmap d = ((BitmapDrawable)info.activityInfo.loadIcon(manager)).getBitmap();
+
+                    Bitmap bitmapOrig;
+
+                    dm = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(dm);
+                    // Display density chooser
+                    if (dm.densityDpi == DisplayMetrics.DENSITY_LOW)
+                        bitmapOrig = Bitmap.createScaledBitmap(d, 36, 36, false);
+                    else if (dm.densityDpi == DisplayMetrics.DENSITY_MEDIUM)
+                        bitmapOrig = Bitmap.createScaledBitmap(d, 48, 48, false);
+                    else if (dm.densityDpi == DisplayMetrics.DENSITY_HIGH)
+                        bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
+                    else if (dm.densityDpi == DisplayMetrics.DENSITY_XHIGH)
+                        bitmapOrig = Bitmap.createScaledBitmap(d, 96, 96, false);
+                    else bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
+
+                    application.icon = new BitmapDrawable(bitmapOrig);
+
+                    mApplications.add(application);
+
+                }
+            }
+            return null;
+        }
+
+        protected void onPostExecute(String result) {
+            CreateViews();
+            pgbar.setVisibility(View.GONE);
+        }
+    }
 	/*
 
 	Funzione di esempio per ottenere i valori nelle impostazioni:
