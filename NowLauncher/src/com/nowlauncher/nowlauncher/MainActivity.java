@@ -222,6 +222,7 @@ public class MainActivity extends Activity {
 
 			if (checkbarpressed==true) {
 			  
+				checkbarpressed=false;
 				final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 				if (yiniziale>y) params.topMargin = 0;
 				else params.topMargin = rootlayout.getHeight()-drawerbar.getHeight();

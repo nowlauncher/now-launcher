@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
 		public void onServiceConnected(ComponentName className, IBinder service) {
 		    // We've bound to MainService, cast the IBinder and get MainService instance
 		    MainService.MainBinder binder = (MainService.MainBinder) service;
-		    final mService = binder.getService();
+		    mService = binder.getService();
 		    Log.d("com.nowlauncher.nowlauncher", "Server Connected");
 		}
 
