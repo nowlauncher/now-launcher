@@ -27,6 +27,15 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"/>
 
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/centreapp1"
+            android:src="@drawable/centro"
+            android:layout_marginRight="10dp"
+            android:layout_alignTop="@+id/include2"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"/>
 
 </RelativeLayout>
 

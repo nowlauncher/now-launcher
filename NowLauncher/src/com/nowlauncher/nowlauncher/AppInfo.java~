@@ -121,7 +121,7 @@ public class AppInfo {
 	}
 	
 	
-	public final void loadTitle() {
+	public final void setTitle() {
 	  
 		if (mTitle == null) mTitle = mInfo.loadLabel(mPm);
 	
@@ -129,7 +129,7 @@ public class AppInfo {
 	
 	
 	  
-	public final void loadIcon() {
+	public final void setIcon() {
 	  
 		if (mIcon == null) {
 		 
@@ -155,7 +155,7 @@ public class AppInfo {
 	  
 	}
 	
-	public final void loadIntent() {
+	public final void getIntent() {
 	  
 		if (mIntent == null) mIntent = mPm.getLaunchIntentForPackage(mInfo.activityInfo.packageName);
 	  

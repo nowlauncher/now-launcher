@@ -59,30 +59,30 @@ public class ApplicationsAdapter extends BaseAdapter {
 	 */
 	
 	public Object getItem(int position) {  
-		return null;  
+	    return null;  
 	}
 	
 	public long getItemId(int position) {  
-		return position;  
+	    return position;  
 	}  
 	
-	/**
-	* EN
-	* Costructor, get context and Applications array
-	*
-	* @param context the context of activity
-	* @param Applications the array of applications
-	*
-	* IT
-	* Costruttore, permette di ottenere il context e l'array delle applicazioni
-	*
-	* @param context il context dell'activity
-	* @param Applications l'arrat delle applicazioni
-	*/
+  	/**
+  	* EN
+  	* Costructor, get context and Applications array
+  	*
+  	* @param context the context of activity
+  	* @param Applications the array of applications
+  	*
+  	* IT
+  	* Costruttore, permette di ottenere il context e l'array delle applicazioni
+  	*
+  	* @param context il context dell'activity
+  	* @param Applications l'arrat delle applicazioni
+  	*/
 	public ApplicationsAdapter(Context context, ArrayList<AppInfo> Applications) {  
 	    mContext = context;  
 	    mApplications = Applications;
-	} 
+	}		 
 
 	/**
 	* EN
@@ -103,16 +103,16 @@ public class ApplicationsAdapter extends BaseAdapter {
 	* Crea la view
 	*/
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 	  
-		info = mApplications.get(position);
+	    info = mApplications.get(position);
             
-		Drawable icon = info.getIcon();
+	    Drawable icon = info.icon;
 
             
 		TextView textview = new TextView(mContext);
 		textview.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
-		textview.setText(info.getTitle());
+		textview.setText(info.title);
 		textview.setGravity(17);
 		//textview.setPadding(0, 0, 10, 20);
             
