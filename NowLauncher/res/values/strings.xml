@@ -22,5 +22,11 @@
     <string name="drawer_orientation">Drawer Orientation</string>
     <string name="horizontal">Horizontal</string>
     <string name="vertical">Vertical</string>
+    <string name="animation">Animation</string>
+    <string name="normalanimation">Normal Animation</string>
+    <string name="cardanimation">Card Animation</string>
+    <string name="zoomoutanimation">Zoom Out Animation</string>
+    <string name="drawer_rows">Drawer Rows</string>
+    <string name="drawer_coloums">Drawer Coloums</string>
     
 </resources>

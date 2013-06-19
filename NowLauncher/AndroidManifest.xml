@@ -29,6 +29,7 @@
 	    android:label="menu_settings" >
 	    
 	</activity>
+	<service android:name=".MainService" />
     </application>
 
 </manifest>

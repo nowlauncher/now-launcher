@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/drawer_rootlayout"
+                android:background="@color/white">
+
+    <ImageView
+            android:id="@+id/drawer_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:scaleType="fitXY"
+            android:src="@drawable/barbackground"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
+
+    <GridView
+            android:id="@+id/drawerlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numColumns="4"
+            android:gravity="center"
+            android:scrollingCache="true"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="2dp"
+            android:stretchMode="columnWidth"
+            android:background="@color/white"
+            android:layout_below="@+id/dockdrawer"
+            android:layout_alignParentLeft="true"/>
+
+    <RelativeLayout
+            android:id="@+id/dockdrawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_below="@+id/drawer_bar"
+            android:layout_alignParentLeft="true"
+            android:background="@color/white">
+
+        <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/silver"
+                android:padding="10dp"
+                android:text="@string/all_apps_tab"
+                android:textSize="25sp"/>
+
+        <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:text="@string/favorites_tab"
+                android:textSize="25sp"
+                android:layout_alignTop="@+id/button1"
+                android:layout_toRightOf="@+id/button1"/>
+
+    </RelativeLayout>
+
+    <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/drawerProgressBar"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+</RelativeLayout>

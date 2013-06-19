@@ -19,7 +19,7 @@
     <GridView
             android:id="@+id/drawerlist"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:numColumns="4"
             android:gravity="center"
             android:scrollingCache="true"
@@ -60,6 +60,14 @@
                 android:layout_alignTop="@+id/button1"
                 android:layout_toRightOf="@+id/button1"/>
 
+        <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/settingsbtn"
+                android:layout_below="@+id/drawer_bar"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/settings"/>
+
     </RelativeLayout>
 
     <ProgressBar
@@ -69,6 +77,19 @@
             android:id="@+id/drawerProgressBar"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
+    <com.viewpagerindicator.UnderlinePageIndicator
+            android:id="@+id/titles"
+            android:layout_height="4dp"
+            android:layout_below="@+id/dockdrawer"
+            android:layout_width="fill_parent" />
+    <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@+id/titles"
+            android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>

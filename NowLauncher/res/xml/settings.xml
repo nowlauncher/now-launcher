@@ -24,7 +24,30 @@
             android:entryValues="@array/drawerOrientationValues"
             android:defaultValue="@string/vertical"
             />
-
+        <ListPreference
+                android:title="@string/animation"
+                android:key="drawer_animation"
+                android:dialogTitle="@string/animation"
+                android:entries="@array/drawerAnimation"
+                android:entryValues="@array/drawerAnimationValues"
+                android:defaultValue="@string/cardanimation"
+                />
+        <ListPreference
+                android:title="@string/drawer_rows"
+                android:key="drawer_rows"
+                android:dialogTitle="@string/drawer_rows"
+                android:entries="@array/drawerRowsCol"
+                android:entryValues="@array/drawerRowsColValues"
+                android:defaultValue="4"
+                />
+        <ListPreference
+                android:title="@string/drawer_coloums"
+                android:key="drawer_coloums"
+                android:dialogTitle="@string/drawer_coloums"
+                android:entries="@array/drawerRowsCol"
+                android:entryValues="@array/drawerRowsColValues"
+                android:defaultValue="4"
+                />
     </PreferenceCategory>
  
 </PreferenceScreen>
