@@ -19,15 +19,26 @@
         android:layout_below="@+id/include1"
         android:layout_marginTop="18dp"
         layout="@layout/dock" />
+    <SlidingDrawer
+            android:id="@+id/sldrawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:handle="@+id/handle"
+            android:content="@+id/content">
 
-    <include
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            layout="@layout/drawer_complete"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            />
+        <ImageView
+                android:id="@+id/handle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/bar_normal"/>
+        <include
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/drawer_complete" />
 
+    </SlidingDrawer>
 
 </RelativeLayout>
 

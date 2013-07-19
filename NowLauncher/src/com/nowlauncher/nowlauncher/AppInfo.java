@@ -5,11 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 /**
  * EN
@@ -55,7 +60,7 @@ public class AppInfo {
 	private Context mContext;
 	
 	
-	/**
+	/*
 	* EN
 	* Creates the application intent based on a component name and various launch flags
 	*
@@ -78,89 +83,15 @@ public class AppInfo {
 	}
 	
 	public final CharSequence getTitle() {
-	
-		if (mTitle == null) mTitle = mInfo.loadLabel(mPm);
-		return mTitle;
-	  
+        return mInfo.loadLabel(mPm);
 	}
-	
 	public final Drawable getIcon() {
-	  
-		if (mIcon == null) {
-		 
-			
-			Bitmap d = ((BitmapDrawable)mInfo.loadIcon(mPm)).getBitmap();
 
-			Bitmap bitmapOrig;
-			DisplayMetrics dm = new DisplayMetrics();
-			WindowManager wm = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
-			wm.getDefaultDisplay().getMetrics(dm);
-			// Display density chooser
-			if (dm.densityDpi == DisplayMetrics.DENSITY_LOW)
-			bitmapOrig = Bitmap.createScaledBitmap(d, 36, 36, false);
-			else if (dm.densityDpi == DisplayMetrics.DENSITY_MEDIUM)
-			bitmapOrig = Bitmap.createScaledBitmap(d, 48, 48, false);
-			else if (dm.densityDpi == DisplayMetrics.DENSITY_HIGH)
-			bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
-			else if (dm.densityDpi == DisplayMetrics.DENSITY_XHIGH)
-			bitmapOrig = Bitmap.createScaledBitmap(d, 96, 96, false);
-			else bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
-			mIcon = new BitmapDrawable(bitmapOrig);
-		}
-		
-		return mIcon;
-	  
+        return mInfo.loadIcon(mPm);
 	}
 	
 	public final Intent getIntent() {
-	  
-		if (mIntent == null) mIntent = mPm.getLaunchIntentForPackage(mInfo.activityInfo.packageName);
-		
-		return mIntent;
-	  
+        return mPm.getLaunchIntentForPackage(mInfo.activityInfo.packageName);
 	}
-	
-	
-	public final void loadTitle() {
-	  
-		if (mTitle == null) mTitle = mInfo.loadLabel(mPm);
-	
-	}
-	
-	
-	  
-	public final void loadIcon() {
-	  
-		if (mIcon == null) {
-		 
-			
-			Bitmap d = ((BitmapDrawable)mInfo.loadIcon(mPm)).getBitmap();
-
-			Bitmap bitmapOrig;
-			DisplayMetrics dm = new DisplayMetrics();
-			WindowManager wm = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
-			wm.getDefaultDisplay().getMetrics(dm);
-			// Display density chooser
-			if (dm.densityDpi == DisplayMetrics.DENSITY_LOW)
-			bitmapOrig = Bitmap.createScaledBitmap(d, 36, 36, false);
-			else if (dm.densityDpi == DisplayMetrics.DENSITY_MEDIUM)
-			bitmapOrig = Bitmap.createScaledBitmap(d, 48, 48, false);
-			else if (dm.densityDpi == DisplayMetrics.DENSITY_HIGH)
-			bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
-			else if (dm.densityDpi == DisplayMetrics.DENSITY_XHIGH)
-			bitmapOrig = Bitmap.createScaledBitmap(d, 96, 96, false);
-			else bitmapOrig = Bitmap.createScaledBitmap(d, 72, 72, false);
-			mIcon = new BitmapDrawable(bitmapOrig);
-		}
-	  
-	}
-	
-	public final void loadIntent() {
-	  
-		if (mIntent == null) mIntent = mPm.getLaunchIntentForPackage(mInfo.activityInfo.packageName);
-	  
-	}
-
-
 	
 }

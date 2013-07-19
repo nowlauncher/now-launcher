@@ -1,34 +1,45 @@
 package com.nowlauncher.nowlauncher;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -36,14 +47,21 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 //import android.support.v4.content.
 
 import android.util.Log;
+import android.widget.ViewFlipper;
 
+import com.YahooWeather.tools.ImageUtils;
+import com.YahooWeather.utils.WeatherInfo;
+import com.YahooWeather.utils.YahooWeatherInfoListener;
+import com.YahooWeather.utils.YahooWeatherUtils;
+import com.nineoldandroids.view.ViewHelper;
 import com.viewpagerindicator.UnderlinePageIndicator;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements YahooWeatherInfoListener{
 
 
 	// Drop Down Bar (drawer open bar)
@@ -68,6 +86,13 @@ public class MainActivity extends Activity {
 	public boolean yinizialebool = (boolean) false;
 	public RelativeLayout rootlayoutdrawer;
 
+
+
+    public ImageView refreshwea;
+    public TextView datelb;
+
+
+
 	//Variabili per il controllo della selezione delle icone sulla dock
 	public ImageView dockapp1;
 	public ImageView dockapp2;
@@ -78,11 +103,25 @@ public class MainActivity extends Activity {
 	public boolean checkdockapp3 = (boolean) false;
 	public boolean checkdockapp4 = (boolean) false;
 	public int x;
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
-
+    private ViewFlipper vf;
+    private Context mContext;
+    private GestureDetector detector;
+    private TextView citylb;
     ArrayList[]splittedarray;
 
 	public MainService mService;
+
+
+    private ImageView ivWeather0;
+    private ImageView ivWeather1;
+    private ImageView ivWeather2;
+    private TextView tvWeather0;
+    private TextView tvWeather1;
+    private TextView tvWeather2;
+
 	
 	/** Defines callbacks for service binding, passed to bindService() */
 	public ServiceConnection mConnection = new ServiceConnection() {
@@ -102,7 +141,9 @@ public class MainActivity extends Activity {
 		}
 	
 	};
-
+    private boolean isRuntimePostGingerbread() {
+        return Build.VERSION.SDK_INT  >= Build.VERSION_CODES.HONEYCOMB;
+    }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -111,10 +152,12 @@ public class MainActivity extends Activity {
 
 		//Imposta gli eventi OnTouch della barra del drawer
 
-		drawerbar = (ImageView) findViewById(R.id.drawer_bar);
+
+		//drawerbar = (ImageView) findViewById(R.id.drawer_bar);
 		rootlayout = (RelativeLayout) findViewById(R.id.rootLayout);
 		rootlayoutdrawer = (RelativeLayout) findViewById(R.id.drawer_rootlayout);
-		drawerbar.setOnTouchListener(new View.OnTouchListener() {
+
+		/*drawerbar.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -128,7 +171,7 @@ public class MainActivity extends Activity {
 			}
 
 		});
-
+*/
         // Carica il layout del drawer conforme alle impostazioni e carica la lista delle applicazioni
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -137,16 +180,34 @@ public class MainActivity extends Activity {
             findViewById(R.id.drawerlist).setVisibility(View.VISIBLE);
             findViewById(R.id.pager).setVisibility(View.GONE);
             new ListDrawer().execute("");
-            //Toast toast = Toast.makeText(getApplicationContext(), "Vertical", Toast.LENGTH_SHORT);
-            //toast.show();
 
         }
         else if (sharedPrefs.getString("drawer_orientation", "NULL").equals("2"))
         {
-            //Toast toast = Toast.makeText(getApplicationContext(), "Horizontal", Toast.LENGTH_SHORT);
-            //toast.show();
             new ListDrawerscroll().execute("");
         }
+
+
+
+
+        //Ricava la città in cui si è e aggiorna l'etichetta
+        citylb=(TextView)findViewById(R.id.citybox);
+        citylb.setText("Acquisizione posizione...");
+        new GetPosition().execute("");
+
+        refreshwea=(ImageView)findViewById(R.id.weatherrefresh);
+        refreshwea.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                citylb.setText("Acquisizione posizione...");
+                new GetPosition().execute("");
+                getDate();
+            }
+        });
+
+        //Imposta la data
+        getDate();
 
 
         //Tasto impostazioni nel drawer
@@ -159,7 +220,6 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-
 
 
 		//Imposta gli eventi OnTouch delle icone della dock
@@ -176,13 +236,96 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		
-		// Bind to MainService
-		Intent intent = new Intent(this, MainService.class);
-		bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-
 	}
+    public boolean isOnline() {
+        ConnectivityManager cm =(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
+    }
+    private void getDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM y");
+        String currentDate = sdf.format(Calendar.getInstance().getTime());
+        datelb=(TextView)findViewById(R.id.dateView);
+        datelb.setText(currentDate);
+    }
+    private void getWeather() {
+        if (isOnline()==true){
+            Log.d("YWeatherGetter4a", "onCreate");
 
+            YahooWeatherUtils yahooWeatherUtils = YahooWeatherUtils.getInstance();
+            yahooWeatherUtils.queryYahooWeather(getApplicationContext(), (String) citylb.getText(), this);
+        }
+        else Toast.makeText(getApplicationContext(), "Sorry, no connection available", Toast.LENGTH_SHORT).show();
+
+    }
+    protected class GetPosition extends AsyncTask<String, Void,String> {
+        protected String doInBackground(String... params) {
+
+            List<Address> addresses = null;
+            try {
+                LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+                Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                double longitude = location.getLongitude();
+                double latitude = location.getLatitude();
+                Geocoder gcd = new Geocoder(getApplicationContext(), Locale.getDefault());
+                addresses = gcd.getFromLocation(latitude, longitude, 1);
+                if (addresses.size() > 0) return addresses.get(0).getLocality();
+            } catch (Exception e) {
+                return "Nessuna posizione disponibile";
+            }
+            return addresses.get(0).getLocality();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            citylb.setText(s);
+            getWeather();
+        }
+    }
+    private void SwipeRight(){
+        vf.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.right_in));
+        vf.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.right_out));
+        vf.showPrevious();
+    }
+
+    private void SwipeLeft(){
+        vf.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.left_in));
+        vf.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.left_out));
+        vf.showNext();
+    }
+    /*
+
+    //Test per ViewFlipper
+
+    GestureDetector.SimpleOnGestureListener simpleOnGestureListener = new GestureDetector.SimpleOnGestureListener(){
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                               float velocityY) {
+
+            float sensitvity = 50;
+            if((e1.getX() - e2.getX()) > sensitvity){
+                SwipeLeft();
+            }else if((e2.getX() - e1.getX()) > sensitvity){
+                SwipeRight();
+            }
+
+            return true;
+        }
+
+    };
+    GestureDetector gestureDetector = new GestureDetector(simpleOnGestureListener);
+*/
+    View addImageView(int resId)
+    {
+        ImageView iv = new ImageView(this);
+        iv.setImageResource(resId);
+
+        return iv;
+    }
 	public void CreateViews() {
 
 		/**
@@ -194,8 +337,8 @@ public class MainActivity extends Activity {
 		*/
 
 		GridView gridview = (GridView) findViewById(R.id.drawerlist);
-		gridview.setAdapter(new ApplicationsAdapter(this, mApplications));
-
+		gridview.setAdapter(new ApplicationsAdapter(this, mApplications, gridview));
+/*
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 
             public void onItemClick(AdapterView parent, View v, int position, long id) {
@@ -204,7 +347,7 @@ public class MainActivity extends Activity {
             }
 
         });
-		
+		*/
 		}
 
     public void CreateViewsscroll() {
@@ -230,8 +373,8 @@ public class MainActivity extends Activity {
             }
         }
 
-        //Controlla le impsotazioni e carica l'animazione corrispondente
-        //Problema con API 10 - è come se non settasse nessuna animazione (da controllare uso libreria nineoldandroids)
+        //Controlla le impostazioni e carica l'animazione corrispondente
+        //API <11 .setPageTransformer ignorato quindi niente animazioni custom.
 
 
         findViewById(R.id.drawerlist).setVisibility(View.GONE);
@@ -240,6 +383,7 @@ public class MainActivity extends Activity {
         ViewPager myPager = (ViewPager) findViewById(R.id.pager);
         myPager.setAdapter(adapter);
         myPager.setCurrentItem(0);
+        myPager.setOffscreenPageLimit(npage);
         UnderlinePageIndicator titleIndicator = (UnderlinePageIndicator)findViewById(R.id.titles);
         titleIndicator.setViewPager(myPager);
         if (sharedPrefs.getString("drawer_animation", "NULL").equals("2")) {
@@ -346,8 +490,8 @@ public class MainActivity extends Activity {
 		checkdockapp2=false;
 		checkdockapp3=false;
 		checkdockapp4=false;
-		
 
+       // return gestureDetector.onTouchEvent(event);
 		return false;
 	
 	}
@@ -402,11 +546,11 @@ public class MainActivity extends Activity {
 				  
 					ResolveInfo info = i.next();
 					AppInfo application = new AppInfo(getApplicationContext(), info, manager);
-					
+					/*
 					application.loadTitle();
 					application.loadIcon();
 					application.loadIntent();
-					
+					*/
 					mApplications.add(application);
 
 				}
@@ -420,6 +564,7 @@ public class MainActivity extends Activity {
 			pgbar.setVisibility(View.GONE);
 		}
 	}
+
     protected class ListDrawerscroll extends AsyncTask<String, Void, String> {
 
         ProgressBar pgbar = (ProgressBar) findViewById(R.id.drawerProgressBar);
@@ -447,10 +592,11 @@ public class MainActivity extends Activity {
 
                     ResolveInfo info = i.next();
                     AppInfo application = new AppInfo(getApplicationContext(), info, manager);
-
+/*
                     application.loadTitle();
                     application.loadIcon();
                     application.loadIntent();
+                    */
                     mApplications.add(application);
 
                 }
@@ -464,25 +610,82 @@ public class MainActivity extends Activity {
             pgbar.setVisibility(View.GONE);
         }
     }
-	
-	/*
 
-	Funzione di esempio per ottenere i valori nelle impostazioni:
+    public void gotWeatherInfo(WeatherInfo weatherInfo) {
+        // TODO Auto-generated method stub
+        if(weatherInfo != null) {
+            /*
+            TextView tv = (TextView) findViewById(R.id.textview_title);
+            tv.setText(weatherInfo.getTitle() + "\n"
+                    + weatherInfo.getLocationCity() + ", "
+                    + weatherInfo.getLocationCountry());
+            tvWeather0 = (TextView) findViewById(R.id.textview_weather_info_0);
+            tvWeather0.setText("====== CURRENT ======" + "\n" +
+                    "date: " + weatherInfo.getCurrentConditionDate() + "\n" +
+                    "weather: " + weatherInfo.getCurrentText() + "\n" +
+                    "temperature in ºC: " + weatherInfo.getCurrentTempC() + "\n" +
+                    "temperature in ºF: " + weatherInfo.getCurrentTempF() + "\n" +
+                    "wind chill in ºF: " + weatherInfo.getWindChill() + "\n" +
+                    "wind direction: " + weatherInfo.getWindDirection() + "\n" +
+                    "wind speed: " + weatherInfo.getWindSpeed() + "\n" +
+                    "Humidity: " + weatherInfo.getAtmosphereHumidity() + "\n" +
+                    "Pressure: " + weatherInfo.getAtmospherePressure() + "\n" +
+                    "Visibility: " + weatherInfo.getAtmosphereVisibility()
+            );
+            */
+            /*
+            tvWeather1 = (TextView) findViewById(R.id.textview_weather_info_1);
+            tvWeather1.setText("====== FORECAST 1 ======" + "\n" +
+                    "date: " + weatherInfo.getForecast1Date() + "\n" +
+                    "weather: " + weatherInfo.getForecast1Text() + "\n" +
+                    "low  temperature in ºC: " + weatherInfo.getForecast1TempLowC() + "\n" +
+                    "high temperature in ºC: " + weatherInfo.getForecast1TempHighC() + "\n" +
+                    "low  temperature in ºF: " + weatherInfo.getForecast1TempLowF() + "\n" +
+                    "high temperature in ºF: " + weatherInfo.getForecast1TempHighF() + "\n"
+            );
+            */
+            /*
+            tvWeather2 = (TextView) findViewById(R.id.textview_weather_info_2);
+            tvWeather2.setText("====== FORECAST 2 ======" + "\n" +
+                    "date: " + weatherInfo.getForecast1Date() + "\n" +
+                    "weather: " + weatherInfo.getForecast2Text() + "\n" +
+                    "low  temperature in ºC: " + weatherInfo.getForecast2TempLowC() + "\n" +
+                    "high temperature in ºC: " + weatherInfo.getForecast2TempHighC() + "\n" +
+                    "low  temperature in ºF: " + weatherInfo.getForecast2TempLowF() + "\n" +
+                    "high temperature in ºF: " + weatherInfo.getForecast2TempHighF() + "\n"
+            );
+*/
 
-	private void getSettings() {
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+            LoadWebImagesTask task = new LoadWebImagesTask();
+            task.execute(
+                    weatherInfo.getCurrentConditionIconURL(),
+                    weatherInfo.getForecast1ConditionIconURL(),
+                    weatherInfo.getForecast2ConditionIconURL()
+            );
+        } else {
+            Toast.makeText(getApplicationContext(), "Sorry, no result returned", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-		String string = sharedPrefs.getString("title", "string returned if empty"); // ottiene la stringa dell'edit_text_preference con title="title"
+    class LoadWebImagesTask extends AsyncTask<String, Void, Bitmap[]> {
 
-		boolean checkBox = sharedPrefs.getBoolean("title", false); // ottiene il valore del checkbox di title="title"
+        @Override
+        protected Bitmap[] doInBackground(String... params) {
+            // TODO Auto-generated method stub
+            Bitmap[] res = new Bitmap[3];
+            res[0] = ImageUtils.getBitmapFromWeb(params[0]);
+            res[1] = ImageUtils.getBitmapFromWeb(params[1]);
+            res[2] = ImageUtils.getBitmapFromWeb(params[2]);
+            return res;
+        }
 
+        @Override
+        protected void onPostExecute(Bitmap[] results) {
+            // TODO Auto-generated method stub
+            super.onPostExecute(results);
+            citylb.setCompoundDrawablesWithIntrinsicBounds(null, null, null, new BitmapDrawable(results[0]));
+        }
 
-	}
-
-	*/
-
-
-
+    }
 
 }
-

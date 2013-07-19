@@ -6,16 +6,6 @@
                 android:id="@+id/drawer_rootlayout"
                 android:background="@color/white">
 
-    <ImageView
-            android:id="@+id/drawer_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:scaleType="fitXY"
-            android:src="@drawable/barbackground"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
-
     <GridView
             android:id="@+id/drawerlist"
             android:layout_width="wrap_content"
@@ -36,7 +26,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_below="@+id/drawer_bar"
             android:layout_alignParentLeft="true"
             android:background="@color/white">
 

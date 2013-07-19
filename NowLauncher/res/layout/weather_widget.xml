@@ -43,14 +43,14 @@
         android:textSize="35sp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/citybox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/Border2"
         android:layout_toRightOf="@+id/digitalClock1"
         android:drawableBottom="@drawable/sun"
-        android:drawablePadding="20dp"
+        android:drawablePadding="10dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
@@ -59,7 +59,7 @@
         android:textSize="23sp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/dateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/digitalClock1"
@@ -74,8 +74,8 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/dateView"
+        android:layout_below="@+id/dateView"
         android:paddingLeft="10dp"
         android:text="@string/temp"
         android:textSize="15sp" />
@@ -85,9 +85,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/citybox"
         android:layout_toLeftOf="@+id/Border3"
         android:contentDescription="@string/todo"
         android:src="@drawable/pach" />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/weatherrefresh"
+            android:layout_alignBottom="@+id/citybox"
+            android:layout_alignRight="@+id/Border2"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/refresh"
+            android:layout_marginRight="10dp"/>
 
 </RelativeLayout>

@@ -40,7 +40,7 @@ public class MyPagerAdapter extends PagerAdapter {
         mygridview.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
         mygridview.setVerticalSpacing(5);
         mygridview.setHorizontalSpacing(2);
-        mygridview.setAdapter(new ApplicationsAdapter(activity, pagearray[positionpage]));
+        mygridview.setAdapter(new ApplicationsAdapter(activity, pagearray[positionpage], mygridview));
         mygridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView parent, View v, int position, long id) {
