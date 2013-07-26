@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.GridView;
@@ -22,7 +24,6 @@ import android.graphics.Bitmap;
 import android.widget.BaseAdapter;  
 import android.content.Context;
 import android.util.Log;
-
 
 import java.util.ArrayList;
 import java.lang.String;
@@ -119,7 +120,7 @@ public class ApplicationsAdapter extends BaseAdapter {
 	*/
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-	  
+
 		info = mApplications.get(position);
             
 		BitmapDrawable icon = (BitmapDrawable)info.getIcon();
@@ -157,7 +158,8 @@ public class ApplicationsAdapter extends BaseAdapter {
 
             }
         });
-		return textview;        
+
+		return textview;
                         
 	}
 }

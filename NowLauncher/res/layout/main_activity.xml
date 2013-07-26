@@ -8,17 +8,19 @@
 
     <include
         android:id="@+id/include1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/weather_widget" />
+        layout="@layout/weather_widget"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"/>
 
     <include
         android:id="@+id/include2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/include1"
-        android:layout_marginTop="18dp"
-        layout="@layout/dock" />
+        layout="@layout/dock"
+        android:layout_below="@+id/include1"/>
     <SlidingDrawer
             android:id="@+id/sldrawer"
             android:layout_width="match_parent"
@@ -31,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                android:src="@drawable/bar_normal"/>
+                android:src="@drawable/barbackground"/>
         <include
                 android:id="@+id/content"
                 android:layout_width="wrap_content"

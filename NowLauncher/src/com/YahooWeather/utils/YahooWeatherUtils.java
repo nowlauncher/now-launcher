@@ -41,8 +41,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.nowlauncher.nowlauncher.MainActivity;
-
 public class YahooWeatherUtils {
 
 	public static final String YAHOO_WEATHER_ERROR = "Yahoo! Weather - Error";
@@ -218,6 +216,68 @@ public class YahooWeatherUtils {
 							forecast2ConditionNode.getAttributes().getNamedItem("low").getNodeValue()
 							));
 
+
+            Node forecast3ConditionNode = doc.getElementsByTagName("yweather:forecast").item(2);
+            weatherInfo.setForecast3Code(
+                    Integer.parseInt(
+                            forecast3ConditionNode.getAttributes().getNamedItem("code").getNodeValue()
+                    ));
+            weatherInfo.setForecast3Text(
+                    forecast3ConditionNode.getAttributes().getNamedItem("text").getNodeValue());
+            weatherInfo.setForecast3Date(
+                    forecast3ConditionNode.getAttributes().getNamedItem("date").getNodeValue());
+            weatherInfo.setForecast3Day(
+                    forecast3ConditionNode.getAttributes().getNamedItem("day").getNodeValue());
+            weatherInfo.setForecast3TempHighF(
+                    Integer.parseInt(
+                            forecast3ConditionNode.getAttributes().getNamedItem("high").getNodeValue()
+                    ));
+            weatherInfo.setForecast3TempLowF(
+                    Integer.parseInt(
+                            forecast3ConditionNode.getAttributes().getNamedItem("low").getNodeValue()
+                    ));
+
+
+            Node forecast4ConditionNode = doc.getElementsByTagName("yweather:forecast").item(3);
+            weatherInfo.setForecast4Code(
+                    Integer.parseInt(
+                            forecast4ConditionNode.getAttributes().getNamedItem("code").getNodeValue()
+                    ));
+            weatherInfo.setForecast4Text(
+                    forecast4ConditionNode.getAttributes().getNamedItem("text").getNodeValue());
+            weatherInfo.setForecast4Date(
+                    forecast4ConditionNode.getAttributes().getNamedItem("date").getNodeValue());
+            weatherInfo.setForecast4Day(
+                    forecast4ConditionNode.getAttributes().getNamedItem("day").getNodeValue());
+            weatherInfo.setForecast4TempHighF(
+                    Integer.parseInt(
+                            forecast4ConditionNode.getAttributes().getNamedItem("high").getNodeValue()
+                    ));
+            weatherInfo.setForecast4TempLowF(
+                    Integer.parseInt(
+                            forecast4ConditionNode.getAttributes().getNamedItem("low").getNodeValue()
+                    ));
+
+
+            Node forecast5ConditionNode = doc.getElementsByTagName("yweather:forecast").item(4);
+            weatherInfo.setForecast5Code(
+                    Integer.parseInt(
+                            forecast5ConditionNode.getAttributes().getNamedItem("code").getNodeValue()
+                    ));
+            weatherInfo.setForecast5Text(
+                    forecast5ConditionNode.getAttributes().getNamedItem("text").getNodeValue());
+            weatherInfo.setForecast5Date(
+                    forecast5ConditionNode.getAttributes().getNamedItem("date").getNodeValue());
+            weatherInfo.setForecast5Day(
+                    forecast5ConditionNode.getAttributes().getNamedItem("day").getNodeValue());
+            weatherInfo.setForecast5TempHighF(
+                    Integer.parseInt(
+                            forecast5ConditionNode.getAttributes().getNamedItem("high").getNodeValue()
+                    ));
+            weatherInfo.setForecast5TempLowF(
+                    Integer.parseInt(
+                            forecast5ConditionNode.getAttributes().getNamedItem("low").getNodeValue()
+                    ));
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();

@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
- 
-	<PreferenceCategory android:title="@string/category_1" >
-	  
-		<EditTextPreference
-			android:title="@string/edit_text"
-			android:summary="@string/edit_text_summary"
-			android:key="edit_text"/>
-		
-		<CheckBoxPreference
-			android:key="check_box"
-			android:summary="@string/check_box_summary"
-			android:title="@string/check_box"
-			android:defaultValue="false" />
-
-	</PreferenceCategory>
-    <PreferenceCategory android:title="@string/drawer" >
+     <PreferenceCategory android:title="@string/drawer" >
         <ListPreference
             android:title="@string/drawer_orientation"
             android:key="drawer_orientation"
@@ -48,6 +33,18 @@
                 android:entryValues="@array/drawerRowsColValues"
                 android:defaultValue="4"
                 />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/weather" >
+        <CheckBoxPreference
+                android:key="weather_customlocationcheck"
+                android:title="@string/weather_custom_checktitle"
+                android:defaultValue="false" />
+        <EditTextPreference
+                android:title="@string/weather_custom_title"
+                android:key="weather_customlocation"
+                android:dependency="weather_customlocationcheck"/>
+
+
     </PreferenceCategory>
  
 </PreferenceScreen>

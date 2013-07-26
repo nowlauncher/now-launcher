@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -18,6 +19,7 @@ import android.content.pm.ResolveInfo;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -32,6 +34,7 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,10 +43,12 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Transformation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -79,19 +84,31 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
 	// Array of all application in the device
 	public ArrayList<AppInfo> mApplications;
 
+    /***
+     * Metodo sostituito da SlidingDrawer
+     */
 	//Variabili per il controllo della selezione della barra e del touch
-	public boolean checkbarpressed = (boolean) false;
+	public boolean checkbarpressed = false;
 	public int y;
 	public int yiniziale=0;
-	public boolean yinizialebool = (boolean) false;
+	public boolean yinizialebool = false;
 	public RelativeLayout rootlayoutdrawer;
 
 
-
+    //Variabili per il meteo
     public ImageView refreshwea;
     public TextView datelb;
+    public TextView temperaturenow;
 
+    private ImageView sliderWeather;
+    private boolean sliderpressed = false;
+    private boolean tempcheck=false;
 
+    TextView todayweath;
+    TextView forecast1;
+    TextView forecast2;
+    TextView forecast3;
+    TextView forecast4;
 
 	//Variabili per il controllo della selezione delle icone sulla dock
 	public ImageView dockapp1;
@@ -103,6 +120,8 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
 	public boolean checkdockapp3 = (boolean) false;
 	public boolean checkdockapp4 = (boolean) false;
 	public int x;
+
+
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
@@ -113,7 +132,6 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
     ArrayList[]splittedarray;
 
 	public MainService mService;
-
 
     private ImageView ivWeather0;
     private ImageView ivWeather1;
@@ -172,8 +190,39 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
 
 		});
 */
-        // Carica il layout del drawer conforme alle impostazioni e carica la lista delle applicazioni
+        RelativeLayout weatherCard=(RelativeLayout)findViewById(R.id.weatherCard);
+/*
+        RelativeLayout dockLayout=(RelativeLayout)findViewById(R.id.docklayout);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, (int) (weatherCard.getHeight()+ TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18, getResources().getDisplayMetrics())), 0, 0);
+        dockLayout.setLayoutParams(params);
+*/
+        sliderWeather=(ImageView)findViewById(R.id.weatherslider);
+        final HorizontalScrollView forecastCard=(HorizontalScrollView)findViewById(R.id.forecastLayout);
 
+        sliderWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //weathercard.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+                if (!tempcheck) {
+                    expand(forecastCard);
+                    tempcheck=true;
+                }
+                else{
+                    collapse(forecastCard);
+                    tempcheck=false;
+                }
+            }
+        });
+        sliderWeather.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return false;
+            }
+        });
+
+        // Carica il layout del drawer conforme alle impostazioni e carica la lista delle applicazioni
+/*
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (sharedPrefs.getString("drawer_orientation", "NULL").equals("1")) {
@@ -186,29 +235,19 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
         {
             new ListDrawerscroll().execute("");
         }
+*/
 
 
-
-
-        //Ricava la città in cui si è e aggiorna l'etichetta
-        citylb=(TextView)findViewById(R.id.citybox);
-        citylb.setText("Acquisizione posizione...");
-        new GetPosition().execute("");
+        loadWeathercard();
 
         refreshwea=(ImageView)findViewById(R.id.weatherrefresh);
         refreshwea.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                citylb.setText("Acquisizione posizione...");
-                new GetPosition().execute("");
-                getDate();
+                loadWeathercard();
             }
         });
-
-        //Imposta la data
-        getDate();
-
 
         //Tasto impostazioni nel drawer
 
@@ -237,6 +276,80 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
 		});
 
 	}
+    public static void expand(final View v) {
+        v.measure(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        final int targtetHeight = v.getMeasuredHeight();
+
+        v.getLayoutParams().height = 0;
+        v.setVisibility(View.VISIBLE);
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                v.getLayoutParams().height = interpolatedTime == 1
+                        ? RelativeLayout.LayoutParams.WRAP_CONTENT
+                        : (int)(targtetHeight * interpolatedTime);
+                v.requestLayout();
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        //a.setDuration((int)(targtetHeight / v.getContext().getResources().getDisplayMetrics().density));
+        a.setDuration(300);
+        v.startAnimation(a);
+    }
+
+    public static void collapse(final View v) {
+        final int initialHeight = v.getMeasuredHeight();
+
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                if(interpolatedTime == 1){
+                    v.setVisibility(View.GONE);
+                }else{
+                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        //a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
+        a.setDuration(300);
+        v.startAnimation(a);
+    }
+    public void loadWeathercard()
+    {
+        //Imposta la data
+        getDate();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        citylb=(TextView)findViewById(R.id.citybox);
+        //Controlla se è selezionata l'opzione del luogo personalizzato
+        if (!sharedPrefs.getBoolean("weather_customlocationcheck", false))
+        {
+            citylb.setText("Acquisizione posizione...");
+            //Ricava la città in cui si è e aggiorna l'etichetta
+            new GetPosition().execute("");
+        }
+        else
+        {
+            //Ricava la città personale e ricava il meteo
+            citylb.setText(sharedPrefs.getString("weather_customlocation", getString(R.string.location_null)));
+            getWeather((String) citylb.getText());
+        }
+    }
     public boolean isOnline() {
         ConnectivityManager cm =(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
@@ -251,12 +364,12 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
         datelb=(TextView)findViewById(R.id.dateView);
         datelb.setText(currentDate);
     }
-    private void getWeather() {
+    private void getWeather(String location) {
         if (isOnline()==true){
             Log.d("YWeatherGetter4a", "onCreate");
 
             YahooWeatherUtils yahooWeatherUtils = YahooWeatherUtils.getInstance();
-            yahooWeatherUtils.queryYahooWeather(getApplicationContext(), (String) citylb.getText(), this);
+            yahooWeatherUtils.queryYahooWeather(getApplicationContext(), location, this);
         }
         else Toast.makeText(getApplicationContext(), "Sorry, no connection available", Toast.LENGTH_SHORT).show();
 
@@ -283,7 +396,7 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             citylb.setText(s);
-            getWeather();
+            getWeather((String)citylb.getText());
         }
     }
     private void SwipeRight(){
@@ -383,7 +496,13 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
         ViewPager myPager = (ViewPager) findViewById(R.id.pager);
         myPager.setAdapter(adapter);
         myPager.setCurrentItem(0);
-        myPager.setOffscreenPageLimit(npage);
+
+        /******************************************************************************************************
+         * Carica completamente le pagine del ViewPager ma è eseguito sul thread principale quindi freeza l'app
+         *****************************************************************************************************/
+        //myPager.setOffscreenPageLimit(npage);
+
+
         UnderlinePageIndicator titleIndicator = (UnderlinePageIndicator)findViewById(R.id.titles);
         titleIndicator.setViewPager(myPager);
         if (sharedPrefs.getString("drawer_animation", "NULL").equals("2")) {
@@ -656,11 +775,61 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
             );
 */
 
+
+            /**
+             * Meteo con descrizione
+             *
+             */
+            /*todayweath = (TextView)findViewById(R.id.todayweather);
+            todayweath.setText("Today"+"\n"
+                                +weatherInfo.getForecast1Text());
+
+            forecast1 = (TextView)findViewById(R.id.forecast1);
+            forecast1.setText(weatherInfo.getForecast2Day() +"\n"
+                    +weatherInfo.getForecast2Text());
+
+            forecast2 = (TextView)findViewById(R.id.forecast2);
+            forecast2.setText(weatherInfo.getForecast3Day()+"\n"
+                    +weatherInfo.getForecast3Text());
+
+            forecast3 = (TextView)findViewById(R.id.forecast3);
+            forecast3.setText(weatherInfo.getForecast4Day()+"\n"
+                    +weatherInfo.getForecast4Text());
+
+            forecast4 = (TextView)findViewById(R.id.forecast4);
+            forecast4.setText(weatherInfo.getForecast5Day()+"\n"
+                    +weatherInfo.getForecast5Text());*/
+
+            /**
+             * Meteo senza descrizione
+             */
+            todayweath = (TextView)findViewById(R.id.todayweather);
+            todayweath.setText("Today");
+
+            forecast1 = (TextView)findViewById(R.id.forecast1);
+            forecast1.setText(weatherInfo.getForecast2Day());
+
+            forecast2 = (TextView)findViewById(R.id.forecast2);
+            forecast2.setText(weatherInfo.getForecast3Day());
+
+            forecast3 = (TextView)findViewById(R.id.forecast3);
+            forecast3.setText(weatherInfo.getForecast4Day());
+
+            forecast4 = (TextView)findViewById(R.id.forecast4);
+            forecast4.setText(weatherInfo.getForecast5Day());
+
+
+            temperaturenow = (TextView)findViewById(R.id.temperaturenow);
+            temperaturenow.setText(weatherInfo.getCurrentTempC()+"°C, "+weatherInfo.getAtmosphereHumidity()+"%");
+
             LoadWebImagesTask task = new LoadWebImagesTask();
             task.execute(
                     weatherInfo.getCurrentConditionIconURL(),
                     weatherInfo.getForecast1ConditionIconURL(),
-                    weatherInfo.getForecast2ConditionIconURL()
+                    weatherInfo.getForecast2ConditionIconURL(),
+                    weatherInfo.getForecast3ConditionIconURL(),
+                    weatherInfo.getForecast4ConditionIconURL(),
+                    weatherInfo.getForecast5ConditionIconURL()
             );
         } else {
             Toast.makeText(getApplicationContext(), "Sorry, no result returned", Toast.LENGTH_SHORT).show();
@@ -672,10 +841,13 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
         @Override
         protected Bitmap[] doInBackground(String... params) {
             // TODO Auto-generated method stub
-            Bitmap[] res = new Bitmap[3];
+            Bitmap[] res = new Bitmap[6];
             res[0] = ImageUtils.getBitmapFromWeb(params[0]);
             res[1] = ImageUtils.getBitmapFromWeb(params[1]);
             res[2] = ImageUtils.getBitmapFromWeb(params[2]);
+            res[3] = ImageUtils.getBitmapFromWeb(params[3]);
+            res[4] = ImageUtils.getBitmapFromWeb(params[4]);
+            res[5] = ImageUtils.getBitmapFromWeb(params[5]);
             return res;
         }
 
@@ -684,6 +856,12 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
             // TODO Auto-generated method stub
             super.onPostExecute(results);
             citylb.setCompoundDrawablesWithIntrinsicBounds(null, null, null, new BitmapDrawable(results[0]));
+            todayweath.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(results[1]));
+            forecast1.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(results[2]));
+            forecast2.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(results[3]));
+            forecast3.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(results[4]));
+            forecast4.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(results[5]));
+
         }
 
     }
