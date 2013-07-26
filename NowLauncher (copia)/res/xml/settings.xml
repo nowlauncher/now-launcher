@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+ 
+	<PreferenceCategory android:title="@string/category_1" >
+	  
+		<EditTextPreference
+			android:title="@string/edit_text"
+			android:summary="@string/edit_text_summary"
+			android:key="edit_text"/>
+		
+		<CheckBoxPreference
+			android:key="check_box"
+			android:summary="@string/check_box_summary"
+			android:title="@string/check_box"
+			android:defaultValue="false" />
+
+	</PreferenceCategory>
+    <PreferenceCategory android:title="@string/drawer" >
+        <ListPreference
+            android:title="@string/drawer_orientation"
+            android:key="drawer_orientation"
+            android:dialogTitle="@string/drawer_orientation"
+            android:entries="@array/drawerOrientation"
+            android:entryValues="@array/drawerOrientationValues"
+            android:defaultValue="@string/vertical"
+            />
+        <ListPreference
+                android:title="@string/animation"
+                android:key="drawer_animation"
+                android:dialogTitle="@string/animation"
+                android:entries="@array/drawerAnimation"
+                android:entryValues="@array/drawerAnimationValues"
+                android:defaultValue="@string/cardanimation"
+                />
+        <ListPreference
+                android:title="@string/drawer_rows"
+                android:key="drawer_rows"
+                android:dialogTitle="@string/drawer_rows"
+                android:entries="@array/drawerRowsCol"
+                android:entryValues="@array/drawerRowsColValues"
+                android:defaultValue="4"
+                />
+        <ListPreference
+                android:title="@string/drawer_coloums"
+                android:key="drawer_coloums"
+                android:dialogTitle="@string/drawer_coloums"
+                android:entries="@array/drawerRowsCol"
+                android:entryValues="@array/drawerRowsColValues"
+                android:defaultValue="4"
+                />
+    </PreferenceCategory>
+ 
+</PreferenceScreen>

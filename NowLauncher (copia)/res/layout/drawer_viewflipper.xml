@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/drawer_rootlayout"
+                android:background="@color/white">
+
+    <RelativeLayout
+            android:id="@+id/dockdrawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:background="@color/white">
+
+        <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/silver"
+                android:padding="10dp"
+                android:text="@string/all_apps_tab"
+                android:textSize="25sp"/>
+
+        <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:text="@string/favorites_tab"
+                android:textSize="25sp"
+                android:layout_alignTop="@+id/button1"
+                android:layout_toRightOf="@+id/button1"/>
+
+        <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/settingsbtn"
+                android:layout_below="@+id/drawer_bar"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/settings"/>
+
+    </RelativeLayout>
+
+    <ViewFlipper
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:id="@+id/viewFlipper"
+            android:layout_below="@+id/dockdrawer"
+            android:layout_alignParentLeft="true"/>
+
+
+</RelativeLayout>

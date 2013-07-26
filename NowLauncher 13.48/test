@@ -1,0 +1,7 @@
+ant debug
+
+adb uninstall com.nowlauncher.nowlauncher
+
+adb install bin/NowLauncher-debug.apk
+
+adb logcat

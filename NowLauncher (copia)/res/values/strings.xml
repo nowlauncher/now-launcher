@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">NowLauncher</string>
+    <string name="action_settings">Settings</string>
+    <string name="clock_widget">10:15</string>
+    <string name="locate_widget">City</string>
+    <string name="date_widget">Date</string>
+    <string name="todo">TODO</string>
+    <string name="digitalclock">DigitalClock</string>
+    <string name="temp">23°C 80%H</string>
+    <string name="icon">Icon</string>
+    <string name="all_apps_tab">All apps</string>
+    <string name="favorites_tab">Favorites</string>
+    <string name="category_1">Category 1</string>
+    <string name="edit_text">Edit text example</string>
+    <string name="edit_text_summary">Edit text summary</string>
+    <string name="menu_settings">Menu settings</string>
+    <string name="check_box">CheckBox Example!</string>
+    <string name="check_box_summary">CheckBox Summary!</string>
+    <string name="drawer">Drawer</string>
+    <string name="drawer_orientation">Drawer Orientation</string>
+    <string name="horizontal">Horizontal</string>
+    <string name="vertical">Vertical</string>
+    <string name="animation">Animation</string>
+    <string name="normalanimation">Normal Animation</string>
+    <string name="cardanimation">Card Animation</string>
+    <string name="zoomoutanimation">Zoom Out Animation</string>
+    <string name="drawer_rows">Drawer Rows</string>
+    <string name="drawer_coloums">Drawer Coloums</string>
+    
+</resources>

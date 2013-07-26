@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/drawer_rootlayout">
+
+    <ImageView
+            android:id="@+id/bar_drawer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/barbackground"
+            android:scaleType="fitXY"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
+
+    <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_below="@+id/bar_drawer"
+            android:layout_alignParentLeft="true">
+
+        <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/silver"
+                android:padding="10dp"
+                android:text="@string/all_apps_tab"
+                android:textSize="25sp"/>
+
+        <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:text="@string/favorites_tab"
+                android:textSize="25sp"/>
+    </LinearLayout>
+
+    <GridView
+            android:id="@+id/gridView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numColumns="4"
+            android:gravity="center"
+            android:scrollingCache="true"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="2dp"
+            android:stretchMode="columnWidth"
+            android:layout_below="@+id/linearLayout"
+            android:layout_alignParentLeft="true"/>
+</RelativeLayout>

@@ -121,13 +121,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/nowlauncher/nowlauncher/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="246" column="44" selection-start="8112" selection-end="8112" vertical-scroll-proportion="-9.518518" vertical-offset="2875" max-vertical-offset="14346">
+            <state line="237" column="0" selection-start="7878" selection-end="7878" vertical-scroll-proportion="-0.33206832" vertical-offset="3145" max-vertical-offset="14346">
               <folding>
-                <element signature="e#8160#8161#0" expanded="true" />
-                <element signature="e#11647#11680#0" expanded="true" />
+                <element signature="e#8012#8167#0" expanded="true" />
+                <element signature="e#8156#8157#0" expanded="true" />
+                <element signature="e#11643#11676#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,9 +138,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/nowlauncher/nowlauncher/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="11" column="45" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -148,16 +147,22 @@
         <entry file="file://$PROJECT_DIR$/res/xml/settings.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state line="1" column="59" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="33" selection-start="654" selection-end="660" vertical-scroll-proportion="0.61503416" vertical-offset="0" max-vertical-offset="648">
-              <folding />
+              <folding>
+                <element signature="e#157#173#0" expanded="true" />
+                <element signature="e#226#254#0" expanded="true" />
+                <element signature="e#332#360#0" expanded="true" />
+                <element signature="e#514#532#0" expanded="true" />
+                <element signature="e#602#621#0" expanded="true" />
+                <element signature="e#705#724#0" expanded="true" />
+                <element signature="e#886#909#0" expanded="true" />
+                <element signature="e#983#1004#0" expanded="true" />
+                <element signature="e#1083#1104#0" expanded="true" />
+                <element signature="e#1339#1363#0" expanded="true" />
+                <element signature="e#1445#1469#0" expanded="true" />
+                <element signature="e#1714#1731#0" expanded="true" />
+                <element signature="e#1850#1885#0" expanded="true" />
+                <element signature="e#1992#2022#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -223,9 +228,9 @@
         <option value="$PROJECT_DIR$/res/values/color.xml" />
         <option value="$PROJECT_DIR$/res/layout/weather_widget.xml" />
         <option value="$PROJECT_DIR$/res/xml/settings.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/nowlauncher/nowlauncher/MainActivity.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -496,7 +501,7 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="AndroidTargetDevices" value="S583081ecdfd8" />
+    <property name="AndroidTargetDevices" value="015d3220130c060d" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="FullScreen" value="false" />
@@ -760,14 +765,14 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20889261" sideWeight="0.5323496" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32764506" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4675768" sideWeight="0.49957228" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4675768" sideWeight="0.49957228" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934132" sideWeight="0.67804325" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287827" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24978614" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20958084" sideWeight="0.5324232" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32195678" sideWeight="0.49957228" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20958084" sideWeight="0.67804325" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32195678" sideWeight="0.49957228" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="164" y="96" width="1017" height="829" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -908,32 +913,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/xml/settings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="59" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nowlauncher/nowlauncher/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="246" column="44" selection-start="8112" selection-end="8112" vertical-scroll-proportion="-9.518518" vertical-offset="2875" max-vertical-offset="14346">
-          <folding>
-            <element signature="e#8160#8161#0" expanded="true" />
-            <element signature="e#11647#11680#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nowlauncher/nowlauncher/Settings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="45" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="42" selection-start="1416" selection-end="1416" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="756">
@@ -951,20 +930,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/device-2013-07-26-181754.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/device-2013-07-26-181729.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="33" selection-start="654" selection-end="660" vertical-scroll-proportion="0.61503416" vertical-offset="0" max-vertical-offset="648">
+        <state line="6" column="44" selection-start="245" selection-end="245" vertical-scroll-proportion="0.24601367" vertical-offset="0" max-vertical-offset="630">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/xml/settings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="59" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+          <folding>
+            <element signature="e#157#173#0" expanded="true" />
+            <element signature="e#226#254#0" expanded="true" />
+            <element signature="e#332#360#0" expanded="true" />
+            <element signature="e#514#532#0" expanded="true" />
+            <element signature="e#602#621#0" expanded="true" />
+            <element signature="e#705#724#0" expanded="true" />
+            <element signature="e#886#909#0" expanded="true" />
+            <element signature="e#983#1004#0" expanded="true" />
+            <element signature="e#1083#1104#0" expanded="true" />
+            <element signature="e#1339#1363#0" expanded="true" />
+            <element signature="e#1445#1469#0" expanded="true" />
+            <element signature="e#1714#1731#0" expanded="true" />
+            <element signature="e#1850#1885#0" expanded="true" />
+            <element signature="e#1992#2022#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nowlauncher/nowlauncher/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="45" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nowlauncher/nowlauncher/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="237" column="0" selection-start="7878" selection-end="7878" vertical-scroll-proportion="-0.33206832" vertical-offset="3145" max-vertical-offset="14346">
+          <folding>
+            <element signature="e#8012#8167#0" expanded="true" />
+            <element signature="e#8156#8157#0" expanded="true" />
+            <element signature="e#11643#11676#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

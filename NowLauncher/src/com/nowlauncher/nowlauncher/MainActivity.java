@@ -222,7 +222,7 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
         });
 
         // Carica il layout del drawer conforme alle impostazioni e carica la lista delle applicazioni
-/*
+
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (sharedPrefs.getString("drawer_orientation", "NULL").equals("1")) {
@@ -235,7 +235,7 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener{
         {
             new ListDrawerscroll().execute("");
         }
-*/
+
 
 
         loadWeathercard();

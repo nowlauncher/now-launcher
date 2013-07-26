@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background" >
+		        
+   	<ImageView
+       	android:id="@+id/imageView1"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:background="@color/white"
+       	android:src="@drawable/ic_launcher" />
+   	
+   	<View
+        android:id="@+id/ColorBar1"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_toRightOf="@+id/imageView1"
+        android:background="@color/green" />
+    
+   	
+    <ImageView
+        android:id="@+id/testImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_launcher" />
+   	
+    <View
+        android:id="@+id/ColorBar2"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/testImg"
+        android:layout_alignTop="@+id/testImg"
+        android:layout_toRightOf="@+id/testImg"
+        android:background="@color/red" />
+    
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/testImg"
+        android:background="@color/white"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_launcher" />
+
+    
+    <View
+        android:id="@+id/ColorBar3"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_alignTop="@+id/imageView3"
+        android:layout_toRightOf="@+id/imageView3"
+        android:background="@color/yellow" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView3"
+        android:background="@color/white"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_launcher" />
+    
+    <View
+        android:id="@+id/ColorBar4"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_toRightOf="@+id/imageView4"
+        android:background="@color/blue" />
+
+    
+</RelativeLayout>
