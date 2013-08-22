@@ -6,21 +6,40 @@
     android:background="@color/background"
     android:orientation="vertical" >
 
-    <include
-        android:id="@+id/include1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/weather_widget"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"/>
-
+    <com.nowlauncher.nowlauncher.HeightWrappingViewPager
+            android:id="@+id/cardPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <include
+                android:id="@+id/weatherPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/weather_widget"
+                />
+        <include
+                android:id="@+id/musicPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/music_widget"/>
+    </com.nowlauncher.nowlauncher.HeightWrappingViewPager>
     <include
         android:id="@+id/include2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         layout="@layout/dock"
-        android:layout_below="@+id/include1"/>
+        android:layout_below="@+id/cardPager"/>
+
+    <include
+            android:id="@+id/include_music_lists"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/music_lists"
+            android:layout_below="@+id/cardPager"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="41dp"
+            android:visibility="gone"/>
     <SlidingDrawer
             android:id="@+id/sldrawer"
             android:layout_width="match_parent"
@@ -41,6 +60,5 @@
                 layout="@layout/drawer_complete" />
 
     </SlidingDrawer>
-
 </RelativeLayout>
 

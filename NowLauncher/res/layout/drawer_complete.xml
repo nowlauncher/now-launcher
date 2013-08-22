@@ -16,7 +16,6 @@
             android:verticalSpacing="5dp"
             android:horizontalSpacing="2dp"
             android:stretchMode="columnWidth"
-            android:background="@color/white"
             android:layout_below="@+id/dockdrawer"
             android:layout_alignParentLeft="true"/>
 
@@ -26,10 +25,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_alignParentLeft="true"
-            android:background="@color/white">
+            android:layout_alignParentLeft="true">
 
-        <Button
+        <TextView
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,11 +36,10 @@
                 android:text="@string/all_apps_tab"
                 android:textSize="25sp"/>
 
-        <Button
+        <TextView
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:padding="10dp"
                 android:text="@string/favorites_tab"
                 android:textSize="25sp"

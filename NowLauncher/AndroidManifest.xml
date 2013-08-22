@@ -26,12 +26,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
 	<activity
 	    android:name="com.nowlauncher.nowlauncher.Settings"
 	    android:label="@string/menu_settings" >
-	    
 	</activity>
-	<service android:name=".MainService" />
     </application>
 
 </manifest>

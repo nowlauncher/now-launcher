@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+<RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/MusicWidgetLayout"
+                android:background="@drawable/card_background"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp">
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/musicCard"
+            android:orientation="vertical"
+            >
+
+        <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nowmusic">
+
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/songAlbumArt"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/unknownalbum"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/music_artist"
+                    android:id="@+id/songArtist"
+                    android:layout_toRightOf="@+id/songAlbumArt"
+                    android:layout_marginTop="30dp"
+                    android:textSize="20dp"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/music_title"
+                    android:id="@+id/songTitle"
+                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/songArtist"
+                    android:layout_toRightOf="@+id/songAlbumArt"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/music_album"
+                    android:id="@+id/songAlbum"
+                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:layout_below="@+id/songTitle"
+                    android:layout_toRightOf="@+id/songAlbumArt"
+                    android:textColor="@color/gray"/>
+        </RelativeLayout>
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nowmusic"
+                android:id="@+id/musiccontrol"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="5dp">
+
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/musicbackbtn"
+                    android:src="@drawable/music_back"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"/>
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/musicplaybtn"
+                    android:src="@drawable/music_play"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"/>
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/musicnextbtn"
+                    android:src="@drawable/music_next"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"/>
+
+
+        </LinearLayout>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/listLayout"
+                android:layout_below="@+id/musiccontrol">
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/repeatshuffle">
+                <ImageView
+                        android:id="@+id/btnRepeat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/btn_repeat"
+                        android:layout_marginRight="5dp"/>
+                <ImageView
+                        android:id="@+id/btnShuffle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/btn_shuffle"
+                        android:layout_marginLeft="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:id="@+id/timerDisplay"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_below="@+id/repeatshuffle"
+                    >
+                <!-- Current Duration Label -->
+                <TextView
+                        android:id="@+id/songCurrentDurationLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
+                <!-- Total Duration Label -->
+                <TextView
+                        android:id="@+id/songTotalDurationLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textColor="#04cbde"
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
+            </LinearLayout>
+            <SeekBar
+                    android:id="@+id/songProgressBar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_below="@+id/repeatshuffle"
+                    android:layout_marginTop="10dp"/>
+
+
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+            android:id="@+id/musicslider"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/slider"
+            android:scaleType="fitXY"
+            android:layout_below="@+id/musicCard"
+            android:layout_alignParentLeft="true"
+            />
+
+</RelativeLayout>
+
+
+
+</RelativeLayout>

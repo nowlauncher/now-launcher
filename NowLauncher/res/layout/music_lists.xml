@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+        <!---android:visibility="gone"-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/listSongMusic"
+        android:background="@drawable/card_background">
+
+
+    <TabHost
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/songsTabHost">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+            <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+            </TabWidget>
+
+            <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/listViewArtist"/>
+                <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/listViewAlbum"/>
+                <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/listViewTitle"/>
+                <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/listViewPlaylist"/>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</RelativeLayout>

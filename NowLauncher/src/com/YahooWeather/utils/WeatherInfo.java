@@ -119,6 +119,15 @@ public class WeatherInfo {
     int mForecast5TempLowF;
     String mForecast5ConditionIconURL;
 
+    String weatherurl;
+
+    void setWeatherurl(String weatherurl) {
+        this.weatherurl = weatherurl;
+    }
+    public String getWeatherurl() {
+        return weatherurl;
+    }
+
     /************************************************
      * Today - Start
      *

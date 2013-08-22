@@ -128,7 +128,9 @@ public class YahooWeatherUtils {
 				return null;
 			}
 
-			weatherInfo.setTitle(titleNode.getTextContent());
+            weatherInfo.setWeatherurl(doc.getElementsByTagName("link").item(0).getTextContent());
+
+            weatherInfo.setTitle(titleNode.getTextContent());
 			weatherInfo.setDescription(doc.getElementsByTagName("description").item(0).getTextContent());
 			weatherInfo.setLanguage(doc.getElementsByTagName("language").item(0).getTextContent());
 			weatherInfo.setLastBuildDate(doc.getElementsByTagName("lastBuildDate").item(0).getTextContent());

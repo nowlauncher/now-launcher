@@ -26,5 +26,8 @@
     <string name="zoomoutanimation">Zoom Out Animation</string>
     <string name="drawer_rows">Drawer Rows</string>
     <string name="drawer_coloums">Drawer Coloums</string>
-    
+    <string name="music_artist">Artist</string>
+    <string name="music_title">Title</string>
+    <string name="music_album">Album</string>
+
 </resources>

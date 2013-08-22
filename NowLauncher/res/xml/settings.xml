@@ -7,7 +7,7 @@
             android:dialogTitle="@string/drawer_orientation"
             android:entries="@array/drawerOrientation"
             android:entryValues="@array/drawerOrientationValues"
-            android:defaultValue="@string/vertical"
+            android:defaultValue="1"
             />
         <ListPreference
                 android:title="@string/animation"
@@ -15,7 +15,7 @@
                 android:dialogTitle="@string/animation"
                 android:entries="@array/drawerAnimation"
                 android:entryValues="@array/drawerAnimationValues"
-                android:defaultValue="@string/cardanimation"
+                android:defaultValue="1"
                 />
         <ListPreference
                 android:title="@string/drawer_rows"
@@ -43,8 +43,6 @@
                 android:title="@string/weather_custom_title"
                 android:key="weather_customlocation"
                 android:dependency="weather_customlocationcheck"/>
-
-
     </PreferenceCategory>
  
 </PreferenceScreen>
