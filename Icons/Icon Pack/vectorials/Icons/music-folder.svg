@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="96"
+   height="96"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="music-folder.svg"
+   inkscape:export-filename="C:\Users\Edoardo\Documents\GitHub\now-launcher\Icons\Icon Pack\XHDPI\music-folder.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="19.803185"
+     inkscape:cy="62.148706"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1280"
+     inkscape:window-height="974"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       orientation="1,0"
+       position="8,15"
+       id="guide2985" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="88,25.357143"
+       id="guide2987" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="47.142857,8"
+       id="guide2989" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="43.571429,88"
+       id="guide2991" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-956.36218)">
+    <path
+       style="fill:#ff7f2a;stroke:#ff7f2a;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 8,8 8,88 88,88 88,8 z"
+       id="path3000"
+       inkscape:connector-curvature="0"
+       transform="translate(0,956.36218)" />
+    <path
+       d="m 23.327607,1007.4989 0,29.2093 c 0,0.8824 11.621541,0.8824 11.621541,0 l 0,-29.2093 c 0,-0.8817 -11.621541,-0.8817 -11.621541,0 m 59.165914,7.2684 0,-12.6 c 0,-19.464 -14.25811,-33.59118 -33.89967,-33.59118 -19.644249,0 -33.900563,14.12718 -33.900563,33.59118 l 0,12.5346 c -0.821461,2.0177 -1.033113,4.6597 -1.033113,7.5625 0,6.3207 0.965852,11.4441 7.168075,11.4441 l 0,-22.8862 c -0.338993,0 -0.658247,0.021 -0.967641,0.05 l 0,-8.706 c 0,-16.73515 11.815248,-28.42305 28.733242,-28.42305 16.914412,0 28.72876,11.6879 28.72876,28.42305 l 0,8.6755 c -0.320155,-0.032 -0.653762,-0.054 -1.006202,-0.054 l 0,22.8853 c 6.201325,0 7.166274,-5.1226 7.166274,-11.4404 0,-2.8573 -0.202675,-5.4624 -0.989162,-7.4667 m -20.29801,-6.978 0,29.2104 c 0,0.8815 11.621538,0.8815 11.621538,0 l 0,-29.2104 c 0,-0.8815 -11.621538,-0.8815 -11.621538,0"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path80"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
