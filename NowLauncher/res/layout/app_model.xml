@@ -17,6 +17,7 @@
                   android:layout_height="wrap_content"
                   android:layout_below="@+id/icon"
                   android:gravity="center"
-                  android:layout_centerHorizontal="true"/>
+                  android:layout_centerHorizontal="true"
+                  android:textColor="@color/black" />
     </RelativeLayout>
 </RelativeLayout>

@@ -45,16 +45,26 @@
                 android:textSize="25sp"
                 android:layout_alignTop="@+id/button1"
                 android:layout_toRightOf="@+id/button1"/>
+        <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/drawersearch"
+                android:visibility="gone"
+                android:src="@drawable/action_search"
+                android:scaleType="centerInside"
+                android:layout_alignTop="@+id/button2"
+                android:layout_toRightOf="@+id/button2"/>
 
         <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/settingsbtn"
-                android:layout_below="@+id/drawer_bar"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/settings"/>
 
     </RelativeLayout>
+
+
 
     <ProgressBar
             style="?android:attr/progressBarStyleLarge"
@@ -69,7 +79,7 @@
             android:layout_height="4dp"
             android:layout_below="@+id/dockdrawer"
             android:layout_width="fill_parent" />
-    <android.support.v4.view.ViewPager
+    <com.nowlauncher.nowlauncher.ViewPagerAnim
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/pager"
             android:layout_width="match_parent"
@@ -77,5 +87,22 @@
             android:visibility="gone"
             android:layout_below="@+id/titles"
             android:layout_alignParentLeft="true"/>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/drawersearchpanel"
+        android:layout_below="@+id/dockdrawer"
+        android:background="@color/background"
+        android:visibility="gone">
+        <EditText android:id="@+id/drawersearchedittext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/drawerSearchHint"
+            android:inputType="textVisiblePassword"/>
+        <ListView
+            android:id="@+id/listviewDrawerSearch"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </LinearLayout>
 </RelativeLayout>

@@ -30,7 +30,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewConfigurationCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,11 +37,12 @@ import android.view.ViewConfiguration;
 
 import java.util.ArrayList;
 import com.nowlauncher.nowlauncher.R;
+import com.nowlauncher.nowlauncher.ViewPagerAnim;
 
 /**
  * A TitlePageIndicator is a PageIndicator which displays the title of left view
  * (if exist), the title of the current select view (centered) and the title of
- * the right view (if exist). When the user scrolls the ViewPager then titles are
+ * the right view (if exist). When the user scrolls the ViewPagerAnim then titles are
  * also scrolled.
  */
 public class TitlePageIndicator extends View implements PageIndicator {
@@ -115,8 +115,8 @@ public class TitlePageIndicator extends View implements PageIndicator {
         }
     }
 
-    private ViewPager mViewPager;
-    private ViewPager.OnPageChangeListener mListener;
+    private ViewPagerAnim mViewPager;
+    private ViewPagerAnim.OnPageChangeListener mListener;
     private int mCurrentPage = -1;
     private float mPageOffset;
     private int mScrollState;
@@ -706,7 +706,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setViewPager(ViewPager view) {
+    public void setViewPager(ViewPagerAnim view) {
         if (mViewPager == view) {
             return;
         }
@@ -714,7 +714,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
             mViewPager.setOnPageChangeListener(null);
         }
         if (view.getAdapter() == null) {
-            throw new IllegalStateException("ViewPager does not have adapter instance.");
+            throw new IllegalStateException("ViewPagerAnim does not have adapter instance.");
         }
         mViewPager = view;
         mViewPager.setOnPageChangeListener(this);
@@ -722,7 +722,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setViewPager(ViewPager view, int initialPosition) {
+    public void setViewPager(ViewPagerAnim view, int initialPosition) {
         setViewPager(view);
         setCurrentItem(initialPosition);
     }
@@ -744,7 +744,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
     @Override
     public void setCurrentItem(int item) {
         if (mViewPager == null) {
-            throw new IllegalStateException("ViewPager has not been bound.");
+            throw new IllegalStateException("ViewPagerAnim has not been bound.");
         }
         mViewPager.setCurrentItem(item);
         mCurrentPage = item;
@@ -773,7 +773,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
 
     @Override
     public void onPageSelected(int position) {
-        if (mScrollState == ViewPager.SCROLL_STATE_IDLE) {
+        if (mScrollState == ViewPagerAnim.SCROLL_STATE_IDLE) {
             mCurrentPage = position;
             invalidate();
         }
@@ -784,7 +784,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
+    public void setOnPageChangeListener(ViewPagerAnim.OnPageChangeListener listener) {
         mListener = listener;
     }
 

@@ -17,3 +17,36 @@ echo GIT PUSH
 echo
 
 git push origin master
+
+
+git commit -a -m "WeatherCard estesa, implementati previsioni meteo, temperatura e umidità, meteo con città personalizzata oltre a geolocalizzazione. Aggiunto slider per aprire le previsioni meteo (per ora solo clickabile, non trascinabile). Aggiunta grafica Holo per android 3.0+"
+
+
+
+
+
+
+Aggiornati i sorgenti.
+Scheda meteo estesa. Implementati previsioni meteo, temperatura e umidità, meteo con città personalizzata oltre alla geolocalizzazione (configurabile nelle impostazioni). Aggiunto slider per aprire le previsioni meteo (per ora solo clickabile, non trascinabile). Aggiunta grafica Holo per android 3.0+
+
+Però ho alcuni dubbi su come procedere..
+Nei Mockups con la "tendina" superiore estesa ci sono varie schede, separate da spazio grigio. Questo è impossibile perchè se lo slider è attaccato alla scheda la scheda si estende tutta, altrimenti sarebbe uno slider staccato e che fa comparire le varie schede. Che soluzione intraprendo?
+
+Per far capire il movimento di adesso (quindi scheda unica che si estende):
+Normale
+[SPOILER][IMG]https://raw.github.com/dedeswim/now-launcher/master/Screenshot/device-2013-07-26-181729.png[/IMG][/SPOILER]
+Estesa
+[SPOILER][IMG]https://raw.github.com/dedeswim/now-launcher/master/Screenshot/device-2013-07-26-181754.png[/IMG][/SPOILER]
+
+Penso sia l'ultimo update per questa settimana, lunedì parto e sto via fino a sabato! ;) Un po' di relax
+Adesso c'è da migliorare sensibilmente il caricamento del drawer perchè lagga da paura.
+Qua alcune info su developer.android:
+http://developer.android.com/training/displaying-bitmaps/index.html
+http://developer.android.com/training/displaying-bitmaps/display-bitmap.html
+http://developer.android.com/training/displaying-bitmaps/process-bitmap.html
+
+@loxdeggio: Aspetto vivamente il tuo contributo! :P+
+@dedeswim: Aspetto gli stati del meteo perchè le icone di Yahoo sono minuscole e brutte! :P
+
+P.S:
+

@@ -1,0 +1,19 @@
+echo GIT PULL
+echo
+
+git pull
+
+echo GIT ADD
+echo
+
+git add .
+
+echo GIT COMMIT
+echo
+
+git commit -a -m updated-sources
+
+echo GIT PUSH
+echo
+
+git push origin master

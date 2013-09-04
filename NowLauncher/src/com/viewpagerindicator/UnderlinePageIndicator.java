@@ -25,12 +25,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewConfigurationCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import com.nowlauncher.nowlauncher.R;
+import com.nowlauncher.nowlauncher.ViewPagerAnim;
 
 /**
  * Draws a line for each page. The current page line is colored differently
@@ -47,8 +47,8 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
     private int mFadeLength;
     private int mFadeBy;
 
-    private ViewPager mViewPager;
-    private ViewPager.OnPageChangeListener mListener;
+    private ViewPagerAnim mViewPager;
+    private ViewPagerAnim.OnPageChangeListener mListener;
     private int mScrollState;
     private int mCurrentPage;
     private float mPositionOffset;
@@ -263,7 +263,7 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setViewPager(ViewPager viewPager) {
+    public void setViewPager(ViewPagerAnim viewPager) {
         if (mViewPager == viewPager) {
             return;
         }
@@ -272,7 +272,7 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
             mViewPager.setOnPageChangeListener(null);
         }
         if (viewPager.getAdapter() == null) {
-            throw new IllegalStateException("ViewPager does not have adapter instance.");
+            throw new IllegalStateException("ViewPagerAnim does not have adapter instance.");
         }
         mViewPager = viewPager;
         mViewPager.setOnPageChangeListener(this);
@@ -287,7 +287,7 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setViewPager(ViewPager view, int initialPosition) {
+    public void setViewPager(ViewPagerAnim view, int initialPosition) {
         setViewPager(view);
         setCurrentItem(initialPosition);
     }
@@ -295,7 +295,7 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
     @Override
     public void setCurrentItem(int item) {
         if (mViewPager == null) {
-            throw new IllegalStateException("ViewPager has not been bound.");
+            throw new IllegalStateException("ViewPagerAnim has not been bound.");
         }
         mViewPager.setCurrentItem(item);
         mCurrentPage = item;
@@ -324,7 +324,7 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
             if (positionOffsetPixels > 0) {
                 removeCallbacks(mFadeRunnable);
                 mPaint.setAlpha(0xFF);
-            } else if (mScrollState != ViewPager.SCROLL_STATE_DRAGGING) {
+            } else if (mScrollState != ViewPagerAnim.SCROLL_STATE_DRAGGING) {
                 postDelayed(mFadeRunnable, mFadeDelay);
             }
         }
@@ -337,7 +337,7 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
 
     @Override
     public void onPageSelected(int position) {
-        if (mScrollState == ViewPager.SCROLL_STATE_IDLE) {
+        if (mScrollState == ViewPagerAnim.SCROLL_STATE_IDLE) {
             mCurrentPage = position;
             mPositionOffset = 0;
             invalidate();
@@ -349,7 +349,7 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
+    public void setOnPageChangeListener(ViewPagerAnim.OnPageChangeListener listener) {
         mListener = listener;
     }
 

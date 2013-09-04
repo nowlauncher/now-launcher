@@ -34,4 +34,12 @@
         <item>7</item>
         <item>8</item>
     </string-array>
+    <string-array name="drawerSearchOptions">
+        <item>@string/drawer_search_contains</item>
+        <item>@string/drawer_search_start</item>
+    </string-array>
+    <string-array name="drawerSearchOptionsValues">
+    <item>1</item>
+    <item>2</item>
+</string-array>
 </resources>

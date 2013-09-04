@@ -18,14 +18,13 @@ package com.viewpagerindicator;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import com.nowlauncher.nowlauncher.R;
+import com.nowlauncher.nowlauncher.ViewPagerAnim;
 
 import static android.view.ViewGroup.LayoutParams.FILL_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -37,8 +36,8 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 public class IconPageIndicator extends HorizontalScrollView implements PageIndicator {
     private final IcsLinearLayout mIconsLayout;
 
-    private ViewPager mViewPager;
-    private OnPageChangeListener mListener;
+    private ViewPagerAnim mViewPager;
+    private ViewPagerAnim.OnPageChangeListener mListener;
     private Runnable mIconSelector;
     private int mSelectedIndex;
 
@@ -109,7 +108,7 @@ public class IconPageIndicator extends HorizontalScrollView implements PageIndic
     }
 
     @Override
-    public void setViewPager(ViewPager view) {
+    public void setViewPager(ViewPagerAnim view) {
         if (mViewPager == view) {
             return;
         }
@@ -118,7 +117,7 @@ public class IconPageIndicator extends HorizontalScrollView implements PageIndic
         }
         PagerAdapter adapter = view.getAdapter();
         if (adapter == null) {
-            throw new IllegalStateException("ViewPager does not have adapter instance.");
+            throw new IllegalStateException("ViewPagerAnim does not have adapter instance.");
         }
         mViewPager = view;
         view.setOnPageChangeListener(this);
@@ -142,7 +141,7 @@ public class IconPageIndicator extends HorizontalScrollView implements PageIndic
     }
 
     @Override
-    public void setViewPager(ViewPager view, int initialPosition) {
+    public void setViewPager(ViewPagerAnim view, int initialPosition) {
         setViewPager(view);
         setCurrentItem(initialPosition);
     }
@@ -150,7 +149,7 @@ public class IconPageIndicator extends HorizontalScrollView implements PageIndic
     @Override
     public void setCurrentItem(int item) {
         if (mViewPager == null) {
-            throw new IllegalStateException("ViewPager has not been bound.");
+            throw new IllegalStateException("ViewPagerAnim has not been bound.");
         }
         mSelectedIndex = item;
         mViewPager.setCurrentItem(item);
@@ -167,7 +166,7 @@ public class IconPageIndicator extends HorizontalScrollView implements PageIndic
     }
 
     @Override
-    public void setOnPageChangeListener(OnPageChangeListener listener) {
+    public void setOnPageChangeListener(ViewPagerAnim.OnPageChangeListener listener) {
         mListener = listener;
     }
 }

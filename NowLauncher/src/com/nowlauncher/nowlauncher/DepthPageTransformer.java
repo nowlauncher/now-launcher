@@ -1,6 +1,5 @@
 package com.nowlauncher.nowlauncher;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.nineoldandroids.view.ViewHelper;
@@ -8,7 +7,7 @@ import com.nineoldandroids.view.ViewHelper;
 /**
  * Created by andrea on 14/06/13.
  */
-public class DepthPageTransformer implements ViewPager.PageTransformer {
+public class DepthPageTransformer implements ViewPagerAnim.PageTransformer {
     private static float MIN_SCALE = 0.75f;
 
     public void transformPage(View view, float position) {

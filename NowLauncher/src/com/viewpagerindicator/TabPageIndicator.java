@@ -18,8 +18,6 @@ package com.viewpagerindicator;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +25,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.nowlauncher.nowlauncher.R;
+import com.nowlauncher.nowlauncher.ViewPagerAnim;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -67,8 +66,8 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
 
     private final IcsLinearLayout mTabLayout;
 
-    private ViewPager mViewPager;
-    private ViewPager.OnPageChangeListener mListener;
+    private ViewPagerAnim mViewPager;
+    private ViewPagerAnim.OnPageChangeListener mListener;
 
     private int mMaxTabWidth;
     private int mSelectedTabIndex;
@@ -187,7 +186,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
     }
 
     @Override
-    public void setViewPager(ViewPager view) {
+    public void setViewPager(ViewPagerAnim view) {
         if (mViewPager == view) {
             return;
         }
@@ -196,7 +195,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
         }
         final PagerAdapter adapter = view.getAdapter();
         if (adapter == null) {
-            throw new IllegalStateException("ViewPager does not have adapter instance.");
+            throw new IllegalStateException("ViewPagerAnim does not have adapter instance.");
         }
         mViewPager = view;
         view.setOnPageChangeListener(this);
@@ -230,7 +229,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
     }
 
     @Override
-    public void setViewPager(ViewPager view, int initialPosition) {
+    public void setViewPager(ViewPagerAnim view, int initialPosition) {
         setViewPager(view);
         setCurrentItem(initialPosition);
     }
@@ -238,7 +237,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
     @Override
     public void setCurrentItem(int item) {
         if (mViewPager == null) {
-            throw new IllegalStateException("ViewPager has not been bound.");
+            throw new IllegalStateException("ViewPagerAnim has not been bound.");
         }
         mSelectedTabIndex = item;
         mViewPager.setCurrentItem(item);
@@ -255,7 +254,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
     }
 
     @Override
-    public void setOnPageChangeListener(OnPageChangeListener listener) {
+    public void setOnPageChangeListener(ViewPagerAnim.OnPageChangeListener listener) {
         mListener = listener;
     }
 

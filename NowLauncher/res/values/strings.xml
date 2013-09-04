@@ -18,6 +18,7 @@
     <string name="location_null">No location found</string>
     <string name="drawer">Drawer</string>
     <string name="drawer_orientation">Drawer Orientation</string>
+    <string name="drawerSearchHint">Search applications…</string>
     <string name="horizontal">Horizontal</string>
     <string name="vertical">Vertical</string>
     <string name="animation">Animation</string>
@@ -29,5 +30,15 @@
     <string name="music_artist">Artist</string>
     <string name="music_title">Title</string>
     <string name="music_album">Album</string>
+    <string name="theme_title">Themes</string>
+    <string name="theme_icon_checktitle">Enable icon pack</string>
+    <string name="theme_icon_title">Select applications to replace icons</string>
+    <string name="drawer_restart">Restart drawer</string>
+    <string name="drawer_search_text">Select the mode to search applications</string>
+    <string name="drawer_search_contains">Applications that contains chars</string>
+    <string name="drawer_search_start">Applications that start with chars</string>
+    <string name="home_title">Home</string>
+    <string name="home_use_wallpaper_check">Enable use of wallpaper</string>
+    <string name="home_wallpaper_set">Set the wallpaper</string>
 
 </resources>

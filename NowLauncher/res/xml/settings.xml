@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-     <PreferenceCategory android:title="@string/drawer" >
+    <PreferenceCategory android:title="@string/drawer" >
         <ListPreference
             android:title="@string/drawer_orientation"
             android:key="drawer_orientation"
@@ -33,16 +33,51 @@
                 android:entryValues="@array/drawerRowsColValues"
                 android:defaultValue="4"
                 />
+        <Preference
+                android:title="@string/drawer_restart"
+                android:key="drawer_restart"
+                />
+        <ListPreference
+            android:title="@string/drawer_search_text"
+            android:key="drawerSearchOptions"
+            android:dialogTitle="@string/drawer_search_text"
+            android:entries="@array/drawerSearchOptions"
+            android:entryValues="@array/drawerSearchOptionsValues"
+            android:defaultValue="1"
+            />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/home_title" >
+        <CheckBoxPreference
+            android:key="home_wallpaper_use_check"
+            android:title="@string/home_use_wallpaper_check"
+            android:defaultValue="false" />
+        <Preference
+            android:title="@string/home_wallpaper_set"
+            android:key="home_setwallpaper"
+            android:dependency="home_wallpaper_use_check"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/theme_title" >
+        <CheckBoxPreference
+            android:key="theme_iconpackcheck"
+            android:title="@string/theme_icon_checktitle"
+            android:defaultValue="false" />
+        <Preference
+            android:title="@string/theme_icon_title"
+            android:key="theme_icon_replace"
+            android:dialogTitle="@string/theme_icon_title"
+            android:dependency="theme_iconpackcheck"
+            />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/weather" >
         <CheckBoxPreference
-                android:key="weather_customlocationcheck"
-                android:title="@string/weather_custom_checktitle"
-                android:defaultValue="false" />
+            android:key="weather_customlocationcheck"
+            android:title="@string/weather_custom_checktitle"
+            android:defaultValue="false" />
         <EditTextPreference
-                android:title="@string/weather_custom_title"
-                android:key="weather_customlocation"
-                android:dependency="weather_customlocationcheck"/>
+            android:title="@string/weather_custom_title"
+            android:key="weather_customlocation"
+            android:dependency="weather_customlocationcheck"/>
     </PreferenceCategory>
+
  
 </PreferenceScreen>

@@ -27,13 +27,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewConfigurationCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
 import com.nowlauncher.nowlauncher.R;
+import com.nowlauncher.nowlauncher.ViewPagerAnim;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.widget.LinearLayout.HORIZONTAL;
@@ -50,8 +50,8 @@ public class CirclePageIndicator extends View implements PageIndicator {
     private final Paint mPaintPageFill = new Paint(ANTI_ALIAS_FLAG);
     private final Paint mPaintStroke = new Paint(ANTI_ALIAS_FLAG);
     private final Paint mPaintFill = new Paint(ANTI_ALIAS_FLAG);
-    private ViewPager mViewPager;
-    private ViewPager.OnPageChangeListener mListener;
+    private ViewPagerAnim mViewPager;
+    private ViewPagerAnim.OnPageChangeListener mListener;
     private int mCurrentPage;
     private int mSnapPage;
     private float mPageOffset;
@@ -364,7 +364,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setViewPager(ViewPager view) {
+    public void setViewPager(ViewPagerAnim view) {
         if (mViewPager == view) {
             return;
         }
@@ -372,7 +372,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
             mViewPager.setOnPageChangeListener(null);
         }
         if (view.getAdapter() == null) {
-            throw new IllegalStateException("ViewPager does not have adapter instance.");
+            throw new IllegalStateException("ViewPagerAnim does not have adapter instance.");
         }
         mViewPager = view;
         mViewPager.setOnPageChangeListener(this);
@@ -380,7 +380,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setViewPager(ViewPager view, int initialPosition) {
+    public void setViewPager(ViewPagerAnim view, int initialPosition) {
         setViewPager(view);
         setCurrentItem(initialPosition);
     }
@@ -388,7 +388,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
     @Override
     public void setCurrentItem(int item) {
         if (mViewPager == null) {
-            throw new IllegalStateException("ViewPager has not been bound.");
+            throw new IllegalStateException("ViewPagerAnim has not been bound.");
         }
         mViewPager.setCurrentItem(item);
         mCurrentPage = item;
@@ -422,7 +422,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
 
     @Override
     public void onPageSelected(int position) {
-        if (mSnap || mScrollState == ViewPager.SCROLL_STATE_IDLE) {
+        if (mSnap || mScrollState == ViewPagerAnim.SCROLL_STATE_IDLE) {
             mCurrentPage = position;
             mSnapPage = position;
             invalidate();
@@ -434,7 +434,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
+    public void setOnPageChangeListener(ViewPagerAnim.OnPageChangeListener listener) {
         mListener = listener;
     }
 

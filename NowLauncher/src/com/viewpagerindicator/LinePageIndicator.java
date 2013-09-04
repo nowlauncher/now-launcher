@@ -25,7 +25,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewConfigurationCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.FloatMath;
 import android.view.MotionEvent;
@@ -33,6 +32,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 
 import com.nowlauncher.nowlauncher.R;
+import com.nowlauncher.nowlauncher.ViewPagerAnim;
 
 /**
  * Draws a line for each page. The current page line is colored differently
@@ -43,8 +43,8 @@ public class LinePageIndicator extends View implements PageIndicator {
 
     private final Paint mPaintUnselected = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint mPaintSelected = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private ViewPager mViewPager;
-    private ViewPager.OnPageChangeListener mListener;
+    private ViewPagerAnim mViewPager;
+    private ViewPagerAnim.OnPageChangeListener mListener;
     private int mCurrentPage;
     private boolean mCentered;
     private float mLineWidth;
@@ -276,7 +276,7 @@ public class LinePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setViewPager(ViewPager viewPager) {
+    public void setViewPager(ViewPagerAnim viewPager) {
         if (mViewPager == viewPager) {
             return;
         }
@@ -285,7 +285,7 @@ public class LinePageIndicator extends View implements PageIndicator {
             mViewPager.setOnPageChangeListener(null);
         }
         if (viewPager.getAdapter() == null) {
-            throw new IllegalStateException("ViewPager does not have adapter instance.");
+            throw new IllegalStateException("ViewPagerAnim does not have adapter instance.");
         }
         mViewPager = viewPager;
         mViewPager.setOnPageChangeListener(this);
@@ -293,7 +293,7 @@ public class LinePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setViewPager(ViewPager view, int initialPosition) {
+    public void setViewPager(ViewPagerAnim view, int initialPosition) {
         setViewPager(view);
         setCurrentItem(initialPosition);
     }
@@ -301,7 +301,7 @@ public class LinePageIndicator extends View implements PageIndicator {
     @Override
     public void setCurrentItem(int item) {
         if (mViewPager == null) {
-            throw new IllegalStateException("ViewPager has not been bound.");
+            throw new IllegalStateException("ViewPagerAnim has not been bound.");
         }
         mViewPager.setCurrentItem(item);
         mCurrentPage = item;
@@ -338,7 +338,7 @@ public class LinePageIndicator extends View implements PageIndicator {
     }
 
     @Override
-    public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
+    public void setOnPageChangeListener(ViewPagerAnim.OnPageChangeListener listener) {
         mListener = listener;
     }
 

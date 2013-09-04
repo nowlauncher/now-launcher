@@ -3,9 +3,13 @@
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     android:orientation="vertical" >
-
+    <ImageView
+        android:id="@+id/backgroundwallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@color/background"/>
     <com.nowlauncher.nowlauncher.HeightWrappingViewPager
             android:id="@+id/cardPager"
             android:layout_width="match_parent"

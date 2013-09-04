@@ -17,30 +17,31 @@
 
 package com.viewpagerindicator;
 
-import android.support.v4.view.ViewPager;
+
+import com.nowlauncher.nowlauncher.ViewPagerAnim;
 
 /**
  * A PageIndicator is responsible to show an visual indicator on the total views
  * number and the current visible view.
  */
-public interface PageIndicator extends ViewPager.OnPageChangeListener {
+public interface PageIndicator extends ViewPagerAnim.OnPageChangeListener {
     /**
-     * Bind the indicator to a ViewPager.
+     * Bind the indicator to a ViewPagerAnim.
      *
      * @param view
      */
-    void setViewPager(ViewPager view);
+    void setViewPager(ViewPagerAnim view);
 
     /**
-     * Bind the indicator to a ViewPager.
+     * Bind the indicator to a ViewPagerAnim.
      *
      * @param view
      * @param initialPosition
      */
-    void setViewPager(ViewPager view, int initialPosition);
+    void setViewPager(ViewPagerAnim view, int initialPosition);
 
     /**
-     * <p>Set the current page of both the ViewPager and indicator.</p>
+     * <p>Set the current page of both the ViewPagerAnim and indicator.</p>
      *
      * <p>This <strong>must</strong> be used if you need to set the page before
      * the views are drawn on screen (e.g., default start page).</p>
@@ -54,7 +55,7 @@ public interface PageIndicator extends ViewPager.OnPageChangeListener {
      *
      * @param listener
      */
-    void setOnPageChangeListener(ViewPager.OnPageChangeListener listener);
+    void setOnPageChangeListener(ViewPagerAnim.OnPageChangeListener listener);
 
     /**
      * Notify the indicator that the fragment list has changed.
