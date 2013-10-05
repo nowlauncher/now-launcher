@@ -1,8 +1,10 @@
-package com.nowlauncher.nowlauncher;
+package com.nowlauncher.nowlauncher.viewPagerTransformer;
 
 import android.view.View;
 
 import com.nineoldandroids.view.ViewHelper;
+import com.nowlauncher.nowlauncher.ViewPagerAnim;
+
 /**
  * Created by andrea on 14/06/13.
  */

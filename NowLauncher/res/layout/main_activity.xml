@@ -27,12 +27,18 @@
                 layout="@layout/music_widget"/>
     </com.nowlauncher.nowlauncher.HeightWrappingViewPager>
     <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/home_app1include"
+        layout="@layout/home_layout"
+        android:layout_toRightOf="@+id/include2"
+        android:layout_alignTop="@+id/include2"/>
+    <include
         android:id="@+id/include2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         layout="@layout/dock"
         android:layout_below="@+id/cardPager"/>
-
     <include
             android:id="@+id/include_music_lists"
             android:layout_width="wrap_content"

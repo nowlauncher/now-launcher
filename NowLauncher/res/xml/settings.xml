@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:seekbarpreferencetag="http://seekbarpreferencetag.com">
     <PreferenceCategory android:title="@string/drawer" >
         <ListPreference
             android:title="@string/drawer_orientation"
@@ -17,6 +18,9 @@
                 android:entryValues="@array/drawerAnimationValues"
                 android:defaultValue="1"
                 />
+        <Preference
+                android:title="@string/animationset"
+                android:key="set_animation"/>
         <ListPreference
                 android:title="@string/drawer_rows"
                 android:key="drawer_rows"
@@ -77,6 +81,23 @@
             android:title="@string/weather_custom_title"
             android:key="weather_customlocation"
             android:dependency="weather_customlocationcheck"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/right_swipe_panel" >
+        <CheckBoxPreference
+            android:key="right_swipe_panel_check"
+            android:title="@string/right_swipe_panel_title"
+            android:summary="@string/right_swipe_panel_description"
+            android:defaultValue="false" />
+        <com.nowlauncher.nowlauncher.SeekBarPreference
+            android:key="swipe_panel_dimension"
+            android:title="@string/right_swipe_panel_dimension_title"
+            android:summary="@string/right_swipe_panel_dimension_description"
+            android:defaultValue="5"
+            android:max="30"
+            seekbarpreferencetag:min="1"
+            seekbarpreferencetag:unitsLeft=""
+            seekbarpreferencetag:unitsRight="px"
+            />
     </PreferenceCategory>
 
  

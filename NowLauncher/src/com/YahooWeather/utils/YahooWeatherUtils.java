@@ -300,7 +300,6 @@ public class YahooWeatherUtils {
 
 		@Override
 		protected WeatherInfo doInBackground(String... cityName) {
-			// TODO Auto-generated method stub
 			WOEIDUtils woeidUtils = WOEIDUtils.getInstance();
 			woeidNumber = woeidUtils.getWOEIDid(mContext, cityName[0]);
 			if(!woeidNumber.equals(WOEIDUtils.WOEID_NOT_FOUND)) {
@@ -315,7 +314,6 @@ public class YahooWeatherUtils {
 
 		@Override
 		protected void onPostExecute(WeatherInfo result) {
-			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			mWeatherInfoResult.gotWeatherInfo(result);
 		}

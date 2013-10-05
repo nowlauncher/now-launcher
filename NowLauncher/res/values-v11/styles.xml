@@ -10,4 +10,7 @@
     <style name="AppBaseThemeNoTitleBar" parent="android:Theme.Holo.Light.NoActionBar">
 
     </style>
+    <style name="ActivityDialog" parent="android:Theme.Holo.Dialog">
+
+    </style>
 </resources>

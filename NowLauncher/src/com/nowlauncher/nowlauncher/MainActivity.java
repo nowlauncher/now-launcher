@@ -4,23 +4,21 @@ import android.app.Activity;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.ConnectivityManager;
@@ -30,28 +28,24 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.ParcelFileDescriptor;
-import android.os.TransactionTooLargeException;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.ContextMenu;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Transformation;
-import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -67,17 +61,19 @@ import android.widget.SlidingDrawer;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
-
 import com.YahooWeather.tools.ImageUtils;
 import com.YahooWeather.utils.WeatherInfo;
 import com.YahooWeather.utils.YahooWeatherInfoListener;
 import com.YahooWeather.utils.YahooWeatherUtils;
+import com.dragSortListView.DragSortListView;
 import com.nowlauncher.musicplayer.SongsManager;
 import com.nowlauncher.musicplayer.Utilities;
+import com.nowlauncher.nowlauncher.viewPagerTransformer.CubeTransformer;
+import com.nowlauncher.nowlauncher.viewPagerTransformer.DepthPageTransformer;
+import com.nowlauncher.nowlauncher.viewPagerTransformer.RotateInTransformer;
+import com.nowlauncher.nowlauncher.viewPagerTransformer.RotateTransformer;
+import com.nowlauncher.nowlauncher.viewPagerTransformer.ZoomOutPageTransformer;
 import com.viewpagerindicator.UnderlinePageIndicator;
-
-import java.io.FileDescriptor;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -88,82 +84,52 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class MainActivity extends Activity implements YahooWeatherInfoListener, OnCompletionListener, SeekBar.OnSeekBarChangeListener{
+public class MainActivity extends Activity implements YahooWeatherInfoListener, OnCompletionListener, SeekBar.OnSeekBarChangeListener {
 
 
-	// Drop Down Bar (drawer open bar)
-	ImageView drawerbar;
-
-	// Layout master
-	public RelativeLayout rootlayout;
+    // Layout master
+    public RelativeLayout rootlayout;
 
     public ImageView wallpaperImageView;
 
-	// Value of offset of status bar
-	public int statusBarOffset;
+    // Array of all application in the device
+    public ArrayList<AppInfo> mApplications;
+    ArrayList[] splittedarray;
 
-	// DisplayMetrics object
-	public DisplayMetrics dm;
-
-	// Array of all application in the device
-	public ArrayList<AppInfo> mApplications;
-
-    /***
-     * Metodo sostituito da SlidingDrawer
-     */
-	//Variabili per il controllo della selezione della barra e del touch
-	public boolean checkbarpressed = false;
-	public int y;
-	public int yiniziale=0;
-	public boolean yinizialebool = false;
-	public RelativeLayout rootlayoutdrawer;
+    public RelativeLayout rootlayoutdrawer;
+    private RelativeLayout allAppsLayout;
+    private RelativeLayout favouriteAppsLayout;
+    private TextView allAppsbtn;
+    private TextView favouriteAppsbtn;
 
 
-    //Variabili per il meteo
+    //View for the weather
     public ImageView refreshwea;
     public TextView datelb;
     public TextView temperaturenow;
-
     private ImageView sliderWeather;
-    private boolean tempcheck=false;
+    private boolean tempcheck = false;
 
+    private TextView citylb;
     TextView todayweath;
     TextView forecast1;
     TextView forecast2;
     TextView forecast3;
     TextView forecast4;
 
-	//Variabili per il controllo della selezione delle icone sulla dock
-	public ImageView dockapp1;
-	public ImageView dockapp2;
-	public ImageView dockapp3;
-	public ImageView dockapp4;
-	public boolean checkdockapp1 = (boolean) false;
-	public boolean checkdockapp2 = (boolean) false;
-	public boolean checkdockapp3 = (boolean) false;
-	public boolean checkdockapp4 = (boolean) false;
-	public int x;
-
-
-    private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-
-    private ViewFlipper vf;
-    private Context mContext;
-    private GestureDetector detector;
-    private TextView citylb;
-    ArrayList[]splittedarray;
-
-    private ImageView ivWeather0;
-    private ImageView ivWeather1;
-    private ImageView ivWeather2;
-    private TextView tvWeather0;
-    private TextView tvWeather1;
-    private TextView tvWeather2;
+    //Variabili per il controllo della selezione delle icone sulla dock
+    public ImageView dockapp1;
+    public ImageView dockapp2;
+    public ImageView dockapp3;
+    public ImageView dockapp4;
+    public boolean checkdockapp1 = (boolean) false;
+    public boolean checkdockapp2 = (boolean) false;
+    public boolean checkdockapp3 = (boolean) false;
+    public boolean checkdockapp4 = (boolean) false;
+    public int x;
 
     private SlidingDrawer sldrawer;
     RelativeLayout forecastCard;
-    public int padding;
 
     HeightWrappingViewPager cardPager;
 
@@ -172,7 +138,7 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
      */
     private ImageView sliderMusic;
     private RelativeLayout listLayout;
-    private boolean musiccheck=false;
+    private boolean musiccheck = false;
 
     private ImageView btnPlay;
     private ImageView btnForward;
@@ -192,7 +158,8 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
     // Media Player
     private MediaPlayer mp;
     // Handler to update UI timer, progress bar etc,.
-    private Handler mHandler = new Handler();;
+    private Handler mHandler = new Handler();
+    ;
     private SongsManager songManager;
     private Utilities utils;
     private int seekForwardTime = 5000; // 5000 milliseconds
@@ -201,63 +168,130 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
     private boolean isShuffle = false;
     private boolean isRepeat = false;
     private ArrayList<SongsManager> songsList = new ArrayList<SongsManager>();
+    private ArrayList<SongsManager> currentsonglist;
     private boolean isFinishedLoadSongList = false;
+    RelativeLayout musicLists;
+
 
     private ListDrawer listDrawer;
     private ListDrawerscroll listDrawerscroll;
-    private boolean listdrawersStop=false;
-    private int settingsResult;
+    private boolean listdrawersStop = false;
+    GridView verticalGridView;
 
-    //Controlli per la ricerca di app nel drawer
+    private ApplicationsAdapter applicationsAdapter;
+
+    //Views and variable for the search in the app drawer
     private ImageView drawerSearch;
     private LinearLayout drawerSearchPanel;
     private ListView drawerSearchListView;
     private EditText drawerSearchEditText;
-    private boolean drawerSearchIsOpened=false;
+    private boolean drawerSearchIsOpened = false;
     Animation translateAnimationDown;
     Animation translateAnimationUp;
+    boolean keyboardhideshowBoolean = false;
 
     InputMethodManager mgr;
 
     PackageReceiver receiver = new PackageReceiver();
 
+    ViewPagerAnim myPager;
+
+    //Home variables and controls
+    public static final String PREFS_HOME_NAME = "home_preference";
+    SharedPreferences home_preference;
+    GridView home_app1;
+    ArrayList<AppInfo> home_app1_list;
+    ApplicationsHomeAdapter applicationsHomeAdapter;
+    String currentAdapterString = "";
+    int currentPageHorizontal;
+    ArrayList<ApplicationsAdapter> applicationsAdaptersArray;
+
+    //Favourite panel variables
+    public static final String PREFS_FAVOURITE_NAME = "favourite_preference";
+    SharedPreferences favourite_preference;
+    ArrayList<AppInfo> favourite_list;
+
+    //Favourite tab
+    ApplicationListViewAdapter favouriteListViewAdapter;
+    DragSortListView favouriteSmartListView;
+
     public static int convertDip2Pixels(Context context, int dip) {
-        return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
     }
+
     private boolean isRuntimePostGingerbread() {
-        return Build.VERSION.SDK_INT  >= Build.VERSION_CODES.HONEYCOMB;
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
     }
 
     class GetSongList extends AsyncTask<String, Void, ArrayList<SongsManager>> {
 
         @Override
         protected ArrayList<SongsManager> doInBackground(String... params) {
-            // TODO Auto-generated method stub
-            ArrayList<SongsManager> songsList;
-            SongsManager songManager = new SongsManager(getApplicationContext());
-            songsList=songManager.getPlayList();
-            return songsList;
+            return getSongsList();
         }
 
         @Override
         protected void onPostExecute(ArrayList<SongsManager> results) {
-            // TODO Auto-generated method stub
             super.onPostExecute(results);
             Log.d("MediaPlayer", "Finished to execute GetSongList");
-            songsList=results;
-            isFinishedLoadSongList=true;
+            songsList = results;
+            isFinishedLoadSongList = true;
             loadMusicLists();
 
         }
 
     }
-    private void loadMusicLists(){
-        ListView listArtist=(ListView)findViewById(R.id.listViewArtist);
-        ListView listAlbum=(ListView)findViewById(R.id.listViewAlbum);
-        ListView listTitle=(ListView)findViewById(R.id.listViewTitle);
-        ListView listPlaylist=(ListView)findViewById(R.id.listViewPlaylist);
 
-        TabHost songsTabHost=(TabHost)findViewById(R.id.songsTabHost);
+    /**
+     * Function to read all mp3 files from sdcard
+     * and store the details in ArrayList
+     */
+    public ArrayList<SongsManager> getSongsList() {
+        try {
+            String[] STAR = {"*"};
+            Uri allaudiosong = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+            String audioselection = MediaStore.Audio.Media.IS_MUSIC + " != 0";
+            Cursor cursor;
+            cursor = getApplicationContext().getContentResolver().query(allaudiosong, STAR, audioselection, null, null);
+
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        SongsManager song = new SongsManager(getApplicationContext());
+                        song.fullpath = cursor.getString(cursor
+                                .getColumnIndex(MediaStore.Audio.Media.DATA));
+                        song.album_id = cursor.getString(cursor
+                                .getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
+                        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+                        mmr.setDataSource(song.fullpath);
+                        song.song_name = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+                        if (song.song_name == null) song.song_name = song.fullpath;
+                        song.album_name = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
+                        if (song.album_name == null) song.album_name = "Unknown";
+                        song.artist_name = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+                        if (song.artist_name == null) song.artist_name = "Unknown";
+                        song.album_art = new BitmapDrawable(getResources(), song.setAlbumArt(Long.valueOf(song.getAlbumId()), convertDip2Pixels(getApplicationContext(), 100)));
+                        song.song_index = cursor.getPosition();
+                        songsList.add(song);
+                    } while (cursor.moveToNext());
+                }
+            }
+            // return songs list array
+
+            cursor.close();
+        } catch (Exception expection) {
+            Log.d("getSongList", "Expection in getSongList");
+        }
+        return songsList;
+    }
+
+    private void loadMusicLists() {
+        ListView listArtist = (ListView) findViewById(R.id.listViewArtist);
+        ListView listAlbum = (ListView) findViewById(R.id.listViewAlbum);
+        ListView listTitle = (ListView) findViewById(R.id.listViewTitle);
+        ListView listPlaylist = (ListView) findViewById(R.id.listViewPlaylist);
+
+        TabHost songsTabHost = (TabHost) findViewById(R.id.songsTabHost);
         songsTabHost.setup();
 
         TabHost.TabSpec specArtist = songsTabHost.newTabSpec("tag1");
@@ -284,39 +318,40 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         specPlaylist.setIndicator("Playlist");
 
         songsTabHost.addTab(specPlaylist);
-
-        MusicListViewAdapter playlistadapter=new MusicListViewAdapter(getApplicationContext(),songsList);
+        MusicListViewAdapter playlistadapter = new MusicListViewAdapter(getApplicationContext(), songsList);
 
         listPlaylist.setAdapter(playlistadapter);
         listPlaylist.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                currentsonglist = songsList;
                 playSong(position);
-                currentSongIndex=position;
+                currentSongIndex = position;
             }
         });
 
-        MusicListViewAdapter titleadapter=new MusicListViewAdapter(getApplicationContext(),songsList);
-        ArrayList<SongsManager> songsListTilte=songsList;
-        //Collections.sort(songsListTilte, new MusicComparator());
+        final ArrayList<SongsManager> songsListTitle = new ArrayList<SongsManager>(songsList);
+        Collections.sort(songsListTitle, new Comparator<SongsManager>() {
+            @Override
+            public int compare(SongsManager song1, SongsManager song2) {
+                return song1.getTitle().toUpperCase().compareTo(song2.getTitle().toUpperCase());
+            }
+        });
+        MusicListViewAdapter titleadapter = new MusicListViewAdapter(getApplicationContext(), songsListTitle);
         listTitle.setAdapter(titleadapter);
         listTitle.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                currentsonglist = songsListTitle;
                 playSong(position);
-                currentSongIndex=position;
+                currentSongIndex = position;
             }
         });
+        // Default song list is the one sorted by title
+        currentsonglist = songsListTitle;
     }
-    public class MusicComparator implements Comparator<SongsManager>
-    {
-        @Override
-        public int compare(SongsManager songsManager, SongsManager songsManager2) {
-            Log.d("MusicComparator",songsManager.getTitle());
-            return songsManager.getTitle().compareToIgnoreCase(songsManager2.getTitle());
-        }
-    }
-    private void loadMusicPlayer(){
+
+    private void loadMusicPlayer() {
         btnPlay = (ImageView) findViewById(R.id.musicplaybtn);
         //btnForward = (ImageView) findViewById(R.id.btnForward);
         //btnBackward = (ImageView) findViewById(R.id.btnBackward);
@@ -335,29 +370,27 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         final Toast musiclistNotReadyToast = Toast.makeText(getApplicationContext(), "Music list isn't ready yet.", Toast.LENGTH_SHORT);
 
         // Mediaplayer
-        Log.d("MediaPlayer","Starting new MediaPlayer()");
+        Log.d("MediaPlayer", "Starting new MediaPlayer()");
         mp = new MediaPlayer();
-        Log.d("MediaPlayer","Finished new MediaPlayer()");
-        Log.d("MediaPlayer","Starting new SongsManager()");
+        Log.d("MediaPlayer", "Finished new MediaPlayer()");
+        Log.d("MediaPlayer", "Starting new SongsManager()");
         songManager = new SongsManager(getApplicationContext());
-        Log.d("MediaPlayer","Finished new SongsManager()");
-        Log.d("MediaPlayer","Starting new Utilities()");
+        Log.d("MediaPlayer", "Finished new SongsManager()");
+        Log.d("MediaPlayer", "Starting new Utilities()");
         utils = new Utilities();
-        Log.d("MediaPlayer","Finished new Utilities()");
+        Log.d("MediaPlayer", "Finished new Utilities()");
 
         // Listeners
         songProgressBar.setOnSeekBarChangeListener(this); // Important
         mp.setOnCompletionListener(this); // Important
 
-        Log.d("MediaPlayer","Starting  getSongList.execute();");
+        Log.d("MediaPlayer", "Starting  getSongList.execute();");
         // Getting all songs list
-        //songsList = songManager.getPlayList();
-        GetSongList getSongList=new GetSongList();
-        if (isRuntimePostGingerbread())getSongList.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        GetSongList getSongList = new GetSongList();
+        if (isRuntimePostGingerbread())
+            getSongList.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         else getSongList.execute();
-        Log.d("MediaPlayer","Finished getSongList.execute();");
-        // By default play first song
-        //playSong(0);
+        Log.d("MediaPlayer", "Finished getSongList.execute();");
 
         /**
          * Play button click event
@@ -368,27 +401,25 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
             @Override
             public void onClick(View arg0) {
-                if (isFinishedLoadSongList){
+                if (isFinishedLoadSongList) {
 
                     // check for already playing
-                    if(mp.isPlaying()){
-                        if(mp!=null){
+                    if (mp.isPlaying()) {
+                        if (mp != null) {
                             mp.pause();
                             // Changing button image to play button
                             btnPlay.setImageResource(R.drawable.music_play);
                         }
-                    }else{
+                    } else {
                         // Resume song
-                        if(mp!=null){
+                        if (mp != null) {
                             mp.start();
                             // Changing button image to pause button
                             btnPlay.setImageResource(R.drawable.music_pause);
                         }
                     }
 
-                }
-                else
-                {
+                } else {
                     musiclistNotReadyToast.show();
                 }
             }
@@ -445,26 +476,24 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
             @Override
             public void onClick(View arg0) {
-                if (isFinishedLoadSongList){
-                    if(isShuffle){
+                if (isFinishedLoadSongList) {
+                    if (isShuffle) {
                         // shuffle is on - play a random song
                         Random rand = new Random();
                         currentSongIndex = rand.nextInt((songsList.size() - 1) - 0 + 1) + 0;
                         playSong(currentSongIndex);
-                    } else{
+                    } else {
                         // no shuffle ON - play next song
-                        if(currentSongIndex < (songsList.size() - 1)){
+                        if (currentSongIndex < (songsList.size() - 1)) {
                             playSong(currentSongIndex + 1);
                             currentSongIndex = currentSongIndex + 1;
-                        }else{
+                        } else {
                             // play first song
                             playSong(0);
                             currentSongIndex = 0;
                         }
                     }
-                }
-                else
-                {
+                } else {
                     musiclistNotReadyToast.show();
                 }
             }
@@ -478,26 +507,24 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
             @Override
             public void onClick(View arg0) {
-                if (isFinishedLoadSongList){
-                    if(isShuffle){
+                if (isFinishedLoadSongList) {
+                    if (isShuffle) {
                         // shuffle is on - play a random song
                         Random rand = new Random();
                         currentSongIndex = rand.nextInt((songsList.size() - 1) - 0 + 1) + 0;
                         playSong(currentSongIndex);
-                    } else{
+                    } else {
                         // no shuffle ON - play previous song
-                        if(currentSongIndex > 0){
+                        if (currentSongIndex > 0) {
                             playSong(currentSongIndex - 1);
                             currentSongIndex = currentSongIndex - 1;
-                        }else{
+                        } else {
                             // play last song
                             playSong(songsList.size() - 1);
                             currentSongIndex = songsList.size() - 1;
                         }
                     }
-                }
-                else
-                {
+                } else {
                     musiclistNotReadyToast.show();
                 }
 
@@ -513,11 +540,11 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
             @Override
             public void onClick(View arg0) {
-                if(isRepeat){
+                if (isRepeat) {
                     isRepeat = false;
                     Toast.makeText(getApplicationContext(), "Repeat is OFF", Toast.LENGTH_SHORT).show();
                     btnRepeat.setImageResource(R.drawable.btn_repeat);
-                }else{
+                } else {
                     // make repeat to true
                     isRepeat = true;
                     Toast.makeText(getApplicationContext(), "Repeat is ON", Toast.LENGTH_SHORT).show();
@@ -537,13 +564,13 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
             @Override
             public void onClick(View arg0) {
-                if(isShuffle){
+                if (isShuffle) {
                     isShuffle = false;
                     Toast.makeText(getApplicationContext(), "Shuffle is OFF", Toast.LENGTH_SHORT).show();
                     btnShuffle.setImageResource(R.drawable.btn_shuffle);
-                }else{
+                } else {
                     // make repeat to true
-                    isShuffle= true;
+                    isShuffle = true;
                     Toast.makeText(getApplicationContext(), "Shuffle is ON", Toast.LENGTH_SHORT).show();
                     // make shuffle to false
                     isRepeat = false;
@@ -553,49 +580,24 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
             }
         });
 
-        /**
-         * Button Click event for Play list click event
-         * Launches list activity which displays list of songs
-         * *//*
-        btnPlaylist.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                Intent i = new Intent(getApplicationContext(), PlayListActivity.class);
-                startActivityForResult(i, 100);
-            }
-        });*/
-
-
-        /***
-         * Setting TabHost and populate it
-         *
-         */
-
-
-
     }
 
-    public void  playSong(int songIndex){
+    public void playSong(int songIndex) {
         // Play song
         try {
             mp.reset();
-            mp.setDataSource(songsList.get(songIndex).getPath());
+            mp.setDataSource(currentsonglist.get(songIndex).getPath());
             mp.prepare();
             mp.start();
             btnPlay.setImageDrawable(getResources().getDrawable(R.drawable.music_pause));
             // Displaying Song title and other tags
-            String songTitle = songsList.get(songIndex).getTitle();
+            String songTitle = currentsonglist.get(songIndex).getTitle();
             songTitleLabel.setText(songTitle);
-            String songArtist = songsList.get(songIndex).getArtist();
+            String songArtist = currentsonglist.get(songIndex).getArtist();
             songArtistLabel.setText(songArtist);
-            String songAlbumName = songsList.get(songIndex).getAlbumName();
+            String songAlbumName = currentsonglist.get(songIndex).getAlbumName();
             songAlbumNameLabel.setText(songAlbumName);
-            Bitmap songAlbumArt=songsList.get(songIndex).getAlbumArt();
-            songAlbumArtImageView.setImageDrawable(new BitmapDrawable(getResources(),songAlbumArt));
-
-            // Changing Button Image to pause image
-            //btnPlay.setImageResource(R.drawable.btn_pause);
+            songAlbumArtImageView.setImageDrawable(currentsonglist.get(songIndex).getAlbumArt());
 
             // set Progress bar values
             songProgressBar.setProgress(0);
@@ -612,56 +614,33 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         }
     }
 
-    public Bitmap getAlbumart(Long album_id)
-    {
-        Bitmap bm = null;
-        try
-        {
-            final Uri sArtworkUri = Uri
-                    .parse("content://media/external/audio/albumart");
-
-            Uri uri = ContentUris.withAppendedId(sArtworkUri, album_id);
-
-            ParcelFileDescriptor pfd = getApplicationContext().getContentResolver()
-                    .openFileDescriptor(uri, "r");
-
-            if (pfd != null)
-            {
-                FileDescriptor fd = pfd.getFileDescriptor();
-                bm = BitmapFactory.decodeFileDescriptor(fd);
-            }
-        } catch (Exception e) {
-            bm=BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.unknownalbum);
-        }
-        return bm;
-    }
-
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 
     }
+
     /**
      * Update timer on seekbar
-     * */
+     */
     public void updateProgressBar() {
         mHandler.postDelayed(mUpdateTimeTask, 100);
     }
 
     /**
      * Background Runnable thread
-     * */
+     */
     private Runnable mUpdateTimeTask = new Runnable() {
         public void run() {
             long totalDuration = mp.getDuration();
             long currentDuration = mp.getCurrentPosition();
 
             // Displaying Total Duration time
-            songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
+            songTotalDurationLabel.setText("" + utils.milliSecondsToTimer(totalDuration));
             // Displaying time completed playing
-            songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
+            songCurrentDurationLabel.setText("" + utils.milliSecondsToTimer(currentDuration));
 
             // Updating progress bar
-            int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
+            int progress = (int) (utils.getProgressPercentage(currentDuration, totalDuration));
             //Log.d("Progress", ""+progress);
             songProgressBar.setProgress(progress);
 
@@ -673,7 +652,7 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
     /**
      * When user starts moving the progress handler
-     * */
+     */
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         // remove message Handler from updating progress bar
@@ -682,7 +661,7 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
     /**
      * When user stops moving the progress hanlder
-     * */
+     */
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         mHandler.removeCallbacks(mUpdateTimeTask);
@@ -700,55 +679,57 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
      * On Song Playing completed
      * if repeat is ON play same song again
      * if shuffle is ON play random song
-     * */
+     */
     @Override
     public void onCompletion(MediaPlayer arg0) {
 
-    // check for repeat is ON or OFF
-        if(isRepeat){
+        // check for repeat is ON or OFF
+        if (isRepeat) {
             // repeat is on play same song again
             playSong(currentSongIndex);
-        } else if(isShuffle){
+        } else if (isShuffle) {
             // shuffle is on - play a random song
             Random rand = new Random();
             currentSongIndex = rand.nextInt((songsList.size() - 1) - 0 + 1) + 0;
             playSong(currentSongIndex);
-        } else{
+        } else {
             // no repeat or shuffle ON - play next song
-            if(currentSongIndex < (songsList.size() - 1)){
+            if (currentSongIndex < (currentsonglist.size() - 1)) {
                 playSong(currentSongIndex + 1);
                 currentSongIndex = currentSongIndex + 1;
-            }else{
+            } else {
                 // play first song
                 playSong(0);
                 currentSongIndex = 0;
             }
         }
     }
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_activity);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_activity);
 
         /**
-         * Imposta il receiver per gestire le nuove applicazioni installate/disinstallate
+         * Set the receiver to manage new installed/uninstalled applications
          */
         IntentFilter filter = new IntentFilter();
         filter.addDataScheme("package");
         filter.addAction(Intent.ACTION_PACKAGE_ADDED);
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
-        filter.addAction(Intent.ACTION_PACKAGE_REPLACED);
 
-        receiver=new PackageReceiver();
+        receiver = new PackageReceiver();
         registerReceiver(receiver, filter);
 
-        drawerSearch=(ImageView)findViewById(R.id.drawersearch);
-        drawerSearchPanel=(LinearLayout)findViewById(R.id.drawersearchpanel);
-        drawerSearchListView=(ListView)findViewById(R.id.listviewDrawerSearch);
-        drawerSearchEditText=(EditText)findViewById(R.id.drawersearchedittext);
+        home_app1 = (GridView) findViewById(R.id.home_app1);
 
-        translateAnimationDown= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_down);
+        drawerSearch = (ImageView) findViewById(R.id.drawersearch);
+        drawerSearchPanel = (LinearLayout) findViewById(R.id.drawersearchpanel);
+        drawerSearchListView = (ListView) findViewById(R.id.listviewDrawerSearch);
+        drawerSearchEditText = (EditText) findViewById(R.id.drawersearchedittext);
+
+        translateAnimationDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_down);
         translateAnimationDown.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -757,7 +738,10 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                mgr.hideSoftInputFromWindow(drawerSearchEditText.getWindowToken(), 0);
+                if (keyboardhideshowBoolean) {
+                    mgr.hideSoftInputFromWindow(drawerSearchEditText.getWindowToken(), 0);
+                    keyboardhideshowBoolean = false;
+                }
             }
 
             @Override
@@ -776,8 +760,11 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                drawerSearchEditText.requestFocus();
-                mgr.showSoftInput(drawerSearchEditText, InputMethodManager.SHOW_IMPLICIT);
+                if (keyboardhideshowBoolean) {
+                    drawerSearchEditText.requestFocus();
+                    mgr.showSoftInput(drawerSearchEditText, InputMethodManager.SHOW_IMPLICIT);
+                    keyboardhideshowBoolean = false;
+                }
             }
 
             @Override
@@ -800,27 +787,28 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         drawerSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (drawerSearchIsOpened){
+                if (drawerSearchIsOpened) {
+                    keyboardhideshowBoolean = true;
                     drawerSearchPanel.setAnimation(translateAnimationDown);
                     drawerSearchPanel.getAnimation().start();
                     drawerSearchPanel.setVisibility(View.GONE);
-                    drawerSearchIsOpened=false;
-                }
-                else{
+                    drawerSearchIsOpened = false;
+                } else {
+                    keyboardhideshowBoolean = true;
                     drawerSearchPanel.setVisibility(View.VISIBLE);
                     drawerSearchPanel.setAnimation(translateAnimationUp);
                     drawerSearchPanel.getAnimation().start();
-                    drawerSearchIsOpened=true;
+                    drawerSearchIsOpened = true;
 
                 }
             }
         });
 
-        cardPager=(HeightWrappingViewPager)findViewById(R.id.cardPager);
-        CardAdapter cardAdapter=new CardAdapter();
+        cardPager = (HeightWrappingViewPager) findViewById(R.id.cardPager);
+        CardAdapter cardAdapter = new CardAdapter();
         cardPager.setAdapter(cardAdapter);
         cardPager.setCurrentItem(0);
-        cardPager.setPageMargin(convertDip2Pixels(getApplicationContext(),10));
+        cardPager.setPageMargin(convertDip2Pixels(getApplicationContext(), 10));
         cardPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -830,6 +818,14 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
             @Override
             public void onPageSelected(int i) {
                 cardPager.setPageToWrap(i);
+                if (musiccheck) {
+                    collapse(listLayout);
+                    musicLists.setAnimation(translateAnimationDown);
+                    musicLists.getAnimation().start();
+                    musicLists.setVisibility(View.GONE);
+                    musiccheck = false;
+                }
+
             }
 
             @Override
@@ -839,85 +835,56 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         });
 
 
-        sldrawer = (SlidingDrawer)findViewById(R.id.sldrawer);
-
-        //Imposta gli eventi OnTouch della barra del drawer
-
-		//drawerbar = (ImageView) findViewById(R.id.drawer_bar);
-		rootlayout = (RelativeLayout) findViewById(R.id.rootLayout);
-		rootlayoutdrawer = (RelativeLayout) findViewById(R.id.drawer_rootlayout);
-
-        wallpaperImageView=(ImageView)findViewById(R.id.backgroundwallpaper);
-
-
-		/*drawerbar.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View view, MotionEvent motionEvent) {
-				if(motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-					//imposta il booleano su true quando la barra è premuta
-					checkbarpressed=true;
-				}
-
-			return false;
-
-			}
-
-		});
-*/
-        RelativeLayout weatherCard=(RelativeLayout)findViewById(R.id.weatherCard);
-/*
-        RelativeLayout dockLayout=(RelativeLayout)findViewById(R.id.docklayout);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, (int) (weatherCard.getHeight()+ TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18, getResources().getDisplayMetrics())), 0, 0);
-        dockLayout.setLayoutParams(params);
-*/
-        sliderWeather=(ImageView)findViewById(R.id.weatherslider);
-
-        forecastCard = (RelativeLayout)findViewById(R.id.forecastLayout);
-
+        sldrawer = (SlidingDrawer) findViewById(R.id.sldrawer);
+        rootlayout = (RelativeLayout) findViewById(R.id.rootLayout);
+        rootlayoutdrawer = (RelativeLayout) findViewById(R.id.drawer_rootlayout);
+        wallpaperImageView = (ImageView) findViewById(R.id.backgroundwallpaper);
+        sliderWeather = (ImageView) findViewById(R.id.weatherslider);
+        forecastCard = (RelativeLayout) findViewById(R.id.forecastLayout);
         sliderWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //weathercard.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
                 if (!tempcheck) {
                     expand(forecastCard);
-                    tempcheck=true;
-                }
-                else{
+                    tempcheck = true;
+                } else {
                     collapse(forecastCard);
-                    tempcheck=false;
+                    tempcheck = false;
                 }
             }
         });
 
-        sliderMusic=(ImageView)findViewById(R.id.musicslider);
-        listLayout=(RelativeLayout)findViewById(R.id.listLayout);
+        musicLists = (RelativeLayout) findViewById(R.id.include_music_lists);
+        sliderMusic = (ImageView) findViewById(R.id.musicslider);
+        listLayout = (RelativeLayout) findViewById(R.id.listLayout);
         sliderMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!musiccheck) {
                     expand(listLayout);
-                    RelativeLayout musicLists=(RelativeLayout)findViewById(R.id.include_music_lists);
+                    musicLists.setAnimation(translateAnimationUp);
+                    musicLists.getAnimation().start();
                     musicLists.setVisibility(View.VISIBLE);
-                    musiccheck=true;
-                }
-                else{
+                    musiccheck = true;
+                } else {
                     collapse(listLayout);
-                    RelativeLayout musicLists=(RelativeLayout)findViewById(R.id.include_music_lists);
+                    musicLists.setAnimation(translateAnimationDown);
+                    musicLists.getAnimation().start();
                     musicLists.setVisibility(View.GONE);
-                    musiccheck=false;
+                    musiccheck = false;
                 }
             }
         });
-
-        // Carica il layout del drawer conforme alle impostazioni e carica la lista delle applicazioni
+        home_app1_list = new ArrayList<AppInfo>();
+        favourite_preference = getSharedPreferences(PREFS_FAVOURITE_NAME, 0);
         loadWallpaper();
+        loadHome();
+        loadFavouritesList();
         loadDrawer();
         loadMusicPlayer();
         loadWeathercard();
 
-        refreshwea=(ImageView)findViewById(R.id.weatherrefresh);
+        refreshwea = (ImageView) findViewById(R.id.weatherrefresh);
         refreshwea.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -926,8 +893,7 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
             }
         });
 
-        //Tasto impostazioni nel drawer
-
+        //Settings button in the drawer
         ImageView settings_button = (ImageView) findViewById(R.id.settingsbtn);
         settings_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -937,42 +903,123 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
             }
         });
 
+        allAppsLayout = (RelativeLayout) findViewById(R.id.allAppsLayout);
+        favouriteAppsLayout = (RelativeLayout) findViewById(R.id.favouritesAppsLayout);
+        allAppsbtn = (TextView) findViewById(R.id.drawer_allapps_btn);
+        favouriteAppsbtn = (TextView) findViewById(R.id.drawer_favourite_btn);
+        allAppsbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favouriteAppsLayout.setAnimation(translateAnimationDown);
+                favouriteAppsLayout.getAnimation().start();
+                favouriteAppsLayout.setVisibility(View.GONE);
+                allAppsLayout.setAnimation(translateAnimationUp);
+                allAppsLayout.getAnimation().start();
+                allAppsLayout.setVisibility(View.VISIBLE);
+                allAppsbtn.setBackgroundColor(getResources().getColor(R.color.silver));
+                favouriteAppsbtn.setBackgroundDrawable(null);
+            }
+        });
+        favouriteAppsbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allAppsLayout.setAnimation(translateAnimationDown);
+                allAppsLayout.getAnimation().start();
+                allAppsLayout.setVisibility(View.GONE);
+                favouriteAppsLayout.setAnimation(translateAnimationUp);
+                favouriteAppsLayout.getAnimation().start();
+                favouriteAppsLayout.setVisibility(View.VISIBLE);
+                favouriteAppsbtn.setBackgroundColor(getResources().getColor(R.color.silver));
+                allAppsbtn.setBackgroundDrawable(null);
+            }
+        });
 
-		//Imposta gli eventi OnTouch delle icone della dock
+        dockapp1 = (ImageView) findViewById(R.id.dockapp1);
+        dockapp2 = (ImageView) findViewById(R.id.dockapp2);
+        dockapp3 = (ImageView) findViewById(R.id.dockapp3);
+        dockapp4 = (ImageView) findViewById(R.id.dockapp4);
+        dockapp1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                checkdockapp1 = true;
+                return false;
+            }
+        });
 
-		dockapp1 = (ImageView) findViewById(R.id.dockapp1);
-		dockapp2 = (ImageView) findViewById(R.id.dockapp2);
-		dockapp3 = (ImageView) findViewById(R.id.dockapp3);
-		dockapp4 = (ImageView) findViewById(R.id.dockapp4);
-		dockapp1.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View view, MotionEvent motionEvent) {
-				checkdockapp1=true;
-				return false;
-			}
-		});
+    }
 
-	}
+    private void loadHome() {
+        home_preference = getSharedPreferences(PREFS_HOME_NAME, 0);
+
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String homeapp1listString = home_preference.getString("home_app1_list", "");
+        if (!homeapp1listString.equals("")) {
+            String[] arraystringComponentName = homeapp1listString.split("\\|");
+            final PackageManager pm = getPackageManager();
+
+            for (int apphome = 0; apphome < arraystringComponentName.length; apphome++) {
+                Intent intent = new Intent();
+                String[] arraypackageclass = arraystringComponentName[apphome].split("&");
+                if (arraypackageclass[0] != null && arraypackageclass[1] != null) {
+                    intent.setComponent(new ComponentName(arraypackageclass[0], arraypackageclass[1]));
+                    ResolveInfo ri = pm.resolveActivity(intent, 0);
+                    AppInfo ai = new AppInfo();
+                    if (sharedPrefs.getBoolean("theme_iconpackcheck", false)) {
+                        Integer resultIconPacks = ai.applicationIconPacks.get(ri.activityInfo.packageName);
+                        if (resultIconPacks != null)
+                            ai.icon = getResources().getDrawable(resultIconPacks);
+                        else ai.icon = ri.loadIcon(pm);
+                    } else ai.icon = ri.loadIcon(pm);
+                    ai.label = ri.loadLabel(pm);
+                    ai.packagename = ri.activityInfo.packageName;
+                    ai.packageclass = ri.activityInfo.name;
+                    ai.componentName = new ComponentName(ai.packagename, ai.packageclass);
+                    Intent i = new Intent(Intent.ACTION_MAIN);
+                    i.addCategory(Intent.CATEGORY_LAUNCHER);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    i.setComponent(ai.componentName);
+                    ai.intent = i;
+                    home_app1_list.add(ai);
+                }
+            }
+        }
+
+
+        applicationsHomeAdapter = new ApplicationsHomeAdapter(home_app1_list, getApplicationContext());
+        home_app1.setAdapter(applicationsHomeAdapter);
+        home_app1.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = applicationsHomeAdapter.getIntent(position);
+                startActivity(intent);
+                //TODO find the default launcher animation and add it to all intents
+                //overridePendingTransition(android.R.anim., android.R.anim.slide_out_right);
+            }
+        });
+        registerForContextMenu(home_app1);
+    }
 
     private void loadDrawer() {
-        listdrawersStop=true;
+        listdrawersStop = true;
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPrefs.getString("drawer_orientation", "1").equals("1")) {
             findViewById(R.id.drawerlist).setVisibility(View.VISIBLE);
             findViewById(R.id.pager).setVisibility(View.GONE);
-            listDrawer=new ListDrawer();
-            listdrawersStop=false;
-            if (isRuntimePostGingerbread()) listDrawer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            listDrawer = new ListDrawer();
+            listdrawersStop = false;
+            if (isRuntimePostGingerbread())
+                listDrawer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             else listDrawer.execute();
 
-        }
-        else if (sharedPrefs.getString("drawer_orientation", "1").equals("2"))
-        {
+        } else if (sharedPrefs.getString("drawer_orientation", "1").equals("2")) {
             findViewById(R.id.drawerlist).setVisibility(View.GONE);
             findViewById(R.id.pager).setVisibility(View.VISIBLE);
-            listDrawerscroll=new ListDrawerscroll();
-            listdrawersStop=false;
-            if (isRuntimePostGingerbread()) listDrawerscroll.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            listDrawerscroll = new ListDrawerscroll();
+            listdrawersStop = false;
+            if (isRuntimePostGingerbread())
+                listDrawerscroll.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             else listDrawerscroll.execute();
         }
     }
@@ -983,13 +1030,12 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
         v.getLayoutParams().height = 0;
         v.setVisibility(View.VISIBLE);
-        Animation a = new Animation()
-        {
+        Animation a = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
                 v.getLayoutParams().height = interpolatedTime == 1
                         ? RelativeLayout.LayoutParams.WRAP_CONTENT
-                        : (int)(targtetHeight * interpolatedTime);
+                        : (int) (targtetHeight * interpolatedTime);
                 v.requestLayout();
             }
 
@@ -1004,17 +1050,17 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         a.setDuration(300);
         v.startAnimation(a);
     }
+
     public static void collapse(final View v) {
         final int initialHeight = v.getMeasuredHeight();
 
-        Animation a = new Animation()
-        {
+        Animation a = new Animation() {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
-                if(interpolatedTime == 1){
+                if (interpolatedTime == 1) {
                     v.setVisibility(View.GONE);
-                }else{
-                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
+                } else {
+                    v.getLayoutParams().height = initialHeight - (int) (initialHeight * interpolatedTime);
                     v.requestLayout();
                 }
             }
@@ -1031,57 +1077,60 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         v.startAnimation(a);
     }
 
-    public void loadWeathercard()
-    {
-        //Imposta la data
+    public void loadWeathercard() {
+        //Set the date
         getDate();
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        citylb=(TextView)findViewById(R.id.citybox);
-        //Controlla se è selezionata l'opzione del luogo personalizzato
-        if (!sharedPrefs.getBoolean("weather_customlocationcheck", false))
-        {
+        citylb = (TextView) findViewById(R.id.citybox);
+        //Check if the custom weather place preference is enabled
+        if (!sharedPrefs.getBoolean("weather_customlocationcheck", false)) {
             citylb.setText("Acquisizione posizione...");
-            //Ricava la città in cui si è e aggiorna l'etichetta
-            if (isRuntimePostGingerbread()) new GetPosition().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            //Get the position and refresh the city label
+            if (isRuntimePostGingerbread())
+                new GetPosition().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             else new GetPosition().execute();
-        }
-        else
-        {
-            //Ricava la città personale e ricava il meteo
+        } else {
+            //Get the custom city, refresh the city label and get the weather
             citylb.setText(sharedPrefs.getString("weather_customlocation", getString(R.string.location_null)));
             getWeather((String) citylb.getText());
         }
     }
+
+    /**
+     * Function to check if the device is online
+     */
     public boolean isOnline() {
-        ConnectivityManager cm =(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         if (netInfo != null && netInfo.isConnectedOrConnecting()) {
             return true;
         }
         return false;
     }
+
     private void getDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM y");
         String currentDate = sdf.format(Calendar.getInstance().getTime());
-        datelb=(TextView)findViewById(R.id.dateView);
+        datelb = (TextView) findViewById(R.id.dateView);
         datelb.setText(currentDate);
     }
-    private void getWeather(String location) {
-        if (isOnline()){
-            Log.d("YWeatherGetter4a", "onCreate");
 
+    private void getWeather(String location) {
+        if (isOnline()) {
+            Log.d("YWeatherGetter4a", "onCreate");
             YahooWeatherUtils yahooWeatherUtils = YahooWeatherUtils.getInstance();
             yahooWeatherUtils.queryYahooWeather(getApplicationContext(), location, this);
-        }
-        else Toast.makeText(getApplicationContext(), "Sorry, no connection available", Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(getApplicationContext(), "Sorry, no connection available", Toast.LENGTH_SHORT).show();
 
     }
-    protected class GetPosition extends AsyncTask<String, Void,String> {
+
+    protected class GetPosition extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... params) {
 
             List<Address> addresses = null;
             try {
-                LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+                LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 double longitude = location.getLongitude();
                 double latitude = location.getLatitude();
@@ -1098,26 +1147,27 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             citylb.setText(s);
-            getWeather((String)citylb.getText());
+            getWeather((String) citylb.getText());
         }
     }
-//Gesture per apertura/chiusura drawer
 
-    GestureDetector.SimpleOnGestureListener simpleOnGestureListener = new GestureDetector.SimpleOnGestureListener(){
+    //GestureDetector to manage the open/close gesture of the drawer
+    GestureDetector.SimpleOnGestureListener simpleOnGestureListener = new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                                float velocityY) {
-
-            float sensitvity = convertDip2Pixels(getApplicationContext(), 100);
-            if((e1.getY() - e2.getY()) > sensitvity){
-                Log.d("ON TOUCH VIEWPAGER","swipe up");
-                Log.d("ON TOUCH VIEWPAGER","e1: "+e1.getY()+" e2: "+e2.getY());
-                if (!sldrawer.isOpened())sldrawer.animateOpen();
-            }
-            else if (e2.getY()-e1.getY()>sensitvity){
-                Log.d("ON TOUCH VIEWPAGER","swipe down");
-                Log.d("ON TOUCH VIEWPAGER","e1: "+e1.getY()+" e2: "+e2.getY());
-                if (sldrawer.isOpened()) sldrawer.animateClose();
+            try {
+                float sensitvity = convertDip2Pixels(getApplicationContext(), 100);
+                if ((e1.getY() - e2.getY()) > sensitvity) {
+                    Log.d("ON TOUCH VIEWPAGER", "swipe up");
+                    Log.d("ON TOUCH VIEWPAGER", "e1: " + e1.getY() + " e2: " + e2.getY());
+                    if (!sldrawer.isOpened()) sldrawer.animateOpen();
+                } else if (e2.getY() - e1.getY() > sensitvity) {
+                    Log.d("ON TOUCH VIEWPAGER", "swipe down");
+                    Log.d("ON TOUCH VIEWPAGER", "e1: " + e1.getY() + " e2: " + e2.getY());
+                    if (sldrawer.isOpened()) sldrawer.animateClose();
+                }
+            } catch (Exception ex) {
             }
             return true;
         }
@@ -1125,27 +1175,204 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
     };
     GestureDetector gestureDetector = new GestureDetector(simpleOnGestureListener);
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if (v == verticalGridView) {
+            menu.setHeaderTitle(getResources().getString(R.string.drawer_menu_title));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_uninstall));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_sendvia));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_manage));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_addhome));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_addfavourite));
+            currentAdapterString = "verticalGridView";
+        } else if (v == home_app1) {
+            menu.setHeaderTitle(getResources().getString(R.string.drawer_menu_title));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_uninstall));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_sendvia));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_manage));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_removehome));
+            currentAdapterString = "home_app1";
+        } else if (v.getTag() == "HorizontalDrawerTag") {
+            menu.setHeaderTitle(getResources().getString(R.string.drawer_menu_title));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_uninstall));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_sendvia));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_manage));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_addhome));
+            menu.add(0, v.getId(), 0, getResources().getString(R.string.drawer_menu_addfavourite));
+            currentAdapterString = "HorizontalDrawer";
+            currentPageHorizontal = myPager.getCurrentItem();
+        }
+    }
 
-	public void CreateViews() {
-		GridView gridview = (GridView) findViewById(R.id.drawerlist);
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        if (item.getTitle() == getResources().getString(R.string.drawer_menu_uninstall))
+            uninstallApp(info.position);
+        else if (item.getTitle() == getResources().getString(R.string.drawer_menu_manage))
+            manageApp(info.position);
+        else if (item.getTitle() == getResources().getString(R.string.drawer_menu_addhome))
+            addHome(info.position);
+        else if (item.getTitle() == getResources().getString(R.string.drawer_menu_removehome))
+            removeHome(info.position);
+        else if (item.getTitle() == getResources().getString(R.string.drawer_menu_addfavourite))
+            addFavourite(info.position);
+        else if (item.getTitle() == getResources().getString(R.string.drawer_menu_sendvia))
+            sendVia(info.position);
+        else {
+            return false;
+        }
+        return true;
+    }
+
+    private void sendVia(int position) {
+        Toast.makeText(getApplicationContext(), "Sorry, not already implemented!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void uninstallApp(int position) {
+        String packageName = "";
+        if (currentAdapterString.equals("verticalGridView")) {
+            packageName = applicationsAdapter.getPackageName(position);
+        } else if (currentAdapterString.equals("home_app1")) {
+            packageName = applicationsHomeAdapter.getPackageName(position);
+        } else if (currentAdapterString.equals("HorizontalDrawer")) {
+            packageName = applicationsAdaptersArray.get(currentPageHorizontal).getPackageName(position);
+        }
+        Uri packageURI = Uri.parse("package:" + packageName);
+        Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+        startActivity(uninstallIntent);
+    }
+
+    private void manageApp(int position) {
+        String packageName = "";
+        if (currentAdapterString.equals("verticalGridView")) {
+            packageName = applicationsAdapter.getPackageName(position);
+        } else if (currentAdapterString.equals("home_app1")) {
+            packageName = applicationsHomeAdapter.getPackageName(position);
+        } else if (currentAdapterString.equals("HorizontalDrawer")) {
+            packageName = applicationsAdaptersArray.get(currentPageHorizontal).getPackageName(position);
+        }
+        Intent intent = new Intent();
+        intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", packageName, null);
+        intent.setData(uri);
+        startActivity(intent);
+    }
+
+    private void addHome(int position) {
+        String packageName = "";
+        String packageClass = "";
+        if (currentAdapterString.equals("verticalGridView")) {
+            packageName = applicationsAdapter.getPackageName(position);
+            packageClass = applicationsAdapter.getPackageClass(position);
+        } else if (currentAdapterString.equals("HorizontalDrawer")) {
+            packageName = applicationsAdaptersArray.get(currentPageHorizontal).getPackageName(position);
+            packageClass = applicationsAdaptersArray.get(currentPageHorizontal).getPackageClass(position);
+        }
+        String currentStringPreference = home_preference.getString("home_app1_list", "");
+        home_preference.edit().putString("home_app1_list", currentStringPreference + packageName + "&" + packageClass + "|").commit();
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        int drawerrows=Integer.parseInt(sharedPrefs.getString("drawer_rows", "4"));
-        int drawercolumns=Integer.parseInt(sharedPrefs.getString("drawer_coloums", "4"));
-        gridview.setNumColumns(drawercolumns);
-        final ApplicationsAdapter applicationsAdapter=new ApplicationsAdapter(mApplications,gridview, getApplicationContext(),drawerrows);
-		gridview.setAdapter(applicationsAdapter);
-		gridview.setOnItemClickListener(new OnItemClickListener() {
+        final PackageManager pm = getPackageManager();
+        AppInfo ai = new AppInfo();
+        Intent intent = new Intent();
+        intent.setComponent(new ComponentName(packageName, packageClass));
+        ResolveInfo ri = pm.resolveActivity(intent, 0);
+        if (sharedPrefs.getBoolean("theme_iconpackcheck", false)) {
+            Integer resultIconPacks = ai.applicationIconPacks.get(ri.activityInfo.packageName);
+            if (resultIconPacks != null)
+                ai.icon = getResources().getDrawable(resultIconPacks);
+            else ai.icon = ri.loadIcon(pm);
+        } else ai.icon = ri.loadIcon(pm);
+        ai.label = ri.loadLabel(pm);
+        ai.packagename = ri.activityInfo.packageName;
+        ai.packageclass = ri.activityInfo.name;
+        ai.componentName = new ComponentName(ai.packagename, ai.packageclass);
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_LAUNCHER);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+        i.setComponent(ai.componentName);
+        ai.intent = i;
+        home_app1_list.add(ai);
+        applicationsHomeAdapter.notifyDataSetChanged();
+    }
 
+    private void removeHome(int position) {
+        home_app1_list.remove(position);
+        applicationsHomeAdapter.notifyDataSetChanged();
+        String newStringPreference = "";
+        for (int i = 0; i < home_app1_list.size(); i++) {
+            AppInfo appInfo = home_app1_list.get(i);
+            newStringPreference = newStringPreference + appInfo.packagename + "&" + appInfo.packageclass + "|";
+        }
+        home_preference.edit().putString("home_app1_list", newStringPreference).commit();
+    }
+
+    private void addFavourite(int position) {
+        String packageName = "";
+        String packageClass = "";
+        if (currentAdapterString.equals("verticalGridView")) {
+            packageName = applicationsAdapter.getPackageName(position);
+            packageClass = applicationsAdapter.getPackageClass(position);
+        } else if (currentAdapterString.equals("HorizontalDrawer")) {
+            packageName = applicationsAdaptersArray.get(currentPageHorizontal).getPackageName(position);
+            packageClass = applicationsAdaptersArray.get(currentPageHorizontal).getPackageClass(position);
+        }
+        String currentStringPreference = favourite_preference.getString("favouriteapp_list", "");
+        favourite_preference.edit().putString("favouriteapp_list", currentStringPreference + packageName + "&" + packageClass + "|").commit();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        final PackageManager pm = getPackageManager();
+        AppInfo ai = new AppInfo();
+        Intent intent = new Intent();
+        intent.setComponent(new ComponentName(packageName, packageClass));
+        ResolveInfo ri = pm.resolveActivity(intent, 0);
+        if (sharedPrefs.getBoolean("theme_iconpackcheck", false)) {
+            Integer resultIconPacks = ai.applicationIconPacks.get(ri.activityInfo.packageName);
+            if (resultIconPacks != null)
+                ai.icon = getResources().getDrawable(resultIconPacks);
+            else ai.icon = ri.loadIcon(pm);
+        } else ai.icon = ri.loadIcon(pm);
+        ai.label = ri.loadLabel(pm);
+        ai.packagename = ri.activityInfo.packageName;
+        ai.packageclass = ri.activityInfo.name;
+        ai.componentName = new ComponentName(ai.packagename, ai.packageclass);
+        Intent i = new Intent(Intent.ACTION_MAIN);
+        i.addCategory(Intent.CATEGORY_LAUNCHER);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+        i.setComponent(ai.componentName);
+        ai.intent = i;
+        favourite_list.add(ai);
+        //favouriteListViewAdapter.setNewItem(ai);
+    }
+
+    private void notifyFavouritesChanges() {
+        //applicationsHomeAdapter.notifyDataSetChanged();
+        String newStringPreference = "";
+        for (int i = 0; i < favouriteListViewAdapter.getCount(); i++) {
+            AppInfo appInfo = favouriteListViewAdapter.getItem(i);
+            newStringPreference = newStringPreference + appInfo.packagename + "&" + appInfo.packageclass + "|";
+        }
+        favourite_preference.edit().putString("favouriteapp_list", newStringPreference).commit();
+    }
+
+    public void CreateViews() {
+        verticalGridView = (GridView) findViewById(R.id.drawerlist);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        int drawerrows = Integer.parseInt(sharedPrefs.getString("drawer_rows", "4"));
+        int drawercolumns = Integer.parseInt(sharedPrefs.getString("drawer_coloums", "4"));
+        verticalGridView.setNumColumns(drawercolumns);
+        applicationsAdapter = new ApplicationsAdapter(mApplications, verticalGridView, getApplicationContext(), drawerrows);
+        verticalGridView.setAdapter(applicationsAdapter);
+        verticalGridView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 Intent intent = applicationsAdapter.getIntent(position);
-                if (intent != null) {
-                    intent = Intent.makeMainActivity(intent.getComponent());
-                }
                 startActivity(intent);
             }
-
         });
-		}
+        registerForContextMenu(verticalGridView);
+    }
 
     public void CreateViewsscroll() {
 
@@ -1153,191 +1380,209 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         double numappxpage;
-        int drawerrows=Integer.parseInt(sharedPrefs.getString("drawer_rows", "4"));
-        int drawercolumns=Integer.parseInt(sharedPrefs.getString("drawer_coloums", "4"));
-        numappxpage=drawerrows*drawercolumns;
-        int npage = (int) StrictMath.ceil(mApplications.size()/numappxpage);
+        int drawerrows = Integer.parseInt(sharedPrefs.getString("drawer_rows", "4"));
+        int drawercolumns = Integer.parseInt(sharedPrefs.getString("drawer_coloums", "4"));
+        numappxpage = drawerrows * drawercolumns;
+        int npage = (int) StrictMath.ceil(mApplications.size() / numappxpage);
 
-
+        //Split the mApplications array into others array. Each array correspond to the application array in each drawer page
         splittedarray = new ArrayList[npage];
-        for (int i=0; i<npage; i++) {
+        for (int i = 0; i < npage; i++) {
             splittedarray[i] = new ArrayList();
         }
-        for (int page=0; page<npage; page++){
-            for (int app=0; app<numappxpage; app++){
-                if (page*numappxpage+app<mApplications.size())splittedarray[page].add(mApplications.get(page*(int)numappxpage+app));
+        for (int page = 0; page < npage; page++) {
+            for (int app = 0; app < numappxpage; app++) {
+                if (page * numappxpage + app < mApplications.size())
+                    splittedarray[page].add(mApplications.get(page * (int) numappxpage + app));
             }
         }
-
-        /**
-         * Crea le varie GridView, setta l'adapter e assegna varie proprietà
-         */
 
         findViewById(R.id.drawerlist).setVisibility(View.GONE);
         findViewById(R.id.pager).setVisibility(View.VISIBLE);
 
+        //Create an array of GridView (drawer page) and populate it with slittedarray
+        applicationsAdaptersArray = new ArrayList<ApplicationsAdapter>();
         GridView[] gridViewsApps = new GridView[npage];
-        for (int app=0; app<gridViewsApps.length; app++){
-            gridViewsApps[app]=new GridView(this);
+        for (int app = 0; app < gridViewsApps.length; app++) {
+            gridViewsApps[app] = new GridView(this);
             gridViewsApps[app].setNumColumns(drawercolumns);
             gridViewsApps[app].setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
-            int height = gridViewsApps[app].getHeight();
-            final ApplicationsAdapter applicationsAdapter=new ApplicationsAdapter(splittedarray[app], gridViewsApps[app], this, drawerrows);
-            gridViewsApps[app].setAdapter(applicationsAdapter);
+            final ApplicationsAdapter applicationsAdapterHorizontal = new ApplicationsAdapter(splittedarray[app], gridViewsApps[app], this, drawerrows);
+            applicationsAdaptersArray.add(applicationsAdapterHorizontal);
+            gridViewsApps[app].setAdapter(applicationsAdapterHorizontal);
             gridViewsApps[app].setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    Intent intent = applicationsAdapter.getIntent(position);
+                    Intent intent = applicationsAdapterHorizontal.getIntent(position);
                     startActivity(intent);
                 }
             });
+            gridViewsApps[app].setTag("HorizontalDrawerTag");
+            registerForContextMenu(gridViewsApps[app]);
         }
 
-        /**
-         * Setta l'adapter al ViewPager
-         */
-
+        //Set the adapter to the viewPager
         MyPagerAdapter adapter = new MyPagerAdapter(gridViewsApps);
-        ViewPagerAnim myPager = (ViewPagerAnim) findViewById(R.id.pager);
+        myPager = (ViewPagerAnim) findViewById(R.id.pager);
         myPager.setAdapter(adapter);
         myPager.setCurrentItem(0);
 
-        /******************************************************************************************************
-         * Carica completamente le pagine del ViewPager ma è eseguito sul thread principale quindi freeza l'app
-         *****************************************************************************************************/
-        //Log.d("myPager","setOffscreenPageLimit(npage)");
-        //myPager.setOffscreenPageLimit(npage);
-
-        UnderlinePageIndicator titleIndicator = (UnderlinePageIndicator)findViewById(R.id.titles);
+        //Set the underlinePageIndicator to the viewPager of the drawer
+        UnderlinePageIndicator titleIndicator = (UnderlinePageIndicator) findViewById(R.id.titles);
         titleIndicator.setViewPager(myPager);
-        //API <11 .setPageTransformer ignorato quindi niente animazioni custom.
-        if (sharedPrefs.getString("drawer_animation", "1").equals("2")) {
+        //Check preferences and set the animation
+        if (sharedPrefs.getString("drawer_animation", "1").equals("1")) {
+            myPager.setPageTransformer(true, null);
+        } else if (sharedPrefs.getString("drawer_animation", "1").equals("2")) {
             myPager.setPageTransformer(true, new DepthPageTransformer());
-        }
-        else if (sharedPrefs.getString("drawer_animation", "1").equals("3")) {
+        } else if (sharedPrefs.getString("drawer_animation", "1").equals("3")) {
             myPager.setPageTransformer(true, new ZoomOutPageTransformer());
+        } else if (sharedPrefs.getString("drawer_animation", "1").equals("4")) {
+            myPager.setPageTransformer(true, new CubeTransformer(true));
+        } else if (sharedPrefs.getString("drawer_animation", "1").equals("5")) {
+            myPager.setPageTransformer(true, new CubeTransformer(false));
+        } else if (sharedPrefs.getString("drawer_animation", "1").equals("6")) {
+            myPager.setPageTransformer(true, new RotateTransformer());
+        } else if (sharedPrefs.getString("drawer_animation", "1").equals("7")) {
+            myPager.setPageTransformer(true, new RotateInTransformer());
         }
-
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
+        //return false;
+    }
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-       return gestureDetector.onTouchEvent(event);
-		//return false;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
 
-			case R.id.menu_settings:
-				Intent i = new Intent(this, Settings.class);
-				startActivityForResult(i, 1);
-				break;
-		}
-    	return true;
-	}
-    public void loadWallpaper(){
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPrefs.getBoolean("home_wallpaper_use_check", false)){
-            WallpaperManager wallpaperManager=WallpaperManager.getInstance(getApplicationContext());
-            Drawable wallpaperDrawable=wallpaperManager.getDrawable();
-            wallpaperImageView.setImageDrawable(wallpaperDrawable);
+            case R.id.menu_settings:
+                Intent i = new Intent(this, Settings.class);
+                startActivityForResult(i, 1);
+                break;
         }
-        else if (wallpaperImageView.getDrawable()!=getResources().getDrawable(R.color.background)){
+        return true;
+    }
+
+    public void loadWallpaper() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPrefs.getBoolean("home_wallpaper_use_check", false)) {
+            WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
+            Drawable wallpaperDrawable = wallpaperManager.getDrawable();
+            wallpaperImageView.setImageDrawable(wallpaperDrawable);
+        } else if (wallpaperImageView.getDrawable() != getResources().getDrawable(R.color.background)) {
             Log.d("Wallpaper", "Setting Wallpaper to background");
             wallpaperImageView.setImageResource(R.color.background);
         }
     }
 
-    public void loadApplicationList(){
-        while (!listdrawersStop){
-        if (mApplications == null) {
-            mApplications = new ArrayList<AppInfo>();
-        }
-
-        mApplications.clear();
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        Intent queryIntent= new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER);
-        PackageManager mPackageManager = getPackageManager();
-
-        List<ResolveInfo> resolveInfos;
-
-        try {
-            /**
-             * Eccezione su queryIntentActivities. Con molte app viene superato il limite di 1 mb per le binder transaction.
-             * Io non lo riscontro al primo avvio ma dopo varie volte consecutive che riavvio il drawer.
-             * Non so come risolvere!
-             *
-             *
-             * Caused by: java.lang.RuntimeException: Package manager has died
-             * Caused by: android.os.TransactionTooLargeExceptionTransactionTooLargeException
-             */
-        resolveInfos = mPackageManager.queryIntentActivities(queryIntent,0);
-        for (ResolveInfo ri : resolveInfos) {
-            AppInfo ai = new AppInfo();
-            if (sharedPrefs.getBoolean("theme_iconpackcheck", false)){
-                Integer resultIconPacks=ai.applicationIconPacks.get(ri.activityInfo.packageName);
-                if (resultIconPacks!=null)ai.icon=getResources().getDrawable(resultIconPacks);
-                else ai.icon = ri.loadIcon(mPackageManager);
+    public void loadApplicationList() {
+        while (!listdrawersStop) {
+            if (mApplications == null) {
+                mApplications = new ArrayList<AppInfo>();
             }
-            else ai.icon = ri.loadIcon(mPackageManager);
-            ai.label = ri.loadLabel(mPackageManager);
-            ai.componentName = new ComponentName(ri.activityInfo.packageName,ri.activityInfo.name);
-            Log.d("NowLauncher_packagenames",ri.activityInfo.packageName);
-            Intent i=new Intent(Intent.ACTION_MAIN);
-            i.addCategory(Intent.CATEGORY_LAUNCHER);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                    Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-            i.setComponent(ai.componentName);
-            ai.intent=i;
-            mApplications.add(ai);
-        }
-        }
-        catch (Exception ex){
-            Log.d("LoadApplicationList", ex.getMessage());
-        }
 
+            mApplications.clear();
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        Collections.sort(mApplications, new Comparator<AppInfo>() {
-            @Override
-            public int compare(AppInfo activityInfo, AppInfo activityInfo2) {
-                return activityInfo.label.toString().toUpperCase().compareTo(
-                        activityInfo2.label.toString().toUpperCase());
+            Intent queryIntent = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER);
+            PackageManager mPackageManager = getPackageManager();
+
+            List<ResolveInfo> resolveInfos;
+
+            try {
+                /**
+                 * Eccezione su queryIntentActivities. Con molte app viene superato il limite di 1 mb per le binder transaction.
+                 * Io non lo riscontro al primo avvio ma dopo varie volte consecutive che riavvio il drawer.
+                 * Non so come risolvere!
+                 *
+                 *
+                 * Caused by: java.lang.RuntimeException: Package manager has died
+                 * Caused by: android.os.TransactionTooLargeExceptionTransactionTooLargeException
+                 */
+                resolveInfos = mPackageManager.queryIntentActivities(queryIntent, 0);
+                for (ResolveInfo ri : resolveInfos) {
+                    AppInfo ai = new AppInfo();
+                    if (sharedPrefs.getBoolean("theme_iconpackcheck", false)) {
+                        Integer resultIconPacks = ai.applicationIconPacks.get(ri.activityInfo.packageName);
+                        if (resultIconPacks != null)
+                            ai.icon = getResources().getDrawable(resultIconPacks);
+                        else ai.icon = ri.loadIcon(mPackageManager);
+                    } else ai.icon = ri.loadIcon(mPackageManager);
+                    ai.label = ri.loadLabel(mPackageManager);
+                    ai.packagename = ri.activityInfo.packageName;
+                    ai.packageclass = ri.activityInfo.name;
+                    ai.componentName = new ComponentName(ai.packagename, ai.packageclass);
+                    Intent i = new Intent(Intent.ACTION_MAIN);
+                    i.addCategory(Intent.CATEGORY_LAUNCHER);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    i.setComponent(ai.componentName);
+                    ai.intent = i;
+                    mApplications.add(ai);
+                }
+            } catch (Exception ex) {
+                Log.d("LoadApplicationList", ex.getMessage());
             }
-        });
+            //TODO: rewrite this better!
+           /* 09-04 19:45:07.932  18836-18942/? E/AndroidRuntime: FATAL EXCEPTION: AsyncTask #4
+            java.lang.RuntimeException: An error occured while executing doInBackground()
+            at android.os.AsyncTask$3.done(AsyncTask.java:299)
+            at java.util.concurrent.FutureTask.finishCompletion(FutureTask.java:352)
+            at java.util.concurrent.FutureTask.setException(FutureTask.java:219)
+            at java.util.concurrent.FutureTask.run(FutureTask.java:239)
+            at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1080)
+            at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:573)
+            at java.lang.Thread.run(Thread.java:841)
+            Caused by: java.lang.ArrayIndexOutOfBoundsException: length=533; index=533
+            at java.util.Collections.sort(Collections.java:1896)
+            at com.nowlauncher.nowlauncher.MainActivity.loadApplicationList(MainActivity.java:1310)
+            at com.nowlauncher.nowlauncher.MainActivity$ListDrawerscroll.doInBackground(MainActivity.java:1347)
+            at com.nowlauncher.nowlauncher.MainActivity$ListDrawerscroll.doInBackground(MainActivity.java:1341)
+            at android.os.AsyncTask$2.call(AsyncTask.java:287)
+            at java.util.concurrent.FutureTask.run(FutureTask.java:234)
+            ... 3 more
+*/
+     /*-->*/
+            Collections.sort(mApplications, new Comparator<AppInfo>() {
+                @Override
+                public int compare(AppInfo activityInfo, AppInfo activityInfo2) {
+                    return activityInfo.label.toString().toUpperCase().compareTo(
+                            activityInfo2.label.toString().toUpperCase());
+                }
+            });
 
-       // ai.componentName = new ComponentName(ri.activityInfo.applicationInfo.packageName,ri.activityInfo.name);
-
-        listdrawersStop=true;
+            listdrawersStop = true;
         }
     }
 
-	protected class ListDrawer extends AsyncTask<String, Void, String> {
+    protected class ListDrawer extends AsyncTask<String, Void, String> {
 
-		ProgressBar pgbar = (ProgressBar) findViewById(R.id.drawerProgressBar);
+        ProgressBar pgbar = (ProgressBar) findViewById(R.id.drawerProgressBar);
 
-		protected String doInBackground(String... params) {
+        protected String doInBackground(String... params) {
             loadApplicationList();
             return null;
-		}
+        }
 
-		protected void onPostExecute(String result) {
-			CreateViews();
+        protected void onPostExecute(String result) {
+            CreateViews();
             pgbar.setVisibility(View.GONE);
 
             loadSearchDrawerListView();
             drawerSearch.setVisibility(View.VISIBLE);
-		}
-	}
+        }
+    }
+
     protected class ListDrawerscroll extends AsyncTask<String, Void, String> {
 
         ProgressBar pgbar = (ProgressBar) findViewById(R.id.drawerProgressBar);
@@ -1356,17 +1601,16 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
             drawerSearch.setVisibility(View.VISIBLE);
         }
     }
-    public void loadSearchDrawerListView(){
-        final ApplicationSearchAdapter applicationSearchAdapter=new ApplicationSearchAdapter(mApplications,getApplicationContext());
+
+    public void loadSearchDrawerListView() {
+        final ApplicationSearchAdapter applicationSearchAdapter = new ApplicationSearchAdapter(mApplications, getApplicationContext());
         drawerSearchListView.setAdapter(applicationSearchAdapter);
         drawerSearchListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = applicationSearchAdapter.getIntent(position);
-                if (intent != null) {
-                    intent = Intent.makeMainActivity(intent.getComponent());
-                }
                 startActivity(intent);
+
             }
         });
 
@@ -1393,39 +1637,115 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         drawerSearchEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus){
+                if (!hasFocus) {
+                    keyboardhideshowBoolean = true;
                     drawerSearchPanel.setAnimation(translateAnimationDown);
                     drawerSearchPanel.getAnimation().start();
                 }
             }
         });
     }
-    public void gotWeatherInfo(final WeatherInfo weatherInfo) {
-        // TODO Auto-generated method stub
-        if(weatherInfo != null) {
 
-            todayweath = (TextView)findViewById(R.id.todayweather);
+    public void loadFavouritesList() {
+        favourite_list = new ArrayList<AppInfo>();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences favourite_pref = getSharedPreferences("favourite_preference", 0);
+        String favouriteListString = favourite_pref.getString("favouriteapp_list", "");
+        if (!favouriteListString.equals("")) {
+            String[] arraystringComponentName = favouriteListString.split("\\|");
+            final PackageManager pm = getPackageManager();
+
+            for (int apphome = 0; apphome < arraystringComponentName.length; apphome++) {
+                Intent intent = new Intent();
+                String[] arraypackageclass = arraystringComponentName[apphome].split("&");
+                if (arraypackageclass[0] != null && arraypackageclass[1] != null) {
+                    intent.setComponent(new ComponentName(arraypackageclass[0], arraypackageclass[1]));
+                    ResolveInfo ri = pm.resolveActivity(intent, 0);
+                    AppInfo ai = new AppInfo();
+                    if (sharedPrefs.getBoolean("theme_iconpackcheck", false)) {
+                        Integer resultIconPacks = ai.applicationIconPacks.get(ri.activityInfo.packageName);
+                        if (resultIconPacks != null)
+                            ai.icon = getResources().getDrawable(resultIconPacks);
+                        else ai.icon = ri.loadIcon(pm);
+                    } else ai.icon = ri.loadIcon(pm);
+                    ai.label = ri.loadLabel(pm);
+                    ai.packagename = ri.activityInfo.packageName;
+                    ai.packageclass = ri.activityInfo.name;
+                    ai.componentName = new ComponentName(ai.packagename, ai.packageclass);
+                    Intent i = new Intent(Intent.ACTION_MAIN);
+                    i.addCategory(Intent.CATEGORY_LAUNCHER);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    i.setComponent(ai.componentName);
+                    ai.intent = i;
+                    favourite_list.add(ai);
+                }
+            }
+        }
+
+        favouriteSmartListView = (DragSortListView) findViewById(R.id.drawer_favourite_listview);
+        favouriteListViewAdapter = new ApplicationListViewAdapter(favourite_list, getApplicationContext());
+        DragSortListView.DropListener onDrop =
+                new DragSortListView.DropListener() {
+                    @Override
+                    public void drop(int from, int to) {
+                        Log.i("SmartListView", "from: " + from + "; to: " + to);
+                        if (from != to) {
+                            AppInfo item = favouriteListViewAdapter.getItem(from);
+                            favouriteListViewAdapter.remove(item);
+                            favouriteListViewAdapter.insert(item, to);
+                            notifyFavouritesChanges();
+
+                        }
+                    }
+                };
+
+        DragSortListView.RemoveListener onRemove =
+                new DragSortListView.RemoveListener() {
+                    @Override
+                    public void remove(int which) {
+                        favouriteListViewAdapter.remove(favouriteListViewAdapter.getItem(which));
+                        notifyFavouritesChanges();
+                    }
+                };
+        favouriteSmartListView.setAdapter(favouriteListViewAdapter);
+        favouriteSmartListView.setRemoveListener(onRemove);
+        favouriteSmartListView.setDropListener(onDrop);
+        favouriteSmartListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = favouriteListViewAdapter.getIntent(position);
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    public void gotWeatherInfo(final WeatherInfo weatherInfo) {
+        if (weatherInfo != null) {
+
+            todayweath = (TextView) findViewById(R.id.todayweather);
             todayweath.setText("Today");
 
-            forecast1 = (TextView)findViewById(R.id.forecast1);
+            forecast1 = (TextView) findViewById(R.id.forecast1);
             forecast1.setText(weatherInfo.getForecast2Day());
 
-            forecast2 = (TextView)findViewById(R.id.forecast2);
+            forecast2 = (TextView) findViewById(R.id.forecast2);
             forecast2.setText(weatherInfo.getForecast3Day());
 
-            forecast3 = (TextView)findViewById(R.id.forecast3);
+            forecast3 = (TextView) findViewById(R.id.forecast3);
             forecast3.setText(weatherInfo.getForecast4Day());
 
-            forecast4 = (TextView)findViewById(R.id.forecast4);
+            forecast4 = (TextView) findViewById(R.id.forecast4);
             forecast4.setText(weatherInfo.getForecast5Day());
 
 
-            temperaturenow = (TextView)findViewById(R.id.temperaturenow);
-            temperaturenow.setText(weatherInfo.getCurrentTempC()+"°C, "+weatherInfo.getAtmosphereHumidity()+"%");
+            temperaturenow = (TextView) findViewById(R.id.temperaturenow);
+            temperaturenow.setText(weatherInfo.getCurrentTempC() + "°C, " + weatherInfo.getAtmosphereHumidity() + "%");
 
 
-            //Imposta il link all'immagine di Yahoo!Weather
-            ImageView yahoologo=(ImageView)findViewById(R.id.yahooLogo);
+            ImageView yahoologo = (ImageView) findViewById(R.id.yahooLogo);
+            //Set link to the Yahoo!Weather logo
             yahoologo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -1461,7 +1781,6 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
         @Override
         protected Bitmap[] doInBackground(String... params) {
-            // TODO Auto-generated method stub
             Bitmap[] res = new Bitmap[6];
             res[0] = ImageUtils.getBitmapFromWeb(params[0]);
             res[1] = ImageUtils.getBitmapFromWeb(params[1]);
@@ -1474,23 +1793,24 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
 
         @Override
         protected void onPostExecute(Bitmap[] results) {
-            // TODO Auto-generated method stub
             super.onPostExecute(results);
-            citylb.setCompoundDrawablesWithIntrinsicBounds(null, null, null, new BitmapDrawable(getResources(),results[0]));
-            todayweath.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(getResources(),results[1]));
-            forecast1.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(getResources(),results[2]));
-            forecast2.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(getResources(),results[3]));
-            forecast3.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(getResources(),results[4]));
-            forecast4.setCompoundDrawablesWithIntrinsicBounds(null,null,null, new BitmapDrawable(getResources(),results[5]));
+            citylb.setCompoundDrawablesWithIntrinsicBounds(null, null, null, new BitmapDrawable(getResources(), results[0]));
+            todayweath.setCompoundDrawablesWithIntrinsicBounds(null, null, null, new BitmapDrawable(getResources(), results[1]));
+            forecast1.setCompoundDrawablesWithIntrinsicBounds(null, null, null, new BitmapDrawable(getResources(), results[2]));
+            forecast2.setCompoundDrawablesWithIntrinsicBounds(null, null, null, new BitmapDrawable(getResources(), results[3]));
+            forecast3.setCompoundDrawablesWithIntrinsicBounds(null, null, null, new BitmapDrawable(getResources(), results[4]));
+            forecast4.setCompoundDrawablesWithIntrinsicBounds(null, null, null, new BitmapDrawable(getResources(), results[5]));
 
         }
 
     }
+
     public class CardAdapter extends PagerAdapter {
 
         public int getCount() {
             return 2;
         }
+
         public Object instantiateItem(ViewGroup collection, int position) {
             int resId = 0;
             switch (position) {
@@ -1509,6 +1829,7 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
         public void destroyItem(View arg0, int arg1, Object arg2) {
             ((ViewPager) arg0).removeView((View) arg2);
         }
+
         @Override
         public boolean isViewFromObject(View arg0, Object arg1) {
             return arg0 == ((View) arg1);
@@ -1516,42 +1837,62 @@ public class MainActivity extends Activity implements YahooWeatherInfoListener, 
     }
 
     /**
-     * Metodo chiamato quando l'activity viene distrutta (uscita app)
+     * Method called when the activity is destroyed
      */
     @Override
     protected void onDestroy() {
-        //Rimuove il thread Runnable in background
+        //Remove the thread Runnable in background
         mHandler.removeCallbacks(mUpdateTimeTask);
-        //Resetta il mediaplayer
+        //Reset the mediaplayer
         mp.reset();
-        //Rimuove il receiver
+        //Remove the receiver
         unregisterReceiver(receiver);
         super.onDestroy();
     }
 
+    /**
+     * Method called when the back button is pressed.
+     */
     @Override
     public void onBackPressed() {
-        if (drawerSearchIsOpened){
-            drawerSearchPanel.setAnimation(translateAnimationDown);
-            drawerSearchPanel.getAnimation().start();
-            drawerSearchPanel.setVisibility(View.GONE);
-            drawerSearchIsOpened=false;
-        }
-        else if (sldrawer.isOpened())
-        {
-            sldrawer.animateClose();
-        }
-        else if (cardPager.getCurrentItem()!=0) cardPager.setCurrentItem(cardPager.getCurrentItem()-1);
+
+        if (sldrawer.isOpened()) {
+            if (drawerSearchIsOpened) {
+                keyboardhideshowBoolean = true;
+                drawerSearchPanel.setAnimation(translateAnimationDown);
+                drawerSearchPanel.getAnimation().start();
+                drawerSearchPanel.setVisibility(View.GONE);
+                drawerSearchIsOpened = false;
+            } else sldrawer.animateClose();
+        } else if (cardPager.getCurrentItem() != 0)
+            cardPager.setCurrentItem(cardPager.getCurrentItem() - 1);
 
     }
+
+    /**
+     * Method called when a new intent of this activity is created (so when home button is pressed and you are already in the launcher)
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        if (sldrawer.isOpened()) sldrawer.animateClose();
+        if (cardPager.getCurrentItem() != 0)
+            cardPager.setCurrentItem(cardPager.getCurrentItem() - 1);
+    }
+
+    /**
+     * Method called when a there is a activity result
+     * We use this to check preferences results
+     */
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {
-        //Controlla se è stata premuta la preferenza per riavviare il drawer
-        if (requestCode == 1 && resultCode==RESULT_OK) {
-            if (data.getBooleanExtra("restartdrawer", false))loadDrawer();
-            if (data.getBooleanExtra("setwallpaper", false))loadWallpaper();
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            if (data.getBooleanExtra("restartdrawer", false)) loadDrawer();
+            if (data.getBooleanExtra("setanimation", false)) CreateViewsscroll();
+            if (data.getBooleanExtra("setwallpaper", false)) loadWallpaper();
         }
     }
+
+
     public class PackageReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {

@@ -1,8 +1,6 @@
 package com.nowlauncher.nowlauncher;
 
-import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,6 @@ public class MyPagerAdapter extends PagerAdapter {
         return mGridViewsArray.length;
     }
     public Object instantiateItem(ViewGroup collection, int positionpage) {
-        Log.d("pager","instantiateItem");
         ((ViewPagerAnim) collection).addView(mGridViewsArray[positionpage], 0);
         return mGridViewsArray[positionpage];
     }

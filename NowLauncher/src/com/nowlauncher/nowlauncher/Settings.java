@@ -17,6 +17,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -31,9 +32,13 @@ public class Settings extends PreferenceActivity {
     Preference restartDrawer;
     Preference appspackPreference;
     Preference setWallpaper;
+    Preference setAnimation;
     CheckBoxPreference wallpapercheck;
+    CheckBoxPreference swipePanelcheck;
     Bitmap wallpaperSelected;
     WallpaperManager wallpaperManager;
+    Intent swipePanelService;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,16 @@ public class Settings extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 i.putExtra("restartdrawer", true);
+                setResult(RESULT_OK, i);
+                finish();
+                return false;
+            }
+        });
+        setAnimation=findPreference("set_animation");
+        setAnimation.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                i.putExtra("setanimation", true);
                 setResult(RESULT_OK, i);
                 finish();
                 return false;
@@ -96,6 +111,22 @@ public class Settings extends PreferenceActivity {
                 return false;
             }
         });
+        swipePanelService=new Intent(this,SwipePanel.class);
+        swipePanelcheck=(CheckBoxPreference)findPreference("right_swipe_panel_check");
+        swipePanelcheck.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                if(newValue instanceof Boolean){
+                    Boolean boolVal = (Boolean)newValue;
+                    swipePanelcheck.setChecked(boolVal);
+                    if (boolVal)startService(swipePanelService);
+                    else stopService(swipePanelService);
+                }
+
+                return false;
+            }
+        });
+
     }
     public void pickImage() {
         Intent intent = new Intent();

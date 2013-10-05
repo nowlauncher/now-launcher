@@ -79,13 +79,13 @@ public class ApplicationSearchAdapter extends BaseAdapter implements Filterable 
     @Override
     public Filter getFilter() {
         if (appFilter == null)
-            appFilter = new PlanetFilter();
+            appFilter = new AppFilter();
         return appFilter;
     }
 
 
 
-    private class PlanetFilter extends Filter {
+    private class AppFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
 

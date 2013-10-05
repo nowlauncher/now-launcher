@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
@@ -19,91 +20,53 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SongsManager {
-    private Context mcontext;
-	private ArrayList<SongsManager> songsList = new ArrayList<SongsManager>();
-    private String fullpath;
-    private String album_id;
-    private String song_name;
-    private String album_name;
-    private String artist_name;
-    private Bitmap album_art;
-    private int song_index;
+    public Context mcontext;
+    public String fullpath;
+    public String album_id;
+    public String song_name;
+    public String album_name;
+    public Drawable album_art;
+    public String artist_name;
+    public int song_index;
 	// Constructor
 	public SongsManager(Context context){
 		mcontext=context;
 	}
-	
-	/**
-	 * Function to read all mp3 files from sdcard
-	 * and store the details in ArrayList
-	 * */
-	public ArrayList<SongsManager> getPlayList(){
-        String[] STAR = { "*" };
-        Uri allaudiosong = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String audioselection = MediaStore.Audio.Media.IS_MUSIC + " != 0";
-        Cursor cursor;
-        cursor = mcontext.getContentResolver().query(allaudiosong, STAR, audioselection, null, null);
 
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    SongsManager song = new SongsManager(mcontext);
-                    song.fullpath = cursor.getString(cursor
-                            .getColumnIndex(MediaStore.Audio.Media.DATA));
-                    song.album_id = cursor.getString(cursor
-                            .getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
-                    MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-                    mmr.setDataSource(song.fullpath);
-                    song.song_name = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
-                    song.album_name = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
-                    song.artist_name = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
-                    song.song_index=cursor.getPosition();
-                    songsList.add(song);
-                } while (cursor.moveToNext());
-            }
-        }
-		// return songs list array
-        cursor.close();
-		return songsList;
-	}
-    public final String getPath() {
+    public String getPath() {
         return fullpath;
     }
-    public final String getAlbumId() {
+    public String getAlbumId() {
         return album_id;
     }
-    public final String getTitle() {
+    public String getTitle() {
         return song_name;
     }
-    public final String getAlbumName() {
+    public String getAlbumName() {
         return album_name;
     }
-    public final String getArtist() {
+    public String getArtist() {
         return artist_name;
     }
-    public final Bitmap getAlbumArt() {
-        return getAlbumart(Long.valueOf(getAlbumId()));
+    public Drawable getAlbumArt(){
+        return album_art;
     }
-    public Bitmap getAlbumart(Long album_id)
+    public Bitmap setAlbumArt(Long album_id, int dimensions)
     {
         Bitmap bm = null;
         try
         {
-            final Uri sArtworkUri = Uri
-                    .parse("content://media/external/audio/albumart");
-
+            final Uri sArtworkUri = Uri.parse("content://media/external/audio/albumart");
             Uri uri = ContentUris.withAppendedId(sArtworkUri, album_id);
-
-            ParcelFileDescriptor pfd = mcontext.getContentResolver()
-                    .openFileDescriptor(uri, "r");
+            ParcelFileDescriptor pfd = mcontext.getContentResolver().openFileDescriptor(uri, "r");
 
             if (pfd != null)
             {
                 FileDescriptor fd = pfd.getFileDescriptor();
-                bm = BitmapFactory.decodeFileDescriptor(fd);
+                bm=Bitmap.createScaledBitmap(BitmapFactory.decodeFileDescriptor(fd), dimensions,dimensions, true);
             }
         } catch (Exception e) {
-            bm=BitmapFactory.decodeResource(mcontext.getResources(), R.drawable.unknownalbum);
+            bm=Bitmap.createScaledBitmap(BitmapFactory.decodeResource(mcontext.getResources(), R.drawable.unknownalbum), dimensions,dimensions, true);
         }
         return bm;
     }

@@ -1,12 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/drawer_rootlayout"
-                android:background="@color/white">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_rootlayout"
+    android:background="@color/white">
 
-    <GridView
+
+
+    <RelativeLayout
+        android:id="@+id/dockdrawer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true">
+
+        <TextView
+            android:id="@+id/drawer_allapps_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            android:padding="10dp"
+            android:text="@string/all_apps_tab"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/drawer_favourite_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/favourites_tab"
+            android:textSize="25sp"
+            android:layout_alignTop="@+id/drawer_allapps_btn"
+            android:layout_toRightOf="@+id/drawer_allapps_btn" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/drawersearch"
+            android:visibility="gone"
+            android:src="@drawable/action_search"
+            android:scaleType="centerInside"
+            android:layout_alignTop="@+id/drawer_favourite_btn"
+            android:layout_toRightOf="@+id/drawer_favourite_btn" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/settingsbtn"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_menu_moreoverflow_normal_holo_light"
+            android:scaleType="center" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/allAppsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dockdrawer">
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/drawerProgressBar"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible" />
+        <GridView
             android:id="@+id/drawerlist"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -16,77 +78,54 @@
             android:verticalSpacing="5dp"
             android:horizontalSpacing="2dp"
             android:stretchMode="columnWidth"
-            android:layout_below="@+id/dockdrawer"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true" />
 
-    <RelativeLayout
-            android:id="@+id/dockdrawer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_alignParentLeft="true">
-
-        <TextView
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/silver"
-                android:padding="10dp"
-                android:text="@string/all_apps_tab"
-                android:textSize="25sp"/>
-
-        <TextView
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/favorites_tab"
-                android:textSize="25sp"
-                android:layout_alignTop="@+id/button1"
-                android:layout_toRightOf="@+id/button1"/>
-        <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/drawersearch"
-                android:visibility="gone"
-                android:src="@drawable/action_search"
-                android:scaleType="centerInside"
-                android:layout_alignTop="@+id/button2"
-                android:layout_toRightOf="@+id/button2"/>
-
-        <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/settingsbtn"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/settings"/>
-
-    </RelativeLayout>
-
-
-
-    <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/drawerProgressBar"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:visibility="visible"/>
-    <com.viewpagerindicator.UnderlinePageIndicator
+        <com.viewpagerindicator.UnderlinePageIndicator
             android:id="@+id/titles"
             android:layout_height="4dp"
             android:layout_below="@+id/dockdrawer"
             android:layout_width="fill_parent" />
-    <com.nowlauncher.nowlauncher.ViewPagerAnim
-            xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <com.nowlauncher.nowlauncher.ViewPagerAnim xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:layout_below="@+id/titles"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/favouritesAppsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:visibility="gone"
+        android:layout_below="@+id/dockdrawer">
+
+            <com.dragSortListView.DragSortListView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:dslv="http://schemas.android.com/apk/res/com.nowlauncher.nowlauncher"
+                android:id="@+id/drawer_favourite_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="3dp"
+                android:layout_margin="3dp"
+                android:dividerHeight="0dp"
+                dslv:drag_enabled="true"
+                dslv:sort_enabled="true"
+                dslv:remove_enabled="true"
+                dslv:drag_start_mode="onLongPress"
+                dslv:remove_mode="flingRemove"
+                dslv:collapsed_height="2dp"
+                dslv:drag_scroll_start="0.33"
+                dslv:max_drag_scroll_speed="0.5"
+                dslv:float_alpha="0.6"
+                dslv:slide_shuffle_speed="0.3"/>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -95,14 +134,17 @@
         android:layout_below="@+id/dockdrawer"
         android:background="@color/background"
         android:visibility="gone">
-        <EditText android:id="@+id/drawersearchedittext"
+
+        <EditText
+            android:id="@+id/drawersearchedittext"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/drawerSearchHint"
-            android:inputType="textVisiblePassword"/>
+            android:inputType="textVisiblePassword" />
+
         <ListView
             android:id="@+id/listviewDrawerSearch"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:layout_width="match_parent" />
     </LinearLayout>
 </RelativeLayout>

@@ -2,7 +2,6 @@ package com.nowlauncher.nowlauncher;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +40,12 @@ public class ApplicationsAdapter extends BaseAdapter {
     public Intent getIntent(int position) {
         return mInfos.get(position).intent;
     }
-
+    public String getPackageName(int position) {
+        return mInfos.get(position).packagename;
+    }
+    public String getPackageClass(int position) {
+        return mInfos.get(position).packageclass;
+    }
     @Override
     public long getItemId(int position) {
         return mInfos.get(position).componentName.hashCode();
@@ -49,7 +53,6 @@ public class ApplicationsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup container) {
-        Log.d("ApplicationAdapter","getView");
         ViewHolder viewHolder;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext

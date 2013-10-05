@@ -10,7 +10,7 @@
     <string name="temperature">Temperature</string>
     <string name="icon">Icon</string>
     <string name="all_apps_tab">All apps</string>
-    <string name="favorites_tab">Favorites</string>
+    <string name="favourites_tab">Favourites</string>
     <string name="weather">Weather</string>
     <string name="menu_settings">Menu settings</string>
     <string name="weather_custom_checktitle">Enable custom location weather</string>
@@ -22,9 +22,14 @@
     <string name="horizontal">Horizontal</string>
     <string name="vertical">Vertical</string>
     <string name="animation">Animation</string>
+    <string name="animationset">Set the animation</string>
     <string name="normalanimation">Normal Animation</string>
     <string name="cardanimation">Card Animation</string>
     <string name="zoomoutanimation">Zoom Out Animation</string>
+    <string name="cubeoutanimation">Cube Out Animation</string>
+    <string name="cubeinanimation">Cube In Animation</string>
+    <string name="rotatenanimation">Rotate Animation</string>
+    <string name="rotateinnanimation">Rotate in the page and fade Animation</string>
     <string name="drawer_rows">Drawer Rows</string>
     <string name="drawer_coloums">Drawer Coloums</string>
     <string name="music_artist">Artist</string>
@@ -40,5 +45,19 @@
     <string name="home_title">Home</string>
     <string name="home_use_wallpaper_check">Enable use of wallpaper</string>
     <string name="home_wallpaper_set">Set the wallpaper</string>
-
+    <string name="drawer_menu_title">Select action:</string>
+    <string name="drawer_menu_uninstall">Uninstall</string>
+    <string name="drawer_menu_manage">Manage</string>
+    <string name="drawer_menu_addhome">Add to home</string>
+    <string name="drawer_menu_removehome">Remove from home</string>
+    <string name="drawer_menu_addfavourite">Add to favourite</string>
+    <string name="drawer_menu_sendvia">Send via</string>
+    <string name="swipe_panel_name">Favourite applications</string>
+    <string name="right_swipe_panel">Right Swipe Panel</string>
+    <string name="right_swipe_panel_title">Enable right swipe panel service</string>
+    <string name="right_swipe_panel_description">You can access to a panel with your favourite apps quickly with a swipe right to left</string>
+    <string name="right_swipe_panel_dimension_title">Specify the width of the sensible area to open the right swipe panel</string>
+    <string name="right_swipe_panel_dimension_description">At higher values correspond to greater sensitivity of the swipe gesture, but it could interfere with normal uses. (Mid-low values recommended, like 5px)</string>
+    <string name="right_swipe_panel_favourite_title">Favourites</string>
+    <string name="right_swipe_panel_volume_title">Volume</string>
 </resources>
